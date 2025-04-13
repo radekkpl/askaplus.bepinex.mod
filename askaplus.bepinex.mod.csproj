@@ -4,7 +4,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>askaplus.bepinex.mod</AssemblyName>
     <Product>Aska Plus</Product>
-    <Version>0.2.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RestoreAdditionalProjectSources>
@@ -13,6 +12,9 @@
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
     <RootNamespace>askaplus.bepinex.mod</RootNamespace>
+    <AssemblyVersion>0.2.1.0</AssemblyVersion>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+    <Version>$(AssemblyVersion)</Version>
   </PropertyGroup>
 
   <ItemGroup>
