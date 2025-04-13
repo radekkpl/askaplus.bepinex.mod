@@ -1,1 +1,25 @@
-# askaplus.bepinex.mod
+# QoL Aska mods
+
+## What is it ?
+Some QoL mods for Aska game \
+<code style="color:red;">BACKUP YOUR SAVE</code>\
+this is still in development
+
+## Spikes self damage reduction
+Originally spikes do 5 damage to enemy and 20 damage to itself. This is pretty annoying, because pack of smolkers can easily destroy your perimeter.\
+Self damage to walls is now reduced to 2.
+
+## Installation - This is your first mod
+1. BepInEx is required and can be downloaded from here\
+Version required : BepInEx-Unity.IL2CPP-win-x64-6.xxxxx.zip < Make sure it is - BepInEx Unity (IL2CPP) for Windows (x64) games\
+[BepInEx](https://builds.bepinex.dev/projects/bepinex_be)
+2. Extract BepInEx directly into the game folder
+3. Run the game once and wait for BepInEx to generate the required Dlls and Folders
+4. Download the latest mod release from here [Release]("")
+5. Extract the mods into ASKAGamePath\BepInEx\plugins
+6. Run the game and enjoy
+
+## Installation - If you already have other mods and BepInEx
+1. Download the latest mod release from here [Release]("")
+2. Extract the mods into ASKAGamePath\BepInEx\plugins
+3. Run the game and enjoy
