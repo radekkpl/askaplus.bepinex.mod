@@ -37,6 +37,8 @@ namespace askaplus.bepinex.mod
             if (!villager._mtActive | villager._mtTarget == lastInteraction) return;
 
             lastInteraction = villager._mtTarget;
+            if (lastInteraction.parent == null) return;
+
             Plugin.Log.LogInfo($"{villager.gameObject.name} changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
 
             if (lastInteraction.name != "HarvestInteraction") return;
@@ -48,38 +50,35 @@ namespace askaplus.bepinex.mod
                     tSpawner = lastInteraction.parent.FindChild("TrunkSpawner");
                     sSpawner = tSpawner?.GetComponents<SubcomponentSpawner>();
                     //Plugin.Log.LogInfo($"{villager.gameObject.name}: TrunkSpawner found in {lastInteraction.parent.name}");
-                    if (sSpawner != null)
-                    {
-                        foreach (var spw in sSpawner)
+                    if (sSpawner == null) return;
+    
+                    foreach (var spw in sSpawner)
                         {
-                            if (spw.componentInfo.Name == "Hardwood Log")
+                           if (spw.componentInfo.Name == "Hardwood Log")
                             {
-
-                                var attrib = villager.Attributes;
-                                var woodCutting = attrib.GetAttribute(300);
-                                var amount = woodCutting.GetValue();
-                                Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {amount}");
-                                var rnd = UnityEngine.Random.value * 100;
-                                Plugin.Log.LogInfo($"{villager.gameObject.name}: Rnd value for bonus spawn is {rnd}");
-                                if (rnd < amount) 
-                                { 
-                                    spw.amount += 1;
-                                    Plugin.Log.LogInfo($"Spawning additional HardWoodLog.");
-                                }
-                                else
-                                {
-                                    Plugin.Log.LogInfo($"No luck this time.");
-                                }
-                            }
-                        }
+                               var attrib = villager.Attributes;
+                               var woodCutting = attrib.GetAttribute(300);
+                               var amount = woodCutting.GetValue();
+                               Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {amount}");
+                               var rnd = UnityEngine.Random.value * 100;
+                               Plugin.Log.LogInfo($"{villager.gameObject.name}: Rnd value for bonus spawn is {rnd}");
+                               if (rnd < amount) 
+                               { 
+                                   spw.amount += 1;
+                                   Plugin.Log.LogInfo($"Spawning additional HardWoodLog.");
+                               }
+                               else
+                               {
+                                  Plugin.Log.LogInfo($"No luck this time.");
+                               }
+                           }
                     }
                     break;
                 case "Item_Wood_fir2":
                     break;
                     tSpawner = lastInteraction.parent.FindChild("TrunkSpawner");
                     sSpawner = tSpawner?.GetComponents<SubcomponentSpawner>();
-                    if (sSpawner != null)
-                    {
+                    if (sSpawner == null) return;
                         foreach (var spw in sSpawner)
                         {
                             if (spw.componentInfo.Name == "Hardwood Log")
@@ -102,7 +101,6 @@ namespace askaplus.bepinex.mod
                                 }
                             }
                         }
-                    }
                     break;
                 default:
                     break;
