@@ -30,8 +30,9 @@ namespace askaplus.bepinex.mod
             if (!villager._mtActive | villager._mtTarget == lastInteraction) return;
 
             lastInteraction = villager._mtTarget;
-            if (lastInteraction.parent == null) return;
+            if (lastInteraction.parent is null) return;
 
+     
             if (villager.HasWorkstation())
             {
                 Plugin.Log.LogInfo($"{villager.gameObject.name} : {villager.GetWorkstation().GetName()} -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
@@ -58,10 +59,10 @@ namespace askaplus.bepinex.mod
                             {
                                var attrib = villager.Attributes;
                                var woodCutting = attrib.GetAttribute(300);
-                               var amount = woodCutting.GetValue();
-                               var rnd = UnityEngine.Random.value * 100;
-                               Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {amount} and chance is {rnd}");
-                               if (rnd <= amount) 
+                               var skillValue = woodCutting.GetValue();
+                               var randomChance = UnityEngine.Random.value * 50;
+                               Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {skillValue} and chance is {randomChance}");
+                               if (randomChance <= skillValue) 
                                {
                                 spw.amount += 1;
                                 Plugin.Log.LogInfo($"Spawning additional HardWoodLog. Total of: {spw}");
@@ -110,6 +111,8 @@ namespace askaplus.bepinex.mod
             //Plugin.Log.LogInfo($"VillagerBonusSpawn awake");
             villager = GetComponent<Villager>();
         }
+
+        
     }
 
 }
