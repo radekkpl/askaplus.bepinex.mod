@@ -12,8 +12,6 @@ namespace askaplus.bepinex.mod
     [HarmonyPatch(typeof(MainMenu))]
     internal class SpikesSelfDamageMod
     {
-        static List<GameObject> wallMasters = new List<GameObject>();
-
         [HarmonyPostfix]
         [HarmonyPatch(nameof(MainMenu.OnActivate))]
         public static void MainMenuOnActivatePostfix(MainMenu __instance)

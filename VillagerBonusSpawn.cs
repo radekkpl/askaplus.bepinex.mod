@@ -1,13 +1,6 @@
 ﻿using HarmonyLib;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using Il2CppSystem;
-using SandSailorStudio.RNG;
 using SSSGame;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace askaplus.bepinex.mod
@@ -39,7 +32,14 @@ namespace askaplus.bepinex.mod
             lastInteraction = villager._mtTarget;
             if (lastInteraction.parent == null) return;
 
-            Plugin.Log.LogInfo($"{villager.gameObject.name} changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
+            if (villager.HasWorkstation())
+            {
+                Plugin.Log.LogInfo($"{villager.gameObject.name} : {villager.GetWorkstation().GetName()} -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
+            }
+            else 
+            {
+                Plugin.Log.LogInfo($"{villager.gameObject.name} : No Workstation -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
+            }
 
             if (lastInteraction.name != "HarvestInteraction") return;
 
@@ -59,17 +59,16 @@ namespace askaplus.bepinex.mod
                                var attrib = villager.Attributes;
                                var woodCutting = attrib.GetAttribute(300);
                                var amount = woodCutting.GetValue();
-                               Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {amount}");
                                var rnd = UnityEngine.Random.value * 100;
-                               Plugin.Log.LogInfo($"{villager.gameObject.name}: Rnd value for bonus spawn is {rnd}");
-                               if (rnd < amount) 
-                               { 
-                                   spw.amount += 1;
-                                   Plugin.Log.LogInfo($"Spawning additional HardWoodLog.");
+                               Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {amount} and chance is {rnd}");
+                               if (rnd <= amount) 
+                               {
+                                spw.amount += 1;
+                                Plugin.Log.LogInfo($"Spawning additional HardWoodLog. Total of: {spw}");
                                }
                                else
                                {
-                                  Plugin.Log.LogInfo($"No luck this time.");
+                                  Plugin.Log.LogInfo($"No luck this time. Spawning only {spw}");
                                }
                            }
                     }
@@ -87,9 +86,8 @@ namespace askaplus.bepinex.mod
                                 var attrib = villager.Attributes;
                                 var woodCutting = attrib.GetAttribute(300);
                                 var amount = woodCutting.GetValue();
-                                Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {amount}");
                                 var rnd = UnityEngine.Random.value * 100;
-                                Plugin.Log.LogInfo($"{villager.gameObject.name}: Rnd value for bonus spawn is {rnd}");
+                                Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {amount} and chance is {rnd}");
                                 if (rnd < amount)
                                 {
                                     spw.amount += 1;

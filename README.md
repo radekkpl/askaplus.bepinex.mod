@@ -9,6 +9,10 @@ This is still in development
 Originally spikes do 5 damage to enemy and 20 damage to itself. This is pretty annoying, because pack of smolkers can easily destroy your perimeter.\
 Self damage to walls is now reduced to 2.
 
+## Walls / Towers anchors fix
+Currently in game there is a gap about 0,3m between walls when using snapping. This gap is now reduced to 0.
+It will works only for new Wall created.
+
 ## Features in progress
 - Increase some harvestable items based on Villager/Player skill. lvl.0 - lvl.100 = 0 - 100% percentage chance to spawn bonus resource.\
 	- in progress - villagers only
@@ -22,7 +26,6 @@ Self damage to walls is now reduced to 2.
 - Prevent Carpenter returning his iron items to craftstation even if he is not Blacksmith or have a quest to do
 - 
 - 
-
 
 
 ## Installation - This is your first mod

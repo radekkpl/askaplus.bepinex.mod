@@ -19,6 +19,7 @@ namespace askaplus.bepinex.mod
             ClassInjector.RegisterTypeInIl2Cpp<VillagerBonusSpawn>();
             Harmony.CreateAndPatchAll(typeof(SpikesSelfDamageMod));
             Harmony.CreateAndPatchAll(typeof(VillagerPatch));
+            Harmony.CreateAndPatchAll(typeof(AnchorsFix));
         }
     }
 }
