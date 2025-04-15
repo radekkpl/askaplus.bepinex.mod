@@ -61,7 +61,7 @@ namespace askaplus.bepinex.mod
                                var woodCutting = attrib.GetAttribute(300);
                                var skillValue = woodCutting.GetValue();
                                var randomChance = UnityEngine.Random.value * 50;
-                               Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {skillValue} and chance is {randomChance}");
+                               Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {skillValue} and chance is {UnityEngine.Mathf.Round(100-randomChance)}");
                                if (randomChance <= skillValue) 
                                {
                                 spw.amount += 1;
