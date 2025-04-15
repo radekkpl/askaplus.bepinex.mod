@@ -55,5 +55,9 @@
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\Users\radek\source\repos\askaplus.bepinex.mod\askaplus.bepinex.mod.core\lib\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
 </Project>

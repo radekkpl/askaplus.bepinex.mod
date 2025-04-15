@@ -35,11 +35,11 @@ namespace askaplus.bepinex.mod
      
             if (villager.HasWorkstation())
             {
-                Plugin.Log.LogInfo($"{villager.gameObject.name} : {villager.GetWorkstation().GetName()} -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
+                Plugin.Log.LogDebug($"{villager.gameObject.name} : {villager.GetWorkstation().GetName()} -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
             }
             else 
             {
-                Plugin.Log.LogInfo($"{villager.gameObject.name} : No Workstation -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
+                Plugin.Log.LogDebug($"{villager.gameObject.name} : No Workstation -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
             }
 
             if (lastInteraction.name != "HarvestInteraction") return;
@@ -65,11 +65,11 @@ namespace askaplus.bepinex.mod
                                if (randomChance <= skillValue) 
                                {
                                 spw.amount += 1;
-                                Plugin.Log.LogInfo($"Spawning additional HardWoodLog. Total of: {spw}");
+                                Plugin.Log.LogMessage($"Spawning additional HardWoodLog. Total of: {spw.amount}");
                                }
                                else
                                {
-                                  Plugin.Log.LogInfo($"No luck this time. Spawning only {spw}");
+                                  Plugin.Log.LogMessage($"No luck this time. Spawning only {spw.amount}");
                                }
                            }
                     }
