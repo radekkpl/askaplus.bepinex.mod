@@ -88,6 +88,18 @@ namespace askaplus.bepinex.mod
                 }
             }
 
+            //var y = Resources.FindObjectsOfTypeAll<SSSGame.Network.NetworkStructureSplineLayoutState>();
+            //foreach (SSSGame.Network.NetworkStructureSplineLayoutState state in y) 
+            //{
+            //    Plugin.Log.LogMessage(state.gameObject.name);
+            //    if(state.gameObject.name == "PreviewSplineLayout") {
+            //        var mod = state.gameObject.AddComponent<RoadMakerMOD>();
+            //        mod.enabled = true;
+            //    }
+            //}
+
+            //Plugin.Log.LogMessage(y.Count);
+            
         }
     }
 }

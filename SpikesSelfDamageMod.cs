@@ -23,6 +23,18 @@ namespace askaplus.bepinex.mod
                 Plugin.Log.LogInfo($"Patching self damage in {mb.gameObject?.transform.parent?.name} from {mb.selfDamage} to 2");
                 mb.selfDamage = 2;
             }
+
+
+
+            //Tests for adding Torches to b buildings
+            var cave=Resources.FindObjectsOfTypeAll<SSSGame.CaveTorchOutlet>();
+
+            foreach (var mb in cave)
+            {
+                Plugin.Log.LogInfo($"Found CaveTorchOutlet in {mb.gameObject?.name} in {mb.gameObject.transform.parent.name}");
+            }
+
+
         }
 
 

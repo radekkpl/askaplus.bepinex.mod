@@ -47,6 +47,10 @@
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\SandSailorStudio.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\Users\radek\source\repos\askaplus.bepinex.mod\askaplus.bepinex.mod.core\lib\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\UnityEngine.dll</HintPath>
       <Private>False</Private>
@@ -55,8 +59,16 @@
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\Users\radek\source\repos\askaplus.bepinex.mod\askaplus.bepinex.mod.core\lib\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>..\..\..\Users\radek\source\repos\askaplus.bepinex.mod\askaplus.bepinex.mod.core\lib\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\Users\radek\source\repos\askaplus.bepinex.mod\askaplus.bepinex.mod.core\lib\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
