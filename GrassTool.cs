@@ -47,7 +47,7 @@ namespace askaplus.bepinex.mod
         private void Start()
         {
             HeightmapTool = gameObject.GetComponent<HeightmapTool>();
-            if (HeightmapTool == null) Plugin.Log.LogInfo("Heightmaptool not found");
+            //if (HeightmapTool == null) Plugin.Log.LogInfo("Heightmaptool not found");
             position = gameObject.transform.parent.transform;
         }
 
@@ -56,7 +56,8 @@ namespace askaplus.bepinex.mod
             if (Input.GetKeyDown(KeyCode.RightBracket))
             {
                 position = gameObject.transform.parent.transform;
-                Plugin.Log.LogInfo("Trying _UpdateTerraforming");
+                //Plugin.Log.LogInfo("Trying _UpdateTerraforming");
+                HeightmapTool.radius = 0.25f;
                 HeightmapTool.clearVegetation = false;
                 HeightmapTool.setTerrainType = true;
                 HeightmapTool.terrainType = TerraformingMap.TerrainType.NATURAL;

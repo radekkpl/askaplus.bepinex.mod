@@ -13,6 +13,9 @@ Self damage to walls is now reduced to 2.
 Currently in game there is a gap about 0,3m between walls when using snapping. This gap is now reduced to 0.
 It will works only for new Wall created.
 
+## Paint grass
+You can press "]" key to paint grass in a place where you stand.
+
 ## Features in progress
 - Increase some harvestable items based on Villager/Player skill. lvl.0 - lvl.100 = 0 - 100% percentage chance to spawn bonus resource.\
 	- in progress - villagers only
