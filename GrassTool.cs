@@ -1,23 +1,18 @@
-﻿using Fusion;
+﻿using BepInEx.Configuration;
 using HarmonyLib;
-using SandSailorStudio.UI;
 using SSSGame;
-using SSSGame.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using static askaplus.bepinex.mod.Plugin;
-using static Fusion.NetworkCharacterController;
 
 namespace askaplus.bepinex.mod
 {
     [HarmonyPatch(typeof(Character))]
     public static class CharacterPatch
     {
+       
+
         [HarmonyPostfix]
         [HarmonyPatch(nameof(Character.Spawned))]
         public static void Spawned(Character __instance)
@@ -25,6 +20,8 @@ namespace askaplus.bepinex.mod
             if (__instance.IsPlayer() && __instance.GetLocalAuthorityMask() == 1)
             {
                 Console.WriteLine("Player spawned");
+                if (__instance.GetComponentInChildren<GrassTool>() != null) return;
+
                 var GrassToolObj = __instance.gameObject.transform.CreateChild("GrassMod");
                 GrassToolObj.gameObject.AddComponent<SSSGame.HeightmapTool>();
                 
@@ -33,8 +30,33 @@ namespace askaplus.bepinex.mod
 
             }
         }
-    }
 
+
+        public static void OnSettingsMenu(Transform parent)
+        {
+            UIHelpers.AddTextMeshPro("--- Grass painting ---", 24, parent, new Vector2(0, 50), UIHelpers.HalfHalf,
+                Vector2.zero, Vector2.right, UIHelpers.HalfHalf);
+            UnityAction applyCallback = (UnityAction)(() =>
+              {
+                 return;
+              });
+             // UnityAction<bool> changeModEnabled = (UnityAction<bool>)((bool value) =>
+             // {
+
+             //     configGrass ModEnabled = value;
+             // });
+             // UnityAction<KeyCode> ApplyKeyCodeCallback = (UnityAction<KeyCode>)((KeyCode key) =>
+             // {
+             //     ApplyPainting = key;
+             // });
+             var panel = UIHelpers.AddPanel("Panel", parent, new Vector2(100, 100),
+                UIHelpers.backGroundColor, Vector2.zero,
+                new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(0, 0.5f));
+            UIHelpers.AddButton("Apply", panel, new Vector2(200, 25),
+                new Vector2(0, 0), UIHelpers.HalfHalf, UIHelpers.HalfHalf,
+                UIHelpers.HalfHalf, UIHelpers.greenColor, applyCallback);
+        }
+    }
 
     internal class GrassTool:MonoBehaviour
     {
@@ -53,7 +75,7 @@ namespace askaplus.bepinex.mod
 
         private void Update() {
 
-            if (Input.GetKeyDown(KeyCode.RightBracket))
+            if (Input.GetKeyDown(Plugin.configGrassPaintKey.Value))
             {
                 position = gameObject.transform.parent.transform;
                 //Plugin.Log.LogInfo("Trying _UpdateTerraforming");

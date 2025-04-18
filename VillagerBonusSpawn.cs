@@ -13,6 +13,7 @@ namespace askaplus.bepinex.mod
         public static void Awake(ref Villager __instance)
         {
             //Plugin.Log.LogInfo($"Villager awake");
+            if (__instance.gameObject.GetComponent<VillagerBonusSpawn>() is not null) return;
             var villagerBonusSpawner = __instance.gameObject.AddComponent<VillagerBonusSpawn>();
             //villagerBonusSpawner.villager = __instance;
             //Plugin.Log.LogInfo($"VillagerBonusSpawn awaked for character: {__instance.gameObject.name}");
@@ -57,11 +58,10 @@ namespace askaplus.bepinex.mod
                         {
                            if (spw.componentInfo.Name == "Hardwood Log")
                             {
-                               var attrib = villager.Attributes;
-                               var woodCutting = attrib.GetAttribute(300);
-                               var skillValue = woodCutting.GetValue();
-                               var randomChance = UnityEngine.Random.value * 50;
-                               Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {skillValue} and chance is {UnityEngine.Mathf.Round(100-randomChance)}");
+                                //Woodcutting = 300   
+                               var skillValue = villager.Attributes.GetAttribute(300).GetValue();
+                               var randomChance = UnityEngine.Random.value * 75;
+                               Plugin.Log.LogInfo($"{villager.gameObject.name}: WoodHarvesting skill is {skillValue} and GM rolled {UnityEngine.Mathf.Round(randomChance)}");
                                if (randomChance <= skillValue) 
                                {
                                 spw.amount += 1;

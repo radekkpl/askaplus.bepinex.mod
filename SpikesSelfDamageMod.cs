@@ -1,39 +1,29 @@
 ﻿using HarmonyLib;
-using SandSailorStudio.Assets;
 using SSSGame;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace askaplus.bepinex.mod
 {
     [HarmonyPatch(typeof(MainMenu))]
     internal class SpikesSelfDamageMod
     {
+        private static bool patched = false;
         [HarmonyPostfix]
         [HarmonyPatch(nameof(MainMenu.OnActivate))]
         public static void MainMenuOnActivatePostfix(MainMenu __instance)
         {
+            if (patched) return;
+            patched = true;
+
             var x = Resources.FindObjectsOfTypeAll<SSSGame.Combat.StructureDamageDealer>();
 
             foreach (var mb in x)
             {
-                Plugin.Log.LogInfo($"Patching self damage in {mb.gameObject?.transform.parent?.name} from {mb.selfDamage} to 2");
+                Plugin.Log.LogDebug($"Patching self damage in {mb.gameObject?.transform.parent?.name} from {mb.selfDamage} to 2");
+                Plugin.Log.LogDebug($"Patching damage in {mb.gameObject?.transform.parent?.name} from {mb.damage} to 3");
+                mb.damage = 3;
                 mb.selfDamage = 2;
             }
-
-
-
-            //Tests for adding Torches to b buildings
-            var cave=Resources.FindObjectsOfTypeAll<SSSGame.CaveTorchOutlet>();
-
-            foreach (var mb in cave)
-            {
-                Plugin.Log.LogInfo($"Found CaveTorchOutlet in {mb.gameObject?.name} in {mb.gameObject.transform.parent.name}");
-            }
-
 
         }
 
