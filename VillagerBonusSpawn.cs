@@ -19,6 +19,7 @@ namespace askaplus.bepinex.mod
             //Plugin.Log.LogInfo($"VillagerBonusSpawn awaked for character: {__instance.gameObject.name}");
         }
     }
+    
 
     public class VillagerBonusSpawn : MonoBehaviour
     {

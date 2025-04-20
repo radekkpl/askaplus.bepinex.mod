@@ -4,11 +4,15 @@ using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
+using SandSailorStudio.UI;
+using SSSGame.Localization;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace askaplus.bepinex.mod
 {
@@ -16,9 +20,10 @@ namespace askaplus.bepinex.mod
     public class Plugin : BasePlugin
     {
         internal static new ManualLogSource Log;
-        public static ConfigEntry<bool> configGrassPaintEnable;
-        public static ConfigEntry<KeyCode> configGrassPaintKey;
-
+        internal static ConfigEntry<bool> configGrassPaintEnable;
+        internal static ConfigEntry<KeyCode> configGrassPaintKey;
+        internal static ConfigEntry<bool> configSpikesSelfDamageEnable;
+        internal static ConfigEntry<bool> configBonusSpawnEnable;
         public override void Load()
         {
 
@@ -26,92 +31,42 @@ namespace askaplus.bepinex.mod
             Log = base.Log;
             Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
-            ClassInjector.RegisterTypeInIl2Cpp<VillagerBonusSpawn>();
-            ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
-//            ClassInjector.RegisterTypeInIl2Cpp<RoadMakerMOD>();
-            Harmony.CreateAndPatchAll(typeof(SpikesSelfDamageMod));
-            Harmony.CreateAndPatchAll(typeof(VillagerPatch));
-            Harmony.CreateAndPatchAll(typeof(CharacterPatch));
-            Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
+            
             configGrassPaintEnable = Config.Bind("GrassPaintig", "Enable mod", true, "Enable or disable mod");
-            configGrassPaintKey = Config.Bind("GrassPainting", // The section under which the option is shown
-                                            "KeyCode",  // The key of the configuration option in the configuration file
-                                            KeyCode.RightBracket, // The default value
-                                            "Key to paint grass"); // Description of the option to show in the config file
+            configGrassPaintKey = Config.Bind("GrassPainting", "KeyCode", KeyCode.RightBracket, "Key to paint grass");
+            ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
 
+            //            ClassInjector.RegisterTypeInIl2Cpp<RoadMakerMOD>();
+            configSpikesSelfDamageEnable = Config.Bind("Spikes selfdamage", "Enable mod", true, "Enable or disable mod");
+            Harmony.CreateAndPatchAll(typeof(SpikesSelfDamageMod));
+
+            configBonusSpawnEnable = Config.Bind("Bonus spawn", "Enable mod", true, "Enable or disable mod");
+            ClassInjector.RegisterTypeInIl2Cpp<VillagerBonusSpawn>();
+            ClassInjector.RegisterTypeInIl2Cpp<PlayerBonusSpawn>();
+            Harmony.CreateAndPatchAll(typeof(VillagerPatch));
+            
+            Harmony.CreateAndPatchAll(typeof(CharacterPatch));            
             SettingsMenuPatch.OnSettingsMenu += CharacterPatch.OnSettingsMenu;
+
+
+
             Harmony.CreateAndPatchAll(typeof(TorchesToBuildings));
             Harmony.CreateAndPatchAll(typeof(AnchorsFix));
 
-    }
-        
-        public static class UIHelpers
+
+            Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
+
+        }
+
+        internal static class UIHelpers
         {
             public static Color greenColor = new Color(0, 0.5f, 0, 1);
             public static Color backGroundColor = new Color(0, 0, 0, 0.8f);
             public static readonly Vector2 HalfHalf = new Vector2(0.5f, 0.5f);
-            public static Button AddButton(string text, Transform parent, Vector2 size, Vector2 anchoredPosition,
-                Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Color color, UnityAction callback)
-            {
-                Vector2 rectTransformSize;
-                GameObject buttonGO = new GameObject("Button");
-                buttonGO.transform.SetParent(parent);
-                RectTransform rectTransform = buttonGO.AddComponent<RectTransform>();
-                Image image = buttonGO.AddComponent<Image>();
-                image.color = color;
-                Button button = buttonGO.AddComponent<Button>();
+            static Dictionary<string, AssetBundle> loadedAssetBundles = new Dictionary<string, AssetBundle>();
 
-                rectTransform.sizeDelta = size;
-                rectTransform.localPosition = Vector3.zero;
-                rectTransform.anchorMin = anchorMin;
-                rectTransform.anchorMax = anchorMax;
-                rectTransform.pivot = pivot;
-                rectTransform.anchoredPosition = anchoredPosition;
-                rectTransformSize = rectTransform.rect.size;
-                AddTextMeshPro(text, rectTransformSize.y / 2, buttonGO.transform, Vector2.zero, Vector2.zero,
-                    new Vector2(0, 0),
-                    new Vector2(1, 1), new Vector2(0.5f, 0.5f));
 
-                if (callback != null)
-                    button.onClick.AddListener(callback);
-                return button;
-            }
-            public static RectTransform AddPanel(string name, Transform parent, Vector2 size, Color color,
-            Vector2 anchoredPosition, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot)
-            {
-                GameObject panelGO = new GameObject(name);
-                panelGO.transform.SetParent(parent, false);
-                var panelRectTransform = panelGO.AddComponent<RectTransform>();
-                var image = panelGO.AddComponent<Image>();
-                image.color = color;
-                panelRectTransform.anchorMin = anchorMin;
-                panelRectTransform.anchorMax = anchorMax;
-                panelRectTransform.anchoredPosition = anchoredPosition;
-                panelRectTransform.pivot = pivot;
-                panelRectTransform.sizeDelta = size;
-                return panelRectTransform;
-            }
-
-            public static TextMeshProUGUI AddTextMeshPro(string text, float fontSize, Transform parent, Vector2 size,
-            Vector2 anchoredPosition, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot)
-            {
-                GameObject textObject = new GameObject("MyText");
-                var rectTransform = textObject.AddComponent<RectTransform>();
-                rectTransform.sizeDelta = size;
-                TextMeshProUGUI textMeshPro = textObject.AddComponent<TextMeshProUGUI>();
-                textMeshPro.text = text;
-                textMeshPro.fontSize = fontSize;
-                textMeshPro.alignment = TextAlignmentOptions.Center;
-
-                // Set TextMeshProUGUI as child of Canvas
-                textObject.transform.SetParent(parent, false);
-                rectTransform.anchorMin = anchorMin;
-                rectTransform.anchorMax = anchorMax;
-                rectTransform.pivot = pivot;
-                rectTransform.anchoredPosition = anchoredPosition;
-                return textMeshPro;
-            }
-            public static Transform FindChildByNameCaseInsensitive(Transform parent, string name)
+            internal static Transform FindChildByNameCaseInsensitive(Transform parent, string name)
             {
                 foreach (var o in parent)
                 {
@@ -126,75 +81,101 @@ namespace askaplus.bepinex.mod
                 }
                 return null;
             }
-
-            public static ScrollRect AddScrollView(Transform parent, Vector2 size,
-                Vector2 anchoredPosition, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, bool isVertical = false,
-                float spacing = 0)
+            internal static Object LoadAssetBundle(string assetBundleFileName, string prefabName, bool dontDestroyOnLoad = true)
             {
-                var scrollViewObject = new GameObject("ScrollView");
-                var scrollViewRectTransform = scrollViewObject.AddComponent<RectTransform>();
-                scrollViewRectTransform.SetParent(parent);
-                scrollViewRectTransform.anchorMin = anchorMin;
-                scrollViewRectTransform.anchorMax = anchorMax;
-                scrollViewRectTransform.pivot = pivot;
-                scrollViewRectTransform.sizeDelta = size;
-                scrollViewRectTransform.anchoredPosition = anchoredPosition;
-                var scrollRect = scrollViewObject.AddComponent<ScrollRect>();
-                scrollRect.scrollSensitivity = 25;
+                System.Resources.ResourceManager rm = Properties.Resources.ResourceManager;
+                AssetBundle myAssetBundle;
 
-                //Mask
-                var maskGameObject = new GameObject("Mask");
-                maskGameObject.transform.SetParent(scrollViewObject.transform, false);
-                var maskRectTransform = maskGameObject.AddComponent<RectTransform>();
-                maskRectTransform.anchorMax = new Vector2(1, 1);
-                maskRectTransform.anchorMin = new Vector2(0, 0);
-                maskRectTransform.sizeDelta = Vector2.zero;
-                var maskImage = maskGameObject.AddComponent<Image>();
-                maskImage.color = UIHelpers.backGroundColor;
-                maskGameObject.AddComponent<Mask>();
-
-                //Content
-                var content = new GameObject("content");
-                content.transform.SetParent(maskGameObject.transform, false);
-                content.transform.localPosition = Vector3.zero;
-                var contentRect = content.AddComponent<RectTransform>();
-                contentRect.anchorMax = new Vector2(1, 1);
-                contentRect.anchorMin = new Vector2(0, 0);
-                contentRect.pivot = new Vector2(0.5f, 1);
-                contentRect.offsetMin = Vector2.zero;
-                contentRect.offsetMax = Vector2.zero;
-                maskRectTransform.sizeDelta = Vector2.zero;
-
-                if (isVertical)
+                if (loadedAssetBundles.ContainsKey(assetBundleFileName))
                 {
-                    var verticalLayoutGroup = content.AddComponent<VerticalLayoutGroup>();
-                    verticalLayoutGroup.childForceExpandHeight = false;
-                    verticalLayoutGroup.childControlHeight = false;
-                    verticalLayoutGroup.childForceExpandWidth = true;
-                    verticalLayoutGroup.spacing = spacing;
-                    var contentSizeFitter = content.AddComponent<ContentSizeFitter>();
-                    contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-                    contentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+                    myAssetBundle = loadedAssetBundles[assetBundleFileName];
+                    Debug.Log("AssetBundle is already loaded.");
                 }
                 else
                 {
-                    var horizontalLayoutGroup = content.AddComponent<HorizontalLayoutGroup>();
-                    horizontalLayoutGroup.childForceExpandHeight = true;
-                    horizontalLayoutGroup.childForceExpandWidth = true;
-                    horizontalLayoutGroup.childControlHeight = false;
-                    horizontalLayoutGroup.childControlWidth = false;
-                    horizontalLayoutGroup.spacing = spacing;
-                    var contentSizeFitter = content.AddComponent<ContentSizeFitter>();
-                    contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.Unconstrained;
-                    contentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+                    myAssetBundle = AssetBundle.LoadFromMemory((byte[])rm.GetObject(assetBundleFileName));
+
+                    if (myAssetBundle == null)
+                    {
+                        Plugin.Log.LogError("Failed to load AssetBundle!");
+                        return null;
+                    }
+                    else
+                    {
+                        loadedAssetBundles[assetBundleFileName] = myAssetBundle;
+                    }
                 }
 
-                scrollRect.content = contentRect;
-                scrollRect.horizontal = !isVertical;
-                scrollRect.vertical = isVertical;
-                scrollRect.viewport = maskRectTransform;
-                scrollRect.movementType = ScrollRect.MovementType.Clamped;
-                return scrollRect;
+                var loadedObject = myAssetBundle.LoadAsset(prefabName);
+                //GameObject prefab = loadedObject.TryCast<GameObject>();
+
+                // if (prefab != null && dontDestroyOnLoad)
+                // {
+                //     // Instantiate the prefab in the game
+                //     //GameObject.Instantiate(prefab);
+                //     GameObject.DontDestroyOnLoad(prefab);
+                // }
+                // else
+                // {
+                //     Plugin.Log.LogError("Failed to load prefab from AssetBundle!");
+                // }
+
+                return loadedObject;
+            }
+
+            internal static Sprite GetSpriteFromTexture2D(Texture2D texture2D)
+            {
+                if (!texture2D)
+                    return null;
+                Rect rect = new Rect(0, 0, texture2D.width, texture2D.height);
+                Vector2 pivot = new Vector2(0.5f, 0.5f);
+                Sprite sprite = Sprite.Create(texture2D, rect, pivot);
+                return sprite;
+            }
+            internal static void CreateSwitch(Transform parent, string text, ConfigEntry<bool> configEntry)
+            {
+                var button = GameObject.Instantiate(SettingsMenuPatch.Toggle, parent);
+                button.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = text;
+                Component.DestroyImmediate(button.transform.GetChild(7).GetComponent<LocalizedText>());
+                Component.DestroyImmediate(button.transform.GetChild(6).GetComponent<Button>());
+                Component.DestroyImmediate(button.transform.GetChild(5).GetComponent<Button>());
+                Component.DestroyImmediate(button.GetComponent<IncreaseDecreasePanel>());
+                var valu = button.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+
+                valu.text = configEntry.Value == true ? "True" : "False";
+                Button btn1 = button.transform.GetChild(5).gameObject.AddComponent<Button>();
+                Button btn2 = button.transform.GetChild(6).gameObject.AddComponent<Button>();
+
+                UnityAction onIncreaseDelegate =
+                    (UnityAction)(() =>
+                    {
+                        if (valu.text == "False")
+                        {
+                            valu.text = "True";
+                        }
+
+                        configEntry.Value = valu.text == "True";
+                    });
+                UnityAction onDecreaseDelegate =
+                    (UnityAction)(() =>
+                    {
+                        if (valu.text == "True")
+                        {
+                            valu.text = "False";
+                        }
+                        configEntry.Value = valu.text == "True";
+                    });
+
+                btn1.onClick.AddListener(onIncreaseDelegate);
+                btn2.onClick.AddListener(onDecreaseDelegate);
+            }
+
+            internal static void CreateCategory(Transform parent, string text)
+            {
+                var source = SettingsMenuPatch.Label;
+                var labelInfo = GameObject.Instantiate(source, parent);
+                labelInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
+                Component.DestroyImmediate(labelInfo.transform.GetChild(0).GetComponent<LocalizedText>());
             }
         }
     }

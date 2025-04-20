@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using SSSGame;
 using UnityEngine;
+using UnityEngine.Events;
+using static askaplus.bepinex.mod.Plugin;
 
 namespace askaplus.bepinex.mod
 {
@@ -25,6 +27,18 @@ namespace askaplus.bepinex.mod
                 mb.selfDamage = 2;
             }
 
+        }
+
+
+        public static void OnSettingsMenu(Transform parent)
+        {
+            UIHelpers.CreateCategory(parent, "Spikes selfdamage");
+            UIHelpers.CreateSwitch(parent, "* Enable Mod", configSpikesSelfDamageEnable);
+
+            UnityAction applyCallback = (UnityAction)(() =>
+            {
+                Plugin.configGrassPaintKey.Value = KeyCode.Z;
+            });
         }
 
 

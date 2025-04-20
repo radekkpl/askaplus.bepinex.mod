@@ -18,6 +18,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="AssetBundles\askaplus.bundle" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AssetBundles\askaplus.bundle" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
   </ItemGroup>
@@ -48,11 +56,19 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\..\..\Users\radek\source\repos\askaplus.bepinex.mod\askaplus.bepinex.mod.core\lib\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
@@ -60,16 +76,23 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\..\..\Users\radek\source\repos\askaplus.bepinex.mod\askaplus.bepinex.mod.core\lib\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\Users\radek\source\repos\askaplus.bepinex.mod\askaplus.bepinex.mod.core\lib\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\Users\radek\source\repos\askaplus.bepinex.mod\askaplus.bepinex.mod.core\lib\UnityEngine.UI.dll</HintPath>
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

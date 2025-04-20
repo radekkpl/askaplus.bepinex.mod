@@ -14,15 +14,18 @@ Currently in game there is a gap about 0,3m between walls when using snapping. T
 It will works only for new Wall created.
 
 ## Paint grass
-You can press "]" key to paint grass in a place where you stand.
+You can press "]" key to paint grass in front of you (3m).
 
 ## Features in progress
 - Increase some harvestable items based on Villager/Player skill. lvl.0 - lvl.100 = 0 - 100% percentage chance to spawn bonus resource.\
-	- in progress - villagers only
 	- Hardwood log - done
-	- not yet - player
+
+## Torches to buildings
+- Adding torches to buildings to lit your village.
+
 
 ## Planned features
+- Ingame settings of mod attributes (Enable/disable feature, etc.)
 - Adding workstations as target for Market
 	- gathering info from code
 - Prevent villagers or warehouse workers grabbing materials needed for crafting from workstations - no more multiple warehouses and Whitelists
