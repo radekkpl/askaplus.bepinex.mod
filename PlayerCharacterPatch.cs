@@ -1,8 +1,6 @@
 ﻿using HarmonyLib;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using SandSailorStudio.Attributes;
 using SSSGame;
-using SSSGame.Render;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -79,7 +77,6 @@ namespace askaplus.bepinex.mod
         private PlayerInteractionAgent playerInteractionAgent;
         private AttributeManager attributeManager;
         private GameObject lastPickable;
-        private Transform tSpawner;
         private void Update()
         {
             if (playerInteractionAgent is null) { Plugin.Log.LogError("PlayerInteravtionAgeint is null"); }
@@ -90,20 +87,27 @@ namespace askaplus.bepinex.mod
             lastPickable = playerInteractionAgent._favoritePickable.gameObject;
              
             Plugin.Log.LogInfo($"Target changed to {lastPickable.name}");
- 
+
             switch (lastPickable.name)
             {
                 case "Item_Wood_birch1":
                 case "Item_Wood_birch2":
-                    tSpawner = lastPickable.transform.FindChild("TrunkSpawner");
+                    var tSpawner = lastPickable.transform.FindChild("TrunkSpawner");
+                    AskaPlusSpawner bonusSpawner;
+                    if (tSpawner.gameObject.TryGetComponent<AskaPlusSpawner>(out bonusSpawner) == true) return;
+                    bonusSpawner = tSpawner.gameObject.AddComponent<AskaPlusSpawner>();
+                    var harvestInteraction = lastPickable.transform.FindChild("HarvestInteraction").GetComponent<HarvestInteraction>();
+                    Plugin.Log.LogInfo($"Harvest interaction is {harvestInteraction}");
 
-                    //Plugin.Log.LogInfo($"{villager.gameObject.name}: TrunkSpawner found in {lastInteraction.parent.name}");
-                    if (tSpawner.GetComponent<AskaPlusSpawner>() is not null) return;
-                    var bonusSpawner = tSpawner.gameObject.AddComponent<AskaPlusSpawner>();
-                    var harvestInteraction = tSpawner.gameObject.GetComponent<HarvestInteraction>();
-
-                    var info = UIHelpers.resourceInfoSO.Find(x => x.name.ToLower() == "hardwood log");
-
+                    var info = UIHelpers.resourceInfoSO["Item_Wood_HardWoodLog"];
+                    if (info is null) 
+                    {
+                        foreach (var ri in UIHelpers.resourceInfoSO)
+                        {
+                            Plugin.Log.LogInfo($"Resource Info: {ri.Key} : {ri.Value.name}");
+                        }
+                        return;
+                    }
                     //Woodcutting = 300   
                     var skillValue = attributeManager.GetAttribute(300).GetValue();
                     var randomChance = UnityEngine.Random.value * 75;
@@ -152,6 +156,7 @@ namespace askaplus.bepinex.mod
             var currentHealth = harvestInteraction._healthModifier?.GetHealth() ?? 0;
             if (currentHealth <= 0)
             {
+                Plugin.Log.LogMessage($"Running AskaPlusSpawner with amount = {amount}");
                 Run();
             }
         }

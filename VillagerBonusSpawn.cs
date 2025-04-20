@@ -1,5 +1,6 @@
-﻿using HarmonyLib;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
+﻿using System;
+using HarmonyLib;
+using Il2CppSystem;
 using SSSGame;
 using UnityEngine;
 using static askaplus.bepinex.mod.Plugin;
@@ -23,7 +24,7 @@ namespace askaplus.bepinex.mod
     {
         public Villager villager = null;
         private Transform lastInteraction;
-        private Transform tSpawner;
+      
         private void Update()
         {
             if (!villager._mtActive | villager._mtTarget == lastInteraction) return;
@@ -47,14 +48,13 @@ namespace askaplus.bepinex.mod
             {
                 case "Item_Wood_birch1":
                 case "Item_Wood_birch2":
-                    tSpawner = lastInteraction.parent.FindChild("TrunkSpawner");
+                   var tSpawner = lastInteraction.parent.FindChild("TrunkSpawner");
+                    AskaPlusSpawner bonusSpawner;
+                    if (tSpawner.gameObject.TryGetComponent<AskaPlusSpawner>(out bonusSpawner) == true) return;
+                    bonusSpawner = tSpawner.gameObject.AddComponent<AskaPlusSpawner>();
+                    var harvestInteraction = lastInteraction.parent.FindChild("HarvestInteraction").GetComponent<HarvestInteraction>();
 
-                    if (tSpawner.GetComponent<AskaPlusSpawner>() is not null) return;
-
-                    var bonusSpawner = tSpawner.gameObject.AddComponent<AskaPlusSpawner>();
-                    var harvestInteraction = tSpawner.gameObject.GetComponent<HarvestInteraction>();
-
-                    var info = UIHelpers.resourceInfoSO.Find(x => x.name.ToLower() == "hardwood log");
+                    var info = UIHelpers.resourceInfoSO["Item_Wood_HardWoodLog"];
 
                     //Woodcutting = 300   
                     var skillValue = villager.Attributes.GetAttribute(300).GetValue();
@@ -69,6 +69,10 @@ namespace askaplus.bepinex.mod
                     {
                         Plugin.Log.LogMessage($"No luck this time.");
                     }
+                    bonusSpawner.harvestInteraction = harvestInteraction;
+                    bonusSpawner.componentInfo = info;
+                    bonusSpawner.ignoreMasterItem = true;
+                    harvestInteraction.add_OnHarvestDamageTaken(new System.Action(() => bonusSpawner.OnHarvestDamageTaken()));
                     break;
                 case "Item_Wood_fir2":
                     break;

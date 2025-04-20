@@ -43,8 +43,10 @@ namespace askaplus.bepinex.mod
             Harmony.CreateAndPatchAll(typeof(SpikesSelfDamageMod));
 
             configBonusSpawnEnable = Config.Bind("Bonus spawn", "Enable mod", true, "Enable or disable mod");
+            ClassInjector.RegisterTypeInIl2Cpp<AskaPlusSpawner>();
             ClassInjector.RegisterTypeInIl2Cpp<VillagerBonusSpawn>();
             ClassInjector.RegisterTypeInIl2Cpp<PlayerBonusSpawn>();
+           
             Harmony.CreateAndPatchAll(typeof(VillagerPatch));
             
             Harmony.CreateAndPatchAll(typeof(CharacterPatch));            
@@ -66,7 +68,7 @@ namespace askaplus.bepinex.mod
             public static Color backGroundColor = new Color(0, 0, 0, 0.8f);
             public static readonly Vector2 HalfHalf = new Vector2(0.5f, 0.5f);
             public static Dictionary<string, AssetBundle> loadedAssetBundles = new Dictionary<string, AssetBundle>();
-            public static List<ResourceInfo> resourceInfoSO = new List<ResourceInfo>();
+            public static Dictionary<string,ResourceInfo> resourceInfoSO = new Dictionary<string, ResourceInfo>();
 
             internal static Transform FindChildByNameCaseInsensitive(Transform parent, string name)
             {
@@ -181,12 +183,12 @@ namespace askaplus.bepinex.mod
             }
 
 
-            internal static void ResourceInfos() 
+            internal static void ResourceInfos()
             {
                 var allScriptableObjects = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.ResourceInfo, Assembly-CSharp"));
                 resourceInfoSO = allScriptableObjects
                     .Select(so => so.TryCast<ResourceInfo>())
-                    .Where(ri => ri != null).ToList();
+                    .Where(ri => ri != null).ToDictionary(name => name.name, ri => ri);
             }
         }
     }
