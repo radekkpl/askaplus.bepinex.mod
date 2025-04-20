@@ -110,7 +110,7 @@ namespace askaplus.bepinex.mod
                         break;
                     case "Barber_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                   //     AddTorches(sb, sourcePillar, torch, "barber_complete_2_0_roof", posRots);
+                        AddTorches(sb, sourcePillar, torch, "barber_complete_2_0_roof", posRots);
                         break;
                     case "Barracks_L1":
                        
@@ -144,11 +144,11 @@ namespace askaplus.bepinex.mod
                         break;
                     case "Building1x1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-//                        AddTorches(sb, sourcePillar, torch, "wall_t1_D_1_exterior_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "wall_t1_D_1_exterior_complete_0_0", posRots);
                         break;
                     case "Building2x1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-  //                      AddTorches(sb, sourcePillar, torch, "wall_t1_D_1_exterior_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "wall_t1_D_1_exterior_complete_0_0", posRots);
                         break;
                     case "Cave_Entrance_L2":
                          
@@ -157,51 +157,51 @@ namespace askaplus.bepinex.mod
                         break;
                     case "CookingHouse_T1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-    //                    AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                       AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "CookingHouse_T2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-      //                  AddTorches(sb, sourcePillar, torch, "structure_complete_1_0_structure", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_1_0_structure", posRots);
                         break;
                     case "Farm_L1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-        //                AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "Farm_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-          //              AddTorches(sb, sourcePillar, torch, "farm_complete_2_0_roof", posRots);
+                        AddTorches(sb, sourcePillar, torch, "farm_complete_2_0_roof", posRots);
                         break;
                     case "Fisherman'sHut_L1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-            //            AddTorches(sb, sourcePillar, torch, "fishermanhut_L1_C_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "fishermanhut_L1_C_complete_0_0", posRots);
                         break;
                     case "Fisherman'sHut_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-              //          AddTorches(sb, sourcePillar, torch, "fisherman_l2_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "fisherman_l2_complete_0_0", posRots);
                         break;
                     case "FlimsyArch":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-               //         AddTorches(sb, sourcePillar, torch, "flimsy_arch_complete_0_0_foundation", posRots);
+                        AddTorches(sb, sourcePillar, torch, "flimsy_arch_complete_0_0_foundation", posRots);
                         break;
                     case "Forester_L1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-               //         AddTorches(sb, sourcePillar, torch, "roof_complete_2_0_roof", posRots);
+                        AddTorches(sb, sourcePillar, torch, "roof_complete_2_0_roof", posRots);
                         break;
                     case "Forester_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                //        AddTorches(sb, sourcePillar, torch, "house_complete_1_0_house", posRots);
+                        AddTorches(sb, sourcePillar, torch, "house_complete_1_0_house", posRots);
                         break;
                     case "Gatherer_L1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                //        AddTorches(sb, sourcePillar, torch, "gatherer1_complete_2_0_roof", posRots);
+                        AddTorches(sb, sourcePillar, torch, "gatherer1_complete_2_0_roof", posRots);
                         break;
                     case "Gatherer_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                //        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "HealingHouse_L1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                //        AddTorches(sb, sourcePillar, torch, "healing_house_l1_complete_1_0_walls", posRots);
+                        AddTorches(sb, sourcePillar, torch, "healing_house_l1_complete_1_0_walls", posRots);
                         break;
                     case "House_L1":
 
@@ -222,19 +222,19 @@ namespace askaplus.bepinex.mod
                         break;
                     case "Hunter_L1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                 //       AddTorches(sb, sourcePillar, torch, "hunterL1_complete_2_2", posRots);
+                        AddTorches(sb, sourcePillar, torch, "hunterL1_complete_2_2", posRots);
                         break;
                     case "Hunter_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                  //      AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "Market_T1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                //        AddTorches(sb, sourcePillar, torch, "trading_post_l0_complete_1_0_frame", posRots);
+                        AddTorches(sb, sourcePillar, torch, "trading_post_l0_complete_1_0_frame", posRots);
                         break;
                     case "OuthouseL1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                 //       AddTorches(sb, sourcePillar, torch, "outhouse_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "outhouse_complete_0_0", posRots);
                         break;
                     case "Outpost_L1_addon_wall2":
                          
@@ -246,11 +246,11 @@ namespace askaplus.bepinex.mod
                         break;
                     case "OutpostL1_addon_tower":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-           //             AddTorches(sb, sourcePillar, torch, "addon_tower_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "addon_tower_complete_0_0", posRots);
                         break;
                     case "StoneCutter_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-            //            AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "TempleOfSol":
                         break;
@@ -259,23 +259,23 @@ namespace askaplus.bepinex.mod
                         break;
                     case "WallGuardtowerRoof":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-          //              AddTorches(sb, sourcePillar, torch, "tower_guardTower_roof_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "tower_guardTower_roof_complete_0_0", posRots);
                         break;
                     case "WallHedgeGate_L1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-           //             AddTorches(sb, sourcePillar, torch, "gatehedge_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "gatehedge_complete_0_0", posRots);
                         break;
                     case "WallHedgeTower_L1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-           //             AddTorches(sb, sourcePillar, torch, "hedgetower_complete_0_0_frame", posRots);
+                        AddTorches(sb, sourcePillar, torch, "hedgetower_complete_0_0_frame", posRots);
                         break;
                     case "WallPlankGate_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-            //            AddTorches(sb, sourcePillar, torch, "gate_plank_L2_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "gate_plank_L2_complete_0_0", posRots);
                         break;
                     case "WallWatchtowerRoof":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-             //           AddTorches(sb, sourcePillar, torch, "tower_watchtower_roof", posRots);
+                        AddTorches(sb, sourcePillar, torch, "tower_watchtower_roof", posRots);
                         break;
                     case "Warehouse_L0_Addon_Roof":
                          
@@ -291,15 +291,15 @@ namespace askaplus.bepinex.mod
                         break;
                     case "WoodCutter_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-             //           AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "Workshop_addon_Carpenter_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-              //          AddTorches(sb, sourcePillar, torch, "structure_complete_1_0_frame", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_1_0_frame", posRots);
                         break;
                     case "Workshop_addon_Metalworker_L2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-               //         AddTorches(sb, sourcePillar, torch, "metalworker_complete_1_0_frame", posRots);
+                        AddTorches(sb, sourcePillar, torch, "metalworker_complete_1_0_frame", posRots);
                         break;
                     case "Workshop_L1":
                          
@@ -317,31 +317,31 @@ namespace askaplus.bepinex.mod
                         break;
                     case "Workshop_L1_addon_Dyer":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                //        AddTorches(sb, sourcePillar, torch, "workshop_t1_addon_dyer_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "workshop_t1_addon_dyer_complete_0_0", posRots);
                         break;
                     case "Workshop_L1_addon_Leatherworker_T1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                 //       AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "Workshop_L1_addon_Leatherworker_T2":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                //        AddTorches(sb, sourcePillar, torch, "leatherworker_complete_0_0_foundation", posRots);
+                       AddTorches(sb, sourcePillar, torch, "leatherworker_complete_0_0_foundation", posRots);
                         break;
                     case "Workshop_L1_addon_Metalworker_L1":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                 //       AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "Workshop_L1_addon_Weaver":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-               //         AddTorches(sb, sourcePillar, torch, "workshop_t1_addonB_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "workshop_t1_addonB_complete_0_0", posRots);
                         break;
                     case "Workshop_L2_addon_Dyer":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-                //        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "Workshop_L2_addon_Weaver":
                         posRots.Add(new PosRot(new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 20f)));
-              //          AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "Workshop_L2":
           

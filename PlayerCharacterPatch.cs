@@ -78,76 +78,53 @@ namespace askaplus.bepinex.mod
     {
         private PlayerInteractionAgent playerInteractionAgent;
         private AttributeManager attributeManager;
-        private Pickable lastPickable;
+        private GameObject lastPickable;
         private Transform tSpawner;
-        private Il2CppArrayBase<SubcomponentSpawner> sSpawner;
         private void Update()
         {
             if (playerInteractionAgent is null) { Plugin.Log.LogError("PlayerInteravtionAgeint is null"); }
 
             if (playerInteractionAgent._favoritePickable is null)   return;
-            if (playerInteractionAgent._favoritePickable == lastPickable) return;
+            if (playerInteractionAgent._favoritePickable.gameObject == lastPickable) return;
 
-            lastPickable = playerInteractionAgent._favoritePickable;
-            
+            lastPickable = playerInteractionAgent._favoritePickable.gameObject;
+             
+            Plugin.Log.LogInfo($"Target changed to {lastPickable.name}");
  
-            Plugin.Log.LogDebug($"Target changed to {lastPickable.name}");
- 
-
             switch (lastPickable.name)
             {
                 case "Item_Wood_birch1":
                 case "Item_Wood_birch2":
-                    tSpawner = lastPickable.gameObject.transform.FindChild("TrunkSpawner");
-                    sSpawner = tSpawner?.GetComponents<SubcomponentSpawner>();
-                    //Plugin.Log.LogInfo($"{villager.gameObject.name}: TrunkSpawner found in {lastInteraction.parent.name}");
-                    if (sSpawner == null) return;
+                    tSpawner = lastPickable.transform.FindChild("TrunkSpawner");
 
-                    foreach (var spw in sSpawner)
+                    //Plugin.Log.LogInfo($"{villager.gameObject.name}: TrunkSpawner found in {lastInteraction.parent.name}");
+                    if (tSpawner.GetComponent<AskaPlusSpawner>() is not null) return;
+                    var bonusSpawner = tSpawner.gameObject.AddComponent<AskaPlusSpawner>();
+                    var harvestInteraction = tSpawner.gameObject.GetComponent<HarvestInteraction>();
+
+                    var info = UIHelpers.resourceInfoSO.Find(x => x.name.ToLower() == "hardwood log");
+
+                    //Woodcutting = 300   
+                    var skillValue = attributeManager.GetAttribute(300).GetValue();
+                    var randomChance = UnityEngine.Random.value * 75;
+                    Plugin.Log.LogInfo($"PlyerCharacter: WoodHarvesting skill is {skillValue} and GM rolled {UnityEngine.Mathf.Round(randomChance)}");
+                    if (randomChance <= skillValue)
                     {
-                        if (spw.componentInfo.Name == "Hardwood Log")
-                        {
-                            //Woodcutting = 300   
-                            var skillValue = attributeManager.GetAttribute(300).GetValue();
-                            var randomChance = UnityEngine.Random.value * 75;
-                            Plugin.Log.LogInfo($"PlyerCharacter: WoodHarvesting skill is {skillValue} and GM rolled {UnityEngine.Mathf.Round(randomChance)}");
-                            if (randomChance <= skillValue)
-                            {
-                                spw.amount += 1;
-                                Plugin.Log.LogMessage($"Spawning additional HardWoodLog. Total of: {spw.amount}");
-                            }
-                            else
-                            {
-                                Plugin.Log.LogMessage($"No luck this time. Spawning only {spw.amount}");
-                            }
-                        }
+                        bonusSpawner.amount = 1;
+                        Plugin.Log.LogMessage($"Spawning additional HardWoodLog.");
                     }
+                    else
+                    {
+                        Plugin.Log.LogMessage($"No Luck today");
+                    }
+
+                    bonusSpawner.harvestInteraction = harvestInteraction;
+                    bonusSpawner.componentInfo = info;
+                    bonusSpawner.ignoreMasterItem = true;
+                    harvestInteraction.add_OnHarvestDamageTaken(new Action(bonusSpawner.OnHarvestDamageTaken));
+
                     break;
                 case "Item_Wood_fir2":
-                    break;
-                    tSpawner = lastPickable.gameObject.transform.FindChild("TrunkSpawner");
-                    sSpawner = tSpawner?.GetComponents<SubcomponentSpawner>();
-                    if (sSpawner == null) return;
-                    foreach (var spw in sSpawner)
-                    {
-                        if (spw.componentInfo.Name == "Log")
-                        {
-
-                            //Woodcutting = 300   
-                            var skillValue = attributeManager.GetAttribute(300).GetValue();
-                            var randomChance = UnityEngine.Random.value * 75;
-                            Plugin.Log.LogInfo($"PlyerCharacter: WoodHarvesting skill is {skillValue} and GM rolled {UnityEngine.Mathf.Round(randomChance)}");
-                            if (randomChance <= skillValue)
-                            {
-                                spw.amount += 1;
-                                Plugin.Log.LogMessage($"Spawning additional Log. Total of: {spw.amount}");
-                            }
-                            else
-                            {
-                                Plugin.Log.LogInfo($"No luck this time.");
-                            }
-                        }
-                    }
                     break;
                 default:
                     break;
@@ -162,6 +139,21 @@ namespace askaplus.bepinex.mod
 
 
 
+        }
+    }
+
+    public class AskaPlusSpawner : SubcomponentSpawner
+    {
+        public HarvestInteraction harvestInteraction;
+        public void OnHarvestDamageTaken()
+        {
+            if (!harvestInteraction)
+                return;
+            var currentHealth = harvestInteraction._healthModifier?.GetHealth() ?? 0;
+            if (currentHealth <= 0)
+            {
+                Run();
+            }
         }
     }
 }

@@ -5,9 +5,11 @@ using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
 using SandSailorStudio.UI;
+using SSSGame;
 using SSSGame.Localization;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -55,7 +57,7 @@ namespace askaplus.bepinex.mod
 
 
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
-
+            UIHelpers.ResourceInfos();
         }
 
         internal static class UIHelpers
@@ -63,8 +65,8 @@ namespace askaplus.bepinex.mod
             public static Color greenColor = new Color(0, 0.5f, 0, 1);
             public static Color backGroundColor = new Color(0, 0, 0, 0.8f);
             public static readonly Vector2 HalfHalf = new Vector2(0.5f, 0.5f);
-            static Dictionary<string, AssetBundle> loadedAssetBundles = new Dictionary<string, AssetBundle>();
-
+            public static Dictionary<string, AssetBundle> loadedAssetBundles = new Dictionary<string, AssetBundle>();
+            public static List<ResourceInfo> resourceInfoSO = new List<ResourceInfo>();
 
             internal static Transform FindChildByNameCaseInsensitive(Transform parent, string name)
             {
@@ -176,6 +178,15 @@ namespace askaplus.bepinex.mod
                 var labelInfo = GameObject.Instantiate(source, parent);
                 labelInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
                 Component.DestroyImmediate(labelInfo.transform.GetChild(0).GetComponent<LocalizedText>());
+            }
+
+
+            internal static void ResourceInfos() 
+            {
+                var allScriptableObjects = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.ResourceInfo, Assembly-CSharp"));
+                resourceInfoSO = allScriptableObjects
+                    .Select(so => so.TryCast<ResourceInfo>())
+                    .Where(ri => ri != null).ToList();
             }
         }
     }
