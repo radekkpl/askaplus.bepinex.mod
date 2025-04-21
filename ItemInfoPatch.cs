@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using LibCpp2IL.Elf;
 using SandSailorStudio.Inventory;
 using SSSGame;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace askaplus.bepinex.mod
                         Plugin.Log.LogError($"Decay attribute (id 1011) not found at object {__instance.name}");
                         return;
                     }
-                    Plugin.Log.LogInfo($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.1f}");
+              //      Plugin.Log.LogInfo($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.1f}");
                     
                     //QUICKEST DECAY OF SEEDS = NO MORE WASTE EVERYWHERE
                     decayAttributes[0].value = 0.1f;
@@ -38,32 +39,48 @@ namespace askaplus.bepinex.mod
             }
             else if (__instance.name.Contains("_Food_"))
             {
+
+             //   Plugin.Log.LogInfo($"Found {__instance.name}:");
                 //FOOD PATCH
                 if (__instance.TryCast<ConsumableInfo>() == true) {
                     var food = __instance.Cast<ConsumableInfo>();
+                  //  Plugin.Log.LogInfo($"Found {__instance.name} is {food}:");
 
-                    int[] attributes = [10, 14,15,11,12,13,]; 
-
+                    int[] attributes = [10,14,15,11,12,13,];
                     foreach (var ce in food.modulatedConsumeEffects)
                     {
                         if (ce.normalizedRange.min == 0)
                         {
-                            foreach (var se in food.consumeEffects)
+                   //         Plugin.Log.LogInfo($"Found {__instance.name} with {ce.randomStatusEffects.Count} consume effects:");
+                            foreach (var se in ce.randomStatusEffects)
                             {
+                   //             Plugin.Log.LogInfo($"Found {__instance.name} with duration {se.duration} and {se.table?.attrElements.Count} attribute elements");
                                 if (se.duration > 0 && se.table?.attrElements.Count > 0)
                                 {
+                   //                 Plugin.Log.LogInfo($"Found {__instance.name} with {ce.randomStatusEffects.Count} consume effects which change {se.table.attrElements} attributes");
                                     foreach (var ae in se.table.attrElements)
                                     {
                                         if (ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.PERCENTADD || ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.ADD)
                                         {
                                             if (attributes.Contains(ae.targetAttribute.attributeId))
                                             {
-                                                Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5*60}");
+                   //                             Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
                                                 se.duration = 5 * 60;
                                             }
+                                            else
+                                            {
+                    //                            Plugin.Log.LogInfo($"{food.name}: Not in target attribute. {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
+
+                                            }
+
+                                        }
+                                        else 
+                                        {
+                     //                      Plugin.Log.LogInfo($"{food.name}: Operation is {ae.modifier?.Operation}! .{ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
                                         }
                                     }
                                 }
+
                             }
                         }
                     }
