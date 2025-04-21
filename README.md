@@ -1,4 +1,4 @@
-# QoL Aska mods
+#         Aska+         
 
 ## What is it ?
 Some QoL mods for Aska game \
@@ -12,6 +12,15 @@ Self damage to walls is now reduced to 2.
 ## Walls / Towers anchors fix
 Currently in game there is a gap about 0,3m between walls when using snapping. This gap is now reduced to 0.
 It will works only for new Wall created.
+
+## Paint grass
+You can press "]" key to paint grass in front of you (3m).
+
+## Food PATCH
+Increased duration effects from 60sec to 5min.
+
+## Seed PATCH
+Seeds decay rate significantly increased to avoid seeds everywhere.
 
 ## Paint grass
 You can press "]" key to paint grass in front of you (3m).
