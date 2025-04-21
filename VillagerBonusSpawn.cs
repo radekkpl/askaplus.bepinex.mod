@@ -14,11 +14,28 @@ namespace askaplus.bepinex.mod
         [HarmonyPatch(nameof(Villager.Awake))]
         public static void Awake(ref Villager __instance)
         {
-            //Plugin.Log.LogInfo($"Villager awake");
-            if (__instance.gameObject.GetComponent<VillagerBonusSpawn>() is not null) return;
-            var villagerBonusSpawner = __instance.gameObject.AddComponent<VillagerBonusSpawn>();
+            VillagerBonusSpawn villager;
+            Plugin.Log.LogInfo($"Villager awake");
+            Plugin.Log.LogError($"Ignore next NULL error.");
+
+            if (__instance.gameObject.TryGetComponent<VillagerBonusSpawn>(out villager) == true) return;
+            villager = __instance.gameObject.AddComponent<VillagerBonusSpawn>();
+
+
         }
     }
+
+    [HarmonyPatch(typeof(VillagerSurvival))]
+    static class VillagerSurvivalPatch
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(VillagerSurvival.Awake))]
+        public static void Awake(ref VillagerSurvival __instance)
+        {
+            Plugin.Log.LogInfo($"{__instance.gameObject.name} hp threshold for fighting is {__instance._dataSheet.hpThresholdForFighting}");
+        }
+    }
+
 
     public class VillagerBonusSpawn : MonoBehaviour
     {

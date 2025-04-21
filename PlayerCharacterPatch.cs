@@ -145,8 +145,7 @@ namespace askaplus.bepinex.mod
 
         }
     }
-
-    public class AskaPlusSpawner : SubcomponentSpawner
+    internal class AskaPlusSpawner : SubcomponentSpawner
     {
         public HarvestInteraction harvestInteraction;
         public void OnHarvestDamageTaken()

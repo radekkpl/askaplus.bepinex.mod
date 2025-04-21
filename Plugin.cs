@@ -2,10 +2,12 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
+using Fusion;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
 using SandSailorStudio.UI;
 using SSSGame;
+using SSSGame.Combat;
 using SSSGame.Localization;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static SSSGame.Combat.InvasionWavesList;
+using static SSSGame.UI.UILineRenderer;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using Object = UnityEngine.Object;
 
 namespace askaplus.bepinex.mod
@@ -48,7 +53,7 @@ namespace askaplus.bepinex.mod
             ClassInjector.RegisterTypeInIl2Cpp<PlayerBonusSpawn>();
            
             Harmony.CreateAndPatchAll(typeof(VillagerPatch));
-            
+            Harmony.CreateAndPatchAll(typeof(VillagerSurvivalPatch));
             Harmony.CreateAndPatchAll(typeof(CharacterPatch));            
             SettingsMenuPatch.OnSettingsMenu += CharacterPatch.OnSettingsMenu;
 
@@ -56,8 +61,8 @@ namespace askaplus.bepinex.mod
 
             Harmony.CreateAndPatchAll(typeof(TorchesToBuildings));
             Harmony.CreateAndPatchAll(typeof(AnchorsFix));
-
-
+            Harmony.CreateAndPatchAll(typeof(ItemInfoPatch));
+            
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
             UIHelpers.ResourceInfos();
         }
@@ -182,13 +187,66 @@ namespace askaplus.bepinex.mod
                 Component.DestroyImmediate(labelInfo.transform.GetChild(0).GetComponent<LocalizedText>());
             }
 
+            internal static void CreateItemsGoogleSheet() 
+            {
+                //Plugin.Log.LogInfo($"Found {resourceInfoSO.Count} ResoureInfos");
+                Plugin.Log.LogMessage("CONSUMABLES");
+                foreach (var ri in resourceInfoSO.Values)
+                {
+                    // Plugin.Log.LogMessage($"{ri.name}");
+                    if (ri.name.StartsWith("Item_Food"))
+                    {
+                        if (ri.TryCast<ConsumableInfo>() == true)
+                        {
+                            var ci = ri.Cast<ConsumableInfo>();
+                            //    Plugin.Log.LogMessage($"{ci.name} is type of {ci.GetType().Name}");
+                            //   Plugin.Log.LogInfo($"{ri.name} has {ci.modulatedConsumeEffects.Length} effects");
+                            //foreach (var ce in ci.modulatedConsumeEffects)
+                            //{
+                            //    Plugin.Log.LogInfo($"from {ce.normalizedRange.min} to {ce.normalizedRange.max} has {ce.randomStatusEffects.Length} effects");
+                            //    foreach (var se in ce.randomStatusEffects)
+                            //    {
+                            //        Plugin.Log.LogInfo($"duration {se.duration} with effect {se.table.effectType.name}({se.table.dialogueAdded}) which modify {se.table.vattrElements.Count} vital attributes and modify {se.table.attrElements.Count} character attributes");
+                            //        foreach (var vattel in se.table.vattrElements)
+                            //        {
+                            //            Plugin.Log.LogInfo($"VITAL ATTRIBUTE: {vattel.modifier.mode} effect give {vattel.modifier.value} of attribute {vattel.targetAttribute.name}/{vattel.targetAttribute.localizedName} (attribid: {vattel.targetAttribute.attributeId}, type {vattel.targetAttribute.attributeType?.name})");
+                            //        }
+                            //        foreach (var attel in se.table.attrElements)
+                            //        {
+                            //            Plugin.Log.LogInfo($"CHARACTER ATTRIBUTE: {attel.modifier.Operation} effect give {attel.modifier.Value} of attribute {attel.targetAttribute.name}/{attel.targetAttribute.localizedName} (attribid: {attel.targetAttribute.attributeId}, type {attel.targetAttribute.attributeType?.name})");
+                            //        }
+                            //    }
+                            //}
+
+
+
+                            //Plugin.Log.LogMessage("EXPORT strings:");
+                            //foreach (var ce in ci.modulatedConsumeEffects)
+                            //{
+                            //    foreach (var se in ce.randomStatusEffects)
+                            //    {
+                            //        foreach (var vattel in se.table.vattrElements)
+                            //        {
+                            //            Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{vattel.modifier.mode};{vattel.targetAttribute.name};{vattel.modifier.value}");
+                            //        }
+                            //        foreach (var attel in se.table.attrElements)
+                            //        {
+                            //            Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{attel.modifier.Operation};{attel.targetAttribute.name};{attel.modifier.Value}");
+                            //        }
+                            //    }
+                            //}
+
+                        }
+                    }
+                }
+            }
 
             internal static void ResourceInfos()
             {
+               //preload all resources before menu, after menu loading we can modify items
                 var allScriptableObjects = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.ResourceInfo, Assembly-CSharp"));
-                resourceInfoSO = allScriptableObjects
-                    .Select(so => so.TryCast<ResourceInfo>())
-                    .Where(ri => ri != null).ToDictionary(name => name.name, ri => ri);
+
+                resourceInfoSO = Resources.FindObjectsOfTypeAll<ResourceInfo>().ToDictionary(name => name.name, ri => ri);
             }
         }
     }
