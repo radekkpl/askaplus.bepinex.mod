@@ -1,9 +1,8 @@
 ﻿using HarmonyLib;
-using LibCpp2IL.Elf;
 using SandSailorStudio.Inventory;
 using SSSGame;
 using System.Linq;
-using UnityEngine;
+using Il2CppSystem.Linq;
 
 
 namespace askaplus.bepinex.mod
@@ -44,49 +43,50 @@ namespace askaplus.bepinex.mod
                 //FOOD PATCH
                 if (__instance.TryCast<ConsumableInfo>() == true) {
                     var food = __instance.Cast<ConsumableInfo>();
-                  //  Plugin.Log.LogInfo($"Found {__instance.name} is {food}:");
 
-                    int[] attributes = [10,14,15,11,12,13,];
+                    int[] attributes = [10,14,15,11,12,13];
+                    
+                    foreach (var ce in food.consumeEffects) {
+                        if (ce.duration > 0 && ce.table?.attrElements?.Count > 0)
+                        {
+                            foreach (var ae in ce.table.attrElements) {
+                                if (ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.PERCENTADD || ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.ADD)
+                                {
+                                    if (attributes.Contains(ae.targetAttribute.attributeId))
+                                    {
+                                        //Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
+                                        ce.duration = 5 * 60;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
                     foreach (var ce in food.modulatedConsumeEffects)
                     {
                         if (ce.normalizedRange.min == 0)
                         {
-                   //         Plugin.Log.LogInfo($"Found {__instance.name} with {ce.randomStatusEffects.Count} consume effects:");
                             foreach (var se in ce.randomStatusEffects)
                             {
-                   //             Plugin.Log.LogInfo($"Found {__instance.name} with duration {se.duration} and {se.table?.attrElements.Count} attribute elements");
                                 if (se.duration > 0 && se.table?.attrElements.Count > 0)
                                 {
-                   //                 Plugin.Log.LogInfo($"Found {__instance.name} with {ce.randomStatusEffects.Count} consume effects which change {se.table.attrElements} attributes");
                                     foreach (var ae in se.table.attrElements)
                                     {
                                         if (ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.PERCENTADD || ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.ADD)
                                         {
                                             if (attributes.Contains(ae.targetAttribute.attributeId))
                                             {
-                   //                             Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
+                                            //  Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
                                                 se.duration = 5 * 60;
                                             }
-                                            else
-                                            {
-                    //                            Plugin.Log.LogInfo($"{food.name}: Not in target attribute. {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
-
-                                            }
-
-                                        }
-                                        else 
-                                        {
-                     //                      Plugin.Log.LogInfo($"{food.name}: Operation is {ae.modifier?.Operation}! .{ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
                                         }
                                     }
                                 }
-
                             }
                         }
                     }
-
-                 }
-
+                }
             }
         }
     }

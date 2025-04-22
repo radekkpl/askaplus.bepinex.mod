@@ -36,12 +36,15 @@ namespace askaplus.bepinex.mod
            UIHelpers.CreateCategory(parent, "Grass painting");
            UIHelpers.CreateSwitch(parent, "Enable Mod", configGrassPaintEnable);
 
+
+
+            UIHelpers.CreateCategory(parent, "Bonus items");
+            UIHelpers.CreateSwitch(parent, "* Enable Mod", configBonusSpawnEnable);
             UnityAction applyCallback = (UnityAction)(() =>
             {
                 Plugin.configGrassPaintKey.Value = KeyCode.Z;
             });
         }
-
     }
 
     internal class GrassTool:MonoBehaviour
@@ -79,6 +82,7 @@ namespace askaplus.bepinex.mod
         private GameObject lastPickable;
         private void Update()
         {
+            if (Plugin.configBonusSpawnEnable.Value == false) return;
             if (playerInteractionAgent is null) { Plugin.Log.LogError("PlayerInteravtionAgeint is null"); }
 
             if (playerInteractionAgent._favoritePickable is null)   return;

@@ -2,12 +2,10 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
-using Fusion;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
 using SandSailorStudio.UI;
 using SSSGame;
-using SSSGame.Combat;
 using SSSGame.Localization;
 using System;
 using System.Collections.Generic;
@@ -16,9 +14,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static SSSGame.Combat.InvasionWavesList;
-using static SSSGame.UI.UILineRenderer;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using Object = UnityEngine.Object;
 
 namespace askaplus.bepinex.mod
@@ -31,39 +26,47 @@ namespace askaplus.bepinex.mod
         internal static ConfigEntry<KeyCode> configGrassPaintKey;
         internal static ConfigEntry<bool> configSpikesSelfDamageEnable;
         internal static ConfigEntry<bool> configBonusSpawnEnable;
+        internal static ConfigEntry<bool> configTorchesBuildingEnable;
+        internal static ConfigEntry<bool> configTorchesBuildingShadowsEnable;
         public override void Load()
         {
 
-        // Plugin startup logic
+            // Plugin startup logic
             Log = base.Log;
             Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
-            
             configGrassPaintEnable = Config.Bind("GrassPaintig", "Enable mod", true, "Enable or disable mod");
             configGrassPaintKey = Config.Bind("GrassPainting", "KeyCode", KeyCode.RightBracket, "Key to paint grass");
+            configSpikesSelfDamageEnable = Config.Bind("Spikes selfdamage", "Enable mod", true, "Enable or disable mod");
+            configBonusSpawnEnable = Config.Bind("Bonus spawn", "Enable mod", true, "Enable or disable mod");
+            configTorchesBuildingEnable = Config.Bind("Torches to buildings", "Enable mod", true, "Enable or disable mod");
+            configTorchesBuildingShadowsEnable = Config.Bind("Torches to buildings", "Enable shadows", true, "If torches should cast shadows. False can improve performance.");
+
+
             ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
 
-            //            ClassInjector.RegisterTypeInIl2Cpp<RoadMakerMOD>();
-            configSpikesSelfDamageEnable = Config.Bind("Spikes selfdamage", "Enable mod", true, "Enable or disable mod");
+            //ClassInjector.RegisterTypeInIl2Cpp<RoadMakerMOD>();
             Harmony.CreateAndPatchAll(typeof(SpikesSelfDamageMod));
+            SettingsMenuPatch.OnSettingsMenu += SpikesSelfDamageMod.OnSettingsMenu;
 
-            configBonusSpawnEnable = Config.Bind("Bonus spawn", "Enable mod", true, "Enable or disable mod");
             ClassInjector.RegisterTypeInIl2Cpp<AskaPlusSpawner>();
             ClassInjector.RegisterTypeInIl2Cpp<VillagerBonusSpawn>();
             ClassInjector.RegisterTypeInIl2Cpp<PlayerBonusSpawn>();
-           
+
             Harmony.CreateAndPatchAll(typeof(VillagerPatch));
             Harmony.CreateAndPatchAll(typeof(VillagerSurvivalPatch));
-            Harmony.CreateAndPatchAll(typeof(CharacterPatch));            
+            Harmony.CreateAndPatchAll(typeof(CharacterPatch));
             SettingsMenuPatch.OnSettingsMenu += CharacterPatch.OnSettingsMenu;
 
 
-
             Harmony.CreateAndPatchAll(typeof(TorchesToBuildings));
+            SettingsMenuPatch.OnSettingsMenu += TorchesToBuildings.OnSettingsMenu;
             Harmony.CreateAndPatchAll(typeof(AnchorsFix));
             Harmony.CreateAndPatchAll(typeof(ItemInfoPatch));
-            
+            //SettingsMenuPatch.OnSettingsMenu += ItemInfoPatch.OnSettingsMenu;
+
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
+            Harmony.CreateAndPatchAll(typeof(Test));
             UIHelpers.ResourceInfos();
         }
 
@@ -73,7 +76,7 @@ namespace askaplus.bepinex.mod
             public static Color backGroundColor = new Color(0, 0, 0, 0.8f);
             public static readonly Vector2 HalfHalf = new Vector2(0.5f, 0.5f);
             public static Dictionary<string, AssetBundle> loadedAssetBundles = new Dictionary<string, AssetBundle>();
-            public static Dictionary<string,ResourceInfo> resourceInfoSO = new Dictionary<string, ResourceInfo>();
+            public static Dictionary<string, ResourceInfo> resourceInfoSO = new Dictionary<string, ResourceInfo>();
 
             internal static Transform FindChildByNameCaseInsensitive(Transform parent, string name)
             {
@@ -151,32 +154,27 @@ namespace askaplus.bepinex.mod
                 Component.DestroyImmediate(button.GetComponent<IncreaseDecreasePanel>());
                 var valu = button.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
 
-                valu.text = configEntry.Value == true ? "True" : "False";
+                valu.text = configEntry.Value == true ? "On" : "Off";
                 Button btn1 = button.transform.GetChild(5).gameObject.AddComponent<Button>();
                 Button btn2 = button.transform.GetChild(6).gameObject.AddComponent<Button>();
 
                 UnityAction onIncreaseDelegate =
                     (UnityAction)(() =>
                     {
-                        if (valu.text == "False")
-                        {
-                            valu.text = "True";
-                        }
+                        valu.text = valu.text == "Off" ? "On" : "Off";
 
-                        configEntry.Value = valu.text == "True";
+                        configEntry.Value = valu.text == "On";
                     });
-                UnityAction onDecreaseDelegate =
-                    (UnityAction)(() =>
-                    {
-                        if (valu.text == "True")
-                        {
-                            valu.text = "False";
-                        }
-                        configEntry.Value = valu.text == "True";
-                    });
+                //UnityAction onDecreaseDelegate =
+                //    (UnityAction)(() =>
+                //    {
+                //        valu.text = valu.text == "On" ? "Off" : "On";
+
+                //        configEntry.Value = valu.text == "On";
+                //    });
 
                 btn1.onClick.AddListener(onIncreaseDelegate);
-                btn2.onClick.AddListener(onDecreaseDelegate);
+                btn2.onClick.AddListener(onIncreaseDelegate);
             }
 
             internal static void CreateCategory(Transform parent, string text)
@@ -187,7 +185,7 @@ namespace askaplus.bepinex.mod
                 Component.DestroyImmediate(labelInfo.transform.GetChild(0).GetComponent<LocalizedText>());
             }
 
-            internal static void CreateItemsGoogleSheet() 
+            internal static void CreateItemsGoogleSheet()
             {
                 //Plugin.Log.LogInfo($"Found {resourceInfoSO.Count} ResoureInfos");
                 Plugin.Log.LogMessage("CONSUMABLES");
@@ -243,7 +241,7 @@ namespace askaplus.bepinex.mod
 
             internal static void ResourceInfos()
             {
-               //preload all resources before menu, after menu loading we can modify items
+                //preload all resources before menu, after menu loading we can modify items
                 var allScriptableObjects = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.ResourceInfo, Assembly-CSharp"));
 
                 resourceInfoSO = Resources.FindObjectsOfTypeAll<ResourceInfo>().ToDictionary(name => name.name, ri => ri);

@@ -15,13 +15,9 @@ namespace askaplus.bepinex.mod
         public static void Awake(ref Villager __instance)
         {
             VillagerBonusSpawn villager;
-            Plugin.Log.LogInfo($"Villager awake");
-            Plugin.Log.LogError($"Ignore next NULL error.");
-
+            //Plugin.Log.LogInfo($"Villager awake");
             if (__instance.gameObject.TryGetComponent<VillagerBonusSpawn>(out villager) == true) return;
             villager = __instance.gameObject.AddComponent<VillagerBonusSpawn>();
-
-
         }
     }
 
@@ -29,10 +25,11 @@ namespace askaplus.bepinex.mod
     static class VillagerSurvivalPatch
     {
         [HarmonyPostfix]
-        [HarmonyPatch(nameof(VillagerSurvival.Awake))]
-        public static void Awake(ref VillagerSurvival __instance)
+        [HarmonyPatch(nameof(VillagerSurvival.Spawned))]
+        public static void Spawned(ref VillagerSurvival __instance)
         {
-            Plugin.Log.LogInfo($"{__instance.gameObject.name} hp threshold for fighting is {__instance._dataSheet.hpThresholdForFighting}");
+            //Plugin.Log.LogInfo($"{__instance.gameObject.name} hp threshold for fighting is {__instance._dataSheet?.hpThresholdForFighting}");
+            __instance._dataSheet.hpThresholdForFighting = 0.2f;
         }
     }
 
@@ -44,6 +41,8 @@ namespace askaplus.bepinex.mod
       
         private void Update()
         {
+            if (Plugin.configBonusSpawnEnable.Value == false) return;
+
             if (!villager._mtActive | villager._mtTarget == lastInteraction) return;
 
             lastInteraction = villager._mtTarget;
