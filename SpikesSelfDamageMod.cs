@@ -32,8 +32,8 @@ namespace askaplus.bepinex.mod
 
         public static void OnSettingsMenu(Transform parent)
         {
-            UIHelpers.CreateCategory(parent, "Spikes selfdamage");
-            UIHelpers.CreateSwitch(parent, "* Enable Mod", configSpikesSelfDamageEnable);
+            Helpers.CreateCategory(parent, "Spikes selfdamage");
+            Helpers.CreateSwitch(parent, "* Enable Mod", configSpikesSelfDamageEnable);
 
             UnityAction applyCallback = (UnityAction)(() =>
             {

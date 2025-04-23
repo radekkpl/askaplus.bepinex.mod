@@ -34,7 +34,7 @@ namespace askaplus.bepinex.mod
             var Rect = videoSettingsTransform.FindChild("Rect");
             var tabsButtons = panelRef.FindChild("TabsButtons");
             var layoutGroup = tabsButtons.FindChild("LayoutGroup");
-            var videoTabButton = UIHelpers.FindChildByNameCaseInsensitive(layoutGroup, "VideoTabButton");
+            var videoTabButton = Helpers.FindChildByNameCaseInsensitive(layoutGroup, "VideoTabButton");
             var newSettingButtonGO = GameObject.Instantiate(videoTabButton.gameObject, videoTabButton.parent);
             newSettingButtonGO.transform.SetSiblingIndex(layoutGroup.childCount - 2);
             newSettingButtonGO.name = "ModTabButton";
@@ -44,10 +44,10 @@ namespace askaplus.bepinex.mod
             var iconShadowGO = newSettingButtonGO.transform.FindChild("Icon_Shadow")?.gameObject;
             var icon = iconGO.GetComponent<Image>();
             var icon_shadow = iconShadowGO.GetComponent<Image>();
-            var iconTexture =UIHelpers.LoadAssetBundle("askaplus", "AskaPLUS").TryCast<Texture2D>();
+            var iconTexture =Helpers.LoadAssetBundle("askaplus", "AskaPLUS").TryCast<Texture2D>();
 
-            icon.sprite = UIHelpers.GetSpriteFromTexture2D(iconTexture);
-            icon_shadow.sprite = UIHelpers.GetSpriteFromTexture2D(iconTexture);
+            icon.sprite = Helpers.GetSpriteFromTexture2D(iconTexture);
+            icon_shadow.sprite = Helpers.GetSpriteFromTexture2D(iconTexture);
             //Plugin.Log.LogInfo("Icons");
 
             var AskaPlusSettingPage = new GameObject("AskaPlusSettingsPage");

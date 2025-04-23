@@ -70,7 +70,7 @@ namespace askaplus.bepinex.mod
                     bonusSpawner = tSpawner.gameObject.AddComponent<AskaPlusSpawner>();
                     var harvestInteraction = lastInteraction.parent.FindChild("HarvestInteraction").GetComponent<HarvestInteraction>();
 
-                    var info = UIHelpers.resourceInfoSO["Item_Wood_HardWoodLog"];
+                    var info = Helpers.resourceInfoSO["Item_Wood_HardWoodLog"];
 
                     //Woodcutting = 300   
                     var skillValue = villager.Attributes.GetAttribute(300).GetValue();

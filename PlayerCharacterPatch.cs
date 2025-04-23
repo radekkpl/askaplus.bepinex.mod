@@ -33,13 +33,13 @@ namespace askaplus.bepinex.mod
 
         public static void OnSettingsMenu(Transform parent)
         {
-           UIHelpers.CreateCategory(parent, "Grass painting");
-           UIHelpers.CreateSwitch(parent, "Enable Mod", configGrassPaintEnable);
+           Helpers.CreateCategory(parent, "Grass painting");
+           Helpers.CreateSwitch(parent, "Enable Mod", configGrassPaintEnable);
 
 
 
-            UIHelpers.CreateCategory(parent, "Bonus items");
-            UIHelpers.CreateSwitch(parent, "* Enable Mod", configBonusSpawnEnable);
+            Helpers.CreateCategory(parent, "Bonus items");
+            Helpers.CreateSwitch(parent, "* Enable Mod", configBonusSpawnEnable);
             UnityAction applyCallback = (UnityAction)(() =>
             {
                 Plugin.configGrassPaintKey.Value = KeyCode.Z;
@@ -103,10 +103,10 @@ namespace askaplus.bepinex.mod
                     var harvestInteraction = lastPickable.transform.FindChild("HarvestInteraction").GetComponent<HarvestInteraction>();
                     Plugin.Log.LogInfo($"Harvest interaction is {harvestInteraction}");
 
-                    var info = UIHelpers.resourceInfoSO["Item_Wood_HardWoodLog"];
+                    var info = Helpers.resourceInfoSO["Item_Wood_HardWoodLog"];
                     if (info is null) 
                     {
-                        foreach (var ri in UIHelpers.resourceInfoSO)
+                        foreach (var ri in Helpers.resourceInfoSO)
                         {
                             Plugin.Log.LogInfo($"Resource Info: {ri.Key} : {ri.Value.name}");
                         }

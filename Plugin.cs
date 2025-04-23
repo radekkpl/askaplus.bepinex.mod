@@ -67,13 +67,15 @@ namespace askaplus.bepinex.mod
 
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
             Harmony.CreateAndPatchAll(typeof(Test));
-            UIHelpers.ResourceInfos();
+            Helpers.ResourceInfos();
         }
 
-        internal static class UIHelpers
+        internal static class Helpers
         {
             public static Color greenColor = new Color(0, 0.5f, 0, 1);
             public static Color backGroundColor = new Color(0, 0, 0, 0.8f);
+            public static Color SelectedOpt = new Color(1f,0.6824f,0f);
+            public static Color UnselectedOpt = new Color(1f,1f,1f);
             public static readonly Vector2 HalfHalf = new Vector2(0.5f, 0.5f);
             public static Dictionary<string, AssetBundle> loadedAssetBundles = new Dictionary<string, AssetBundle>();
             public static Dictionary<string, ResourceInfo> resourceInfoSO = new Dictionary<string, ResourceInfo>();
@@ -148,22 +150,40 @@ namespace askaplus.bepinex.mod
             {
                 var button = GameObject.Instantiate(SettingsMenuPatch.Toggle, parent);
                 button.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = text;
+                button.transform.GetChild(8).gameObject.SetActive(true);
+                var imgA = button.transform.GetChild(8).GetChild(0).gameObject;
+                var imgB = GameObject.Instantiate(imgA, imgA.transform.parent);
+
+                imgA.SetActive(true);
+                imgB.SetActive(true);
+
                 Component.DestroyImmediate(button.transform.GetChild(7).GetComponent<LocalizedText>());
+                var ColorSchema = button.transform.GetChild(6).GetComponent<Button>().colors;
                 Component.DestroyImmediate(button.transform.GetChild(6).GetComponent<Button>());
                 Component.DestroyImmediate(button.transform.GetChild(5).GetComponent<Button>());
                 Component.DestroyImmediate(button.GetComponent<IncreaseDecreasePanel>());
                 var valu = button.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
 
                 valu.text = configEntry.Value == true ? "On" : "Off";
+                imgA.GetComponent<Image>().color = valu.text == "Off" ? SelectedOpt : UnselectedOpt;
+                imgB.GetComponent<Image>().color = valu.text == "Off" ? UnselectedOpt : SelectedOpt;
+
                 Button btn1 = button.transform.GetChild(5).gameObject.AddComponent<Button>();
                 Button btn2 = button.transform.GetChild(6).gameObject.AddComponent<Button>();
+
+                btn1.targetGraphic = btn1.transform.GetChild(0).GetComponent<Image>();
+                btn2.targetGraphic = btn2.transform.GetChild(0).GetComponent<Image>();
+                btn1.colors = ColorSchema;
+                btn2.colors = ColorSchema;
 
                 UnityAction onIncreaseDelegate =
                     (UnityAction)(() =>
                     {
                         valu.text = valu.text == "Off" ? "On" : "Off";
-
                         configEntry.Value = valu.text == "On";
+                        imgA.GetComponent<Image>().color = valu.text == "Off" ? SelectedOpt : UnselectedOpt;
+                        imgB.GetComponent<Image>().color = valu.text == "Off" ? UnselectedOpt:SelectedOpt;
+                      
                     });
                 //UnityAction onDecreaseDelegate =
                 //    (UnityAction)(() =>
