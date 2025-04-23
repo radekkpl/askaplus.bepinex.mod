@@ -62,7 +62,7 @@ namespace askaplus.bepinex.mod
         }
 
         private void Update() {
-            if (Input.GetKeyDown(Plugin.configGrassPaintKey.Value))
+            if (Plugin.configGrassPaintEnable.Value && Input.GetKeyDown(Plugin.configGrassPaintKey.Value) )
             {
                 position = gameObject.transform.position;
                 Plugin.Log.LogInfo($"Trying _UpdateTerraforming with radius {HeightmapTool.radius}");
