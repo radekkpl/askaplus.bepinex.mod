@@ -22,7 +22,7 @@ namespace askaplus.bepinex.mod
 
                 var GrassToolObj = __instance.gameObject.transform.CreateChild("AskaPlusMODS");
                 GrassToolObj.transform.localPosition = new Vector3(0f,0f,2f);
-                GrassToolObj.gameObject.AddComponent<SSSGame.HeightmapTool>();
+                GrassToolObj.gameObject.AddComponent<HeightmapTool>();
                 
                 var GrassTool = GrassToolObj.gameObject.AddComponent<GrassTool>();
                 GrassToolObj.gameObject.AddComponent<PlayerBonusSpawn>();
@@ -36,14 +36,8 @@ namespace askaplus.bepinex.mod
            Helpers.CreateCategory(parent, "Grass painting");
            Helpers.CreateSwitch(parent, "Enable Mod", configGrassPaintEnable);
 
-
-
-            Helpers.CreateCategory(parent, "Bonus items");
-            Helpers.CreateSwitch(parent, "* Enable Mod", configBonusSpawnEnable);
-            UnityAction applyCallback = (UnityAction)(() =>
-            {
-                Plugin.configGrassPaintKey.Value = KeyCode.Z;
-            });
+           Helpers.CreateCategory(parent, "Bonus items");
+           Helpers.CreateSwitch(parent, "* Enable Mod", configBonusSpawnEnable);
         }
     }
 
@@ -65,7 +59,7 @@ namespace askaplus.bepinex.mod
             if (Plugin.configGrassPaintEnable.Value && Input.GetKeyDown(Plugin.configGrassPaintKey.Value) )
             {
                 position = gameObject.transform.position;
-                Plugin.Log.LogInfo($"Trying _UpdateTerraforming with radius {HeightmapTool.radius}");
+                Plugin.Log.LogDebug($"Trying _UpdateTerraforming with radius {HeightmapTool.radius}");
                 HeightmapTool.radius = 1f;
                 HeightmapTool.clearVegetation = false;
                 HeightmapTool.setTerrainType = true;
@@ -141,12 +135,9 @@ namespace askaplus.bepinex.mod
 
         private void Awake()
         {
-            Plugin.Log.LogInfo($"PlayerCharacter bonusspawn awake");
+            Plugin.Log.LogDebug($"PlayerCharacter bonusspawn awake");
             playerInteractionAgent = gameObject.GetComponentInParent<PlayerInteractionAgent>();
             attributeManager = gameObject.GetComponentInParent<AttributeManager>();
-
-
-
         }
     }
     internal class AskaPlusSpawner : SubcomponentSpawner

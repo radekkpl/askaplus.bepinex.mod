@@ -4,6 +4,7 @@ using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
+using SandSailorStudio.Inventory;
 using SandSailorStudio.UI;
 using SSSGame;
 using SSSGame.Localization;
@@ -66,7 +67,8 @@ namespace askaplus.bepinex.mod
             //SettingsMenuPatch.OnSettingsMenu += ItemInfoPatch.OnSettingsMenu;
 
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
-            Harmony.CreateAndPatchAll(typeof(Test));
+//            Harmony.CreateAndPatchAll(typeof(Test));
+ //           Harmony.CreateAndPatchAll(typeof(AskaRecipes));
             Helpers.ResourceInfos();
         }
 
@@ -79,6 +81,7 @@ namespace askaplus.bepinex.mod
             public static readonly Vector2 HalfHalf = new Vector2(0.5f, 0.5f);
             public static Dictionary<string, AssetBundle> loadedAssetBundles = new Dictionary<string, AssetBundle>();
             public static Dictionary<string, ResourceInfo> resourceInfoSO = new Dictionary<string, ResourceInfo>();
+            public static Dictionary<string, ItemInfo> itemInfoSO = new Dictionary<string, ItemInfo>();
 
             internal static Transform FindChildByNameCaseInsensitive(Transform parent, string name)
             {
@@ -265,6 +268,14 @@ namespace askaplus.bepinex.mod
                 var allScriptableObjects = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.ResourceInfo, Assembly-CSharp"));
 
                 resourceInfoSO = Resources.FindObjectsOfTypeAll<ResourceInfo>().ToDictionary(name => name.name, ri => ri);
+                var iinfo = Resources.FindObjectsOfTypeAll<ItemInfo>();
+
+                Plugin.Log.LogMessage("ItemInfos");
+
+                foreach (var item in iinfo) {
+                    Plugin.Log.LogMessage(item.name);
+                    itemInfoSO.TryAdd(item.name, item);
+                }
             }
         }
     }

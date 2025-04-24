@@ -10,7 +10,6 @@ namespace askaplus.bepinex.mod
     [HarmonyPatch(typeof(ItemInfo))]
     internal class ItemInfoPatch
     {
-        private static bool patched = false;
         [HarmonyPostfix]
         [HarmonyPatch(nameof(ItemInfo.Configure))]
         public static void ItemInfoConfigurePreFix(ref ItemInfo __instance)
@@ -30,7 +29,7 @@ namespace askaplus.bepinex.mod
                         Plugin.Log.LogError($"Decay attribute (id 1011) not found at object {__instance.name}");
                         return;
                     }
-              //      Plugin.Log.LogInfo($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.1f}");
+                    Plugin.Log.LogInfo($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.1f}");
                     
                     //QUICKEST DECAY OF SEEDS = NO MORE WASTE EVERYWHERE
                     decayAttributes[0].value = 0.1f;

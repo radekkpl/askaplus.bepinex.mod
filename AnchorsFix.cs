@@ -21,50 +21,33 @@ namespace askaplus.bepinex.mod
 
             foreach (var mb in x)
             {
-
                 //Plugin.Log.LogInfo($"----Anchor found -----");
                 var goparent = mb.gameObject;
                 BoxCollider coll = null;
-                if (goparent is not null)
-                {
-                    //  Plugin.Log.LogInfo($"In GameObject {goparent.name}");
-                    name = goparent.name;
-                    var gologic = goparent?.transform.parent;
-                    if (gologic is not null)
-                    {
-                        coll = gologic.transform.FindChild("Footprint")?.GetComponentInChildren<UnityEngine.BoxCollider>();
-                        //    Plugin.Log.LogInfo($"Looking for parent: {gologic.name}");
-                        name = gologic.name;
-                        var gopreview = gologic?.transform.parent;
-                        if (gopreview is not null)
-                        {
-                            //      Plugin.Log.LogInfo($"Looking for parent: {gopreview.name}");
-                            name = gopreview.name;
-                            var goMaster = gopreview?.transform.parent;
-                            if (goMaster is not null)
-                            {
-                                //        Plugin.Log.LogInfo($"Parent propably found with name: {goMaster.name}");
-                                name = goMaster.name;
 
-                                //if (name == "WallHedgeTower_L1")
-                                //{
-                                //    if (goparent.name == "Anchor2")
-                                //    {
-                                //        Plugin.Log.LogMessage($"Position of Anchor2: {goparent.transform.localPosition}");
-                                //        posA = goparent.transform.localPosition;
-                                //    }
-                                //    else
-                                //    {
-                                //        Plugin.Log.LogMessage($"Position of Anchor: {goparent.transform.localPosition}");
-                                //        var posB = goparent.transform.localPosition;
-                                //        gologic.FindChild("Anchor2").position = posB;
-                                //        goparent.transform.position = posA;
-                                //    }
-                                //}
-                            }
-                        }
+                if (goparent is null) continue;
+
+                //  Plugin.Log.LogInfo($"In GameObject {goparent.name}");
+                name = goparent.name;
+                var gologic = goparent?.transform.parent;
+                if (gologic is null) continue;
+
+                coll = gologic.transform.FindChild("Footprint")?.GetComponentInChildren<BoxCollider>();
+                //    Plugin.Log.LogInfo($"Looking for parent: {gologic.name}");
+                name = gologic.name;
+                var gopreview = gologic?.transform.parent;
+                if (gopreview is not null)
+                {
+                    //      Plugin.Log.LogInfo($"Looking for parent: {gopreview.name}");
+                    name = gopreview.name;
+                    var goMaster = gopreview?.transform.parent;
+                    if (goMaster is not null)
+                    {
+                        // Plugin.Log.LogInfo($"Parent propably found with name: {goMaster.name}");
+                        name = goMaster.name;
                     }
                 }
+
                 Plugin.Log.LogDebug($"Found Anchor in GO {name} with value {mb.offset}");
                 if (name.Contains("WallHedgePillar") || name.Contains("Cave") || name.Contains("WaterWell"))
                 {
@@ -78,23 +61,11 @@ namespace askaplus.bepinex.mod
                         Plugin.Log.LogDebug($"Collider update in GO {name} with x:{coll.size.x}, y:{coll.size.y}, z: {coll.size.z}");
                         var size = coll.size;
                         size.x -= .15f;
+                        size.z -= .15f;
                         coll.size = size;
                     }
                 }
             }
-
-            //var y = Resources.FindObjectsOfTypeAll<SSSGame.Network.NetworkStructureSplineLayoutState>();
-            //foreach (SSSGame.Network.NetworkStructureSplineLayoutState state in y) 
-            //{
-            //    Plugin.Log.LogMessage(state.gameObject.name);
-            //    if(state.gameObject.name == "PreviewSplineLayout") {
-            //        var mod = state.gameObject.AddComponent<RoadMakerMOD>();
-            //        mod.enabled = true;
-            //    }
-            //}
-
-            //Plugin.Log.LogMessage(y.Count);
-            
         }
     }
 }

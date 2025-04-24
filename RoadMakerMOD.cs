@@ -8,6 +8,8 @@ namespace askaplus.bepinex.mod
 
         public void Update()
         {
+            //This doesnot work. Need to figure out another way
+
             var coll = gameObject.GetComponentsInChildren<BoxCollider>(true);
             if (coll is null) return;
             if (count == coll.Count) return;
