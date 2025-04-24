@@ -72,7 +72,7 @@ namespace askaplus.bepinex.mod
             SettingsMenuPatch.OnSettingsMenu += ItemInfoPatch.OnSettingsMenu;
 
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
-//            Harmony.CreateAndPatchAll(typeof(Test));
+            Harmony.CreateAndPatchAll(typeof(Test));
  //           Harmony.CreateAndPatchAll(typeof(AskaRecipes));
             Helpers.ResourceInfos();
         }

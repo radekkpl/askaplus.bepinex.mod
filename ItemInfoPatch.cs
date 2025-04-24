@@ -18,7 +18,7 @@ namespace askaplus.bepinex.mod
         public static void ItemInfoConfigurePreFix(ref ItemInfo __instance)
         {
             //Plugin.Log.LogInfo($"PlantableItemInfoConfigurePostFix - {__instance.name}");
-            if (__instance.name.Contains("Seed") )
+            if (__instance.name.Contains("Seed"))
             {
                 if (__instance.TryCast<PlantableItemInfo>() == true)
                 {
@@ -33,7 +33,7 @@ namespace askaplus.bepinex.mod
                         return;
                     }
                     Plugin.Log.LogInfo($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.1f}");
-                    
+
                     //QUICKEST DECAY OF SEEDS = NO MORE WASTE EVERYWHERE
                     decayAttributes[0].value = 0.1f;
                 }
@@ -41,17 +41,20 @@ namespace askaplus.bepinex.mod
             else if (__instance.name.Contains("_Food_"))
             {
 
-             //   Plugin.Log.LogInfo($"Found {__instance.name}:");
+                //   Plugin.Log.LogInfo($"Found {__instance.name}:");
                 //FOOD PATCH
-                if (__instance.TryCast<ConsumableInfo>() == true) {
+                if (__instance.TryCast<ConsumableInfo>() == true)
+                {
                     var food = __instance.Cast<ConsumableInfo>();
 
-                    int[] attributes = [10,14,15,11,12,13];
-                    
-                    foreach (var ce in food.consumeEffects) {
+                    int[] attributes = [10, 14, 15, 11, 12, 13];
+
+                    foreach (var ce in food.consumeEffects)
+                    {
                         if (ce.duration > 0 && ce.table?.attrElements?.Count > 0)
                         {
-                            foreach (var ae in ce.table.attrElements) {
+                            foreach (var ae in ce.table.attrElements)
+                            {
                                 if (ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.PERCENTADD || ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.ADD)
                                 {
                                     if (attributes.Contains(ae.targetAttribute.attributeId))
@@ -79,7 +82,7 @@ namespace askaplus.bepinex.mod
                                         {
                                             if (attributes.Contains(ae.targetAttribute.attributeId))
                                             {
-                                            //  Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
+                                                //  Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
                                                 se.duration = 5 * 60;
                                             }
                                         }
@@ -88,6 +91,14 @@ namespace askaplus.bepinex.mod
                             }
                         }
                     }
+                }
+            }
+            else if (__instance.name.StartsWith("Item_Misc_CrawlerEgg")) {
+                var comp = __instance.components.Where(com=> com.itemInfo.name== "Item_Wood_Resin").ElementAt(0);
+                if (comp != null)
+                {
+                    Plugin.Log.LogInfo($"Trying to change quantity of Resin in {__instance.name} from value {comp.quantity} to {25}");
+                    comp.quantity = 25;
                 }
             }
         }

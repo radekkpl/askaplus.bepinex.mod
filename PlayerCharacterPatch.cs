@@ -84,7 +84,7 @@ namespace askaplus.bepinex.mod
 
             lastPickable = playerInteractionAgent._favoritePickable.gameObject;
              
-            Plugin.Log.LogInfo($"Target changed to {lastPickable.name}");
+           // Plugin.Log.LogInfo($"Target changed to {lastPickable.name}");
 
             switch (lastPickable.name)
             {

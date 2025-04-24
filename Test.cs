@@ -48,7 +48,7 @@ namespace askaplus.bepinex.mod
           //  test.storagesToReturnTo.Add(nodeTemplates["Item_Structures_WoodCutterL2"]);
           //  test.storagesToReturnTo.Add(nodeTemplates["Item_Structures_StoneCutterL2"]);
           //  test.storagesToReturnTo.Add(nodeTemplates["Item_Structures_BloomeryL2"]);
-          //  test.minimumDistance = 1;
+            test.minimumDistance = 1;
 
         }
     }
