@@ -46,7 +46,7 @@ namespace askaplus.bepinex.mod
             configTorchesBuildingEnable = Config.Bind("Torches to buildings", "Enable mod", true, "Enable or disable mod");
             configTorchesBuildingShadowsEnable = Config.Bind("Torches to buildings", "Enable shadows", true, "If torches should cast shadows. False can improve performance.");
             configSeedsDecayEnable = Config.Bind("Seeds mod", "Enable mod", true, "If seeds decay rate should be increased to get rid of a seeds mess on floor.");
-            configFoodEnable = Config.Bind("Food mod", "Increase duration of food's buff", true, "If foods duration effect should be increased to 5 minutes");
+            configFoodEnable = Config.Bind("Food mod", "Increase duration of food buff", true, "If foods duration effect should be increased to 5 minutes");
 
 
             ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
@@ -275,10 +275,10 @@ namespace askaplus.bepinex.mod
                 resourceInfoSO = Resources.FindObjectsOfTypeAll<ResourceInfo>().ToDictionary(name => name.name, ri => ri);
                 var iinfo = Resources.FindObjectsOfTypeAll<ItemInfo>();
 
-                Plugin.Log.LogMessage("ItemInfos");
+              //  Plugin.Log.LogMessage("ItemInfos");
 
                 foreach (var item in iinfo) {
-                    Plugin.Log.LogMessage(item.name);
+             //       Plugin.Log.LogMessage(item.name);
                     itemInfoSO.TryAdd(item.name, item);
                 }
             }
