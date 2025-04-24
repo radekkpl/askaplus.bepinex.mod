@@ -1,8 +1,11 @@
 ﻿using HarmonyLib;
+using Il2CppSystem.Linq;
 using SandSailorStudio.Inventory;
 using SSSGame;
 using System.Linq;
-using Il2CppSystem.Linq;
+using UnityEngine;
+using UnityEngine.Events;
+using static askaplus.bepinex.mod.Plugin;
 
 
 namespace askaplus.bepinex.mod
@@ -15,7 +18,7 @@ namespace askaplus.bepinex.mod
         public static void ItemInfoConfigurePreFix(ref ItemInfo __instance)
         {
             //Plugin.Log.LogInfo($"PlantableItemInfoConfigurePostFix - {__instance.name}");
-            if (__instance.name.Contains("Seed"))
+            if (__instance.name.Contains("Seed") )
             {
                 if (__instance.TryCast<PlantableItemInfo>() == true)
                 {
@@ -87,6 +90,18 @@ namespace askaplus.bepinex.mod
                     }
                 }
             }
+        }
+        public static void OnSettingsMenu(Transform parent)
+        {
+            Helpers.CreateCategory(parent, "Seeds mod");
+            Helpers.CreateSwitch(parent, "* Increase decay rate of seeds.", configSeedsDecayEnable);
+            Helpers.CreateCategory(parent, "Food mod");
+            Helpers.CreateSwitch(parent, "* Increase duration of food effects", configFoodEnable);
+
+            UnityAction applyCallback = (UnityAction)(() =>
+            {
+                Plugin.configGrassPaintKey.Value = KeyCode.Z;
+            });
         }
     }
 

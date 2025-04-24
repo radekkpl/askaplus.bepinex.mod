@@ -29,6 +29,9 @@ namespace askaplus.bepinex.mod
         internal static ConfigEntry<bool> configBonusSpawnEnable;
         internal static ConfigEntry<bool> configTorchesBuildingEnable;
         internal static ConfigEntry<bool> configTorchesBuildingShadowsEnable;
+        internal static ConfigEntry<bool> configSeedsDecayEnable;
+        internal static ConfigEntry<bool> configFoodEnable;
+
         public override void Load()
         {
 
@@ -42,6 +45,8 @@ namespace askaplus.bepinex.mod
             configBonusSpawnEnable = Config.Bind("Bonus spawn", "Enable mod", true, "Enable or disable mod");
             configTorchesBuildingEnable = Config.Bind("Torches to buildings", "Enable mod", true, "Enable or disable mod");
             configTorchesBuildingShadowsEnable = Config.Bind("Torches to buildings", "Enable shadows", true, "If torches should cast shadows. False can improve performance.");
+            configSeedsDecayEnable = Config.Bind("Seeds mod", "Enable mod", true, "If seeds decay rate should be increased to get rid of a seeds mess on floor.");
+            configFoodEnable = Config.Bind("Food mod", "Increase duration of food's buff", true, "If foods duration effect should be increased to 5 minutes");
 
 
             ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
@@ -64,7 +69,7 @@ namespace askaplus.bepinex.mod
             SettingsMenuPatch.OnSettingsMenu += TorchesToBuildings.OnSettingsMenu;
             Harmony.CreateAndPatchAll(typeof(AnchorsFix));
             Harmony.CreateAndPatchAll(typeof(ItemInfoPatch));
-            //SettingsMenuPatch.OnSettingsMenu += ItemInfoPatch.OnSettingsMenu;
+            SettingsMenuPatch.OnSettingsMenu += ItemInfoPatch.OnSettingsMenu;
 
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
 //            Harmony.CreateAndPatchAll(typeof(Test));
