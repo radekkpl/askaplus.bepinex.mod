@@ -4,6 +4,11 @@
 Some QoL mods for Aska game \
 <code style="color:red;">BACKUP YOUR SAVE</code>\
 This is still in development
+This mod does not change any game files. It can be uninstalled without problem, your game/save file is not harmed.
+Mod is tested only on single player session ! - Yet.
+
+## Torches to buildings
+Torches has been added to buildings.  Your village is now lit and not that dark in the night. (Cart too :))
 
 ## Spikes self damage reduction
 Originally spikes do 5 damage to enemy and 20 damage to itself. This is pretty annoying, because pack of smolkers can easily destroy your perimeter.\
@@ -14,34 +19,28 @@ Currently in game there is a gap about 0,3m between walls when using snapping. T
 It will works only for new Wall created.
 
 ## Paint grass
-You can press "]" key to paint grass in front of you (3m).
+You can press "]" key to paint grass in front of you (3m). Rebind the key in config file or in in game settings (not yet implemented).\
+In next version of mod, you will have to hold specific tool in hand to prevent accidentally paint grass on stone road for example.
 
 ## Food PATCH
 Increased duration effects from 60sec to 5min.
 
 ## Seed PATCH
-Seeds decay rate significantly increased to avoid seeds everywhere.
+Seeds decay rate significantly increased to avoid seeds everywhere (please get feedback if is too high or still to low and on which decay settings you play).
 
-## Paint grass
-You can press "]" key to paint grass in front of you (3m).
 
 ## Features in progress
 - Increase some harvestable items based on Villager/Player skill. lvl.0 - lvl.100 = 0 - 100% percentage chance to spawn bonus resource.\
 	- Hardwood log - done
-
-## Torches to buildings
-- Adding torches to buildings to lit your village.
-
+	- 
 
 ## Planned features
 - Ingame settings of mod attributes (Enable/disable feature, etc.)
 - Adding workstations as target for Market
 	- gathering info from code
 - Prevent villagers or warehouse workers grabbing materials needed for crafting from workstations - no more multiple warehouses and Whitelists
-- Prevent Carpenter returning his iron items to craftstation even if he is not Blacksmith or have a quest to do
 - 
 - 
-
 
 ## Installation - This is your first mod
 1. BepInEx is required and can be downloaded from here\
