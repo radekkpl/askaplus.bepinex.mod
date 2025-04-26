@@ -13,7 +13,7 @@ namespace askaplus.bepinex.mod
     [HarmonyPatch(typeof(ItemInfo))]
     internal class ItemInfoPatch
     {
-        [HarmonyPostfix]
+        [HarmonyPrefix]
         [HarmonyPatch(nameof(ItemInfo.Configure))]
         public static void ItemInfoConfigurePreFix(ref ItemInfo __instance)
         {
@@ -91,14 +91,6 @@ namespace askaplus.bepinex.mod
                             }
                         }
                     }
-                }
-            }
-            else if (__instance.name.StartsWith("Item_Misc_CrawlerEgg")) {
-                var comp = __instance.components.Where(com=> com.itemInfo.name== "Item_Wood_Resin").ElementAt(0);
-                if (comp != null)
-                {
-                    Plugin.Log.LogInfo($"Trying to change quantity of Resin in {__instance.name} from value {comp.quantity} to {25}");
-                    comp.quantity = 25;
                 }
             }
         }

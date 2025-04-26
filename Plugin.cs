@@ -7,6 +7,7 @@ using Il2CppInterop.Runtime.Injection;
 using SandSailorStudio.Inventory;
 using SandSailorStudio.UI;
 using SSSGame;
+using SSSGame.Deeds;
 using SSSGame.Localization;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,7 @@ namespace askaplus.bepinex.mod
             SettingsMenuPatch.OnSettingsMenu += SpikesSelfDamageMod.OnSettingsMenu;
 
             ClassInjector.RegisterTypeInIl2Cpp<AskaPlusSpawner>();
+
             ClassInjector.RegisterTypeInIl2Cpp<VillagerBonusSpawn>();
             ClassInjector.RegisterTypeInIl2Cpp<PlayerBonusSpawn>();
 
@@ -87,6 +89,12 @@ namespace askaplus.bepinex.mod
             public static Dictionary<string, AssetBundle> loadedAssetBundles = new Dictionary<string, AssetBundle>();
             public static Dictionary<string, ResourceInfo> resourceInfoSO = new Dictionary<string, ResourceInfo>();
             public static Dictionary<string, ItemInfo> itemInfoSO = new Dictionary<string, ItemInfo>();
+            public enum AskaAttributesEnum
+            {
+                WoodHarvest = 300,
+                StoneHarvest = 301,
+                Skinning = 307
+            }
 
             internal static Transform FindChildByNameCaseInsensitive(Transform parent, string name)
             {
@@ -271,16 +279,18 @@ namespace askaplus.bepinex.mod
             {
                 //preload all resources before menu, after menu loading we can modify items
                 var allScriptableObjects = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.ResourceInfo, Assembly-CSharp"));
-
+                var AllcraftBP = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.CraftBlueprint, Assembly-Csharp"));
+               
                 resourceInfoSO = Resources.FindObjectsOfTypeAll<ResourceInfo>().ToDictionary(name => name.name, ri => ri);
-                var iinfo = Resources.FindObjectsOfTypeAll<ItemInfo>();
+                var BPinfo = Resources.FindObjectsOfTypeAll<SSSGame.CraftBlueprintInfo>(); 
+              
+                Plugin.Log.LogMessage("BPInfos");
 
-              //  Plugin.Log.LogMessage("ItemInfos");
-
-                foreach (var item in iinfo) {
-             //       Plugin.Log.LogMessage(item.name);
-                    itemInfoSO.TryAdd(item.name, item);
+                foreach (var item in BPinfo) {
+                    Plugin.Log.LogMessage($"BP ({item.name}) amount: {item.quantity} cost: {item.cost?.quantity}, Parts count: {item.parts?.Length}");
                 }
+
+                Plugin.Log.LogMessage($"CraftBlueprints {AllcraftBP.Length}");
             }
         }
     }

@@ -1,10 +1,11 @@
 ﻿using HarmonyLib;
 using SandSailorStudio.Attributes;
+using SandSailorStudio.Inventory;
 using SSSGame;
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 using static askaplus.bepinex.mod.Plugin;
+using static askaplus.bepinex.mod.Plugin.Helpers;
 
 namespace askaplus.bepinex.mod
 {
@@ -74,10 +75,12 @@ namespace askaplus.bepinex.mod
         private PlayerInteractionAgent playerInteractionAgent;
         private AttributeManager attributeManager;
         private GameObject lastPickable;
+
+        
         private void Update()
         {
             if (Plugin.configBonusSpawnEnable.Value == false) return;
-            if (playerInteractionAgent is null) { Plugin.Log.LogError("PlayerInteravtionAgeint is null"); }
+            if (playerInteractionAgent is null) { Plugin.Log.LogError("PlayerInteractionAgent is null"); }
 
             if (playerInteractionAgent._favoritePickable is null)   return;
             if (playerInteractionAgent._favoritePickable.gameObject == lastPickable) return;
@@ -88,71 +91,73 @@ namespace askaplus.bepinex.mod
 
             switch (lastPickable.name)
             {
+                case "Harvest_Stone_StoneClump":
+                case "Harvest_Stone_StoneClumpSmall":
+                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.StoneHarvest, Helpers.resourceInfoSO["Item_Stone_Raw"], Vector3.zero, 1, true, true);
+                    break;
                 case "Item_Wood_birch1":
                 case "Item_Wood_birch2":
-                    var tSpawner = lastPickable.transform.FindChild("TrunkSpawner");
-                    AskaPlusSpawner bonusSpawner;
-                    if (tSpawner.gameObject.TryGetComponent<AskaPlusSpawner>(out bonusSpawner) == true) return;
-                    bonusSpawner = tSpawner.gameObject.AddComponent<AskaPlusSpawner>();
-                    var harvestInteraction = lastPickable.transform.FindChild("HarvestInteraction").GetComponent<HarvestInteraction>();
-                    Plugin.Log.LogInfo($"Harvest interaction is {harvestInteraction}");
-
-                    var info = Helpers.resourceInfoSO["Item_Wood_HardWoodLog"];
-                    if (info is null) 
-                    {
-                        foreach (var ri in Helpers.resourceInfoSO)
-                        {
-                            Plugin.Log.LogInfo($"Resource Info: {ri.Key} : {ri.Value.name}");
-                        }
-                        return;
-                    }
-                    //Woodcutting = 300   
-                    var skillValue = attributeManager.GetAttribute(300).GetValue();
-                    var randomChance = UnityEngine.Random.value * 75;
-                    Plugin.Log.LogInfo($"PlyerCharacter: WoodHarvesting skill is {skillValue} and GM rolled {UnityEngine.Mathf.Round(randomChance)}");
-                    if (randomChance <= skillValue)
-                    {
-                        bonusSpawner.amount = 1;
-                        Plugin.Log.LogMessage($"Spawning additional HardWoodLog.");
-                    }
-                    else
-                    {
-                        Plugin.Log.LogMessage($"No Luck today");
-                    }
-
-                    bonusSpawner.harvestInteraction = harvestInteraction;
-                    bonusSpawner.componentInfo = info;
-                    bonusSpawner.ignoreMasterItem = true;
-                    harvestInteraction.add_OnHarvestDamageTaken(new Action(bonusSpawner.OnHarvestDamageTaken));
-
+                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"], Vector3.zero, 1, true,true);
                     break;
-                case "Item_Wood_fir2":
+                case "Item_Wood_Fir1":
+                case "Item_Wood_Fir2":
+                case "Item_Wood_Fir3": 
+                case "Item_Wood_Fir4":
+                case "Item_Wood_Fir5":
+                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_RawLog"], Vector3.zero, 1, true, true);
                     break;
+                case "Item_Misc_CrawlerEgg1":
+                case "Item_Misc_CrawlerEgg2":
+                case "Item_Misc_CrawlerEgg3":
+                case "Item_Misc_CrawlerEgg4":
+                //THIS DOESNOT WORK, OnFullHarvested is not called, on Harvest damage is called but never with 0 health. SO SPAWNER CANNOT RUN. AND ALSO 25 COPIES OF ITEM IS ALSO NOT PERFECT
+                // TO DO FIND A BETTER WAY TO SPAWN MODE IN ONE SPAWN
+                // SPAWNER IT SEEMS GET INFORMATION ABOUT AMOUNT FROM ITEM AND IGNORE AMOUNT FROM SpawnItemChance :(          
+                // Plugin.Log.LogDebug($"{villager.gameObject.name} : {villager.GetWorkstation().GetName()} -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
+                //  TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.Skinning, Helpers.resourceInfoSO["Item_Wood_Resin"],new Vector3(0f,1f,0f), 25, false,false);
+                break;
                 default:
                     break;
             }
         }
+        private void TryAddBonusSpawner(GameObject WhereToLook, AskaAttributesEnum skill, ItemInfo whatToSpawn, Vector3 offsetOfSpawn, int HowMuchToAdd, bool AmountIsFix, bool RunOnFullyHarvested)
+        {
+            AskaPlusSpawner bonusSpawner;
+            if (WhereToLook.TryGetComponent<AskaPlusSpawner>(out bonusSpawner) == true) return;
+            bonusSpawner = WhereToLook.AddComponent<AskaPlusSpawner>();
+            var harvestInteraction = lastPickable.GetComponentInChildren<HarvestInteraction>();
+            var skillValue = attributeManager.GetAttribute((int)skill).GetValue();
+            var randomChance = UnityEngine.Random.value * 75;
 
+            if (randomChance <= skillValue)
+            {
+                bonusSpawner.amount = HowMuchToAdd;
+                Plugin.Log.LogMessage($"RND {randomChance} <= ({skill}) {skillValue} = Spawning additional {HowMuchToAdd} of {whatToSpawn.name}");
+
+            }
+            else if (!AmountIsFix)
+            {
+                bonusSpawner.amount = Mathf.CeilToInt((100 - (randomChance - skillValue)) / 100 * HowMuchToAdd);
+                Plugin.Log.LogMessage($"RND {randomChance} > ({skill}) {skillValue} = Diff is {randomChance - skillValue} = Spawning additional {bonusSpawner.amount} of {whatToSpawn.name}");
+            }
+            else
+            {
+                Plugin.Log.LogMessage($"No luck this time with {skill}.");
+                bonusSpawner.amount = 0; //Just for clarification       
+            }
+            if(RunOnFullyHarvested) bonusSpawner.UseFullyHarvested = true;
+            Plugin.Log.LogMessage($"Adding harvestInteraction to bonusSpawner.");
+            bonusSpawner.harvestInteraction = harvestInteraction;
+            bonusSpawner.componentInfo = whatToSpawn;
+            bonusSpawner.ignoreMasterItem = true;
+            bonusSpawner.originOffset = offsetOfSpawn;
+        }
         private void Awake()
         {
-            Plugin.Log.LogDebug($"PlayerCharacter bonusspawn awake");
+            Plugin.Log.LogDebug($"PlayerCharacter bonus spawn awake");
             playerInteractionAgent = gameObject.GetComponentInParent<PlayerInteractionAgent>();
             attributeManager = gameObject.GetComponentInParent<AttributeManager>();
         }
-    }
-    internal class AskaPlusSpawner : SubcomponentSpawner
-    {
-        public HarvestInteraction harvestInteraction;
-        public void OnHarvestDamageTaken()
-        {
-            if (!harvestInteraction)
-                return;
-            var currentHealth = harvestInteraction._healthModifier?.GetHealth() ?? 0;
-            if (currentHealth <= 0)
-            {
-                Plugin.Log.LogMessage($"Running AskaPlusSpawner with amount = {amount}");
-                Run();
-            }
-        }
+        
     }
 }

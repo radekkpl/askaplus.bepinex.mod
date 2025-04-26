@@ -58,11 +58,12 @@ namespace askaplus.bepinex.mod
                     mb.offset = 0f;
                     if (coll != null)
                     {
-                        Plugin.Log.LogDebug($"Collider update in GO {name} with x:{coll.size.x}, y:{coll.size.y}, z: {coll.size.z}");
+                        //Plugin.Log.LogInfo($"Collider update in GO {name} with x:{coll.size.x}, y:{coll.size.y}, z: {coll.size.z}");
                         var size = coll.size;
                         size.x -= .15f;
-                        size.z -= .15f;
+                        if(coll.size.z >= 1) size.z -= .15f;
                         coll.size = size;
+                        //Plugin.Log.LogInfo($"New Collider size {name} is x:{coll.size.x}, y:{coll.size.y}, z: {coll.size.z}");
                     }
                 }
             }
