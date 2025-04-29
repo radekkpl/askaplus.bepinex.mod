@@ -70,6 +70,9 @@ namespace askaplus.bepinex.mod
                 case "Item_Wood_birch2":
                     TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"],Vector3.zero, 1, true,true);
                     break;
+                case "Item_Wood_Willow":
+                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"], Vector3.zero, 2, false, true);
+                    break;
                 case "Item_Wood_Fir1":
                 case "Item_Wood_Fir2":
                 case "Item_Wood_Fir3":
@@ -117,6 +120,9 @@ namespace askaplus.bepinex.mod
                 bonusSpawner.amount = 0; //Just for clarification       
             }
             if(RunOnFullyHarvested) bonusSpawner.UseFullyHarvested = true;
+            bonusSpawner.positionNoise = 0.5f;
+            bonusSpawner.rotationNoise = 0.2f;
+            bonusSpawner.spacing = new Vector3(2, 0, 0);
             bonusSpawner.harvestInteraction = harvestInteraction;
             bonusSpawner.componentInfo = whatToSpawn;
             bonusSpawner.ignoreMasterItem = true;

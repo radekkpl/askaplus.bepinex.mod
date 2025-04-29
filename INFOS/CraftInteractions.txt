@@ -1,0 +1,13 @@
+﻿-----CraftInteractions-----
+VirtualCraftingStation
+AnvilInteractionArea
+CraftingTable_Anvil
+CraftInteraction
+DyerInteraction
+LeatherworkerTableInteraction
+CarpenterHorse_A
+CarpenterHorse_B
+CraftingTable_A
+CraftingTable_B
+WeaverInteraction
+craftInteraction

@@ -2,8 +2,10 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
+using Fusion.CodeGen;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
+using SandSailorStudio.Attributes;
 using SandSailorStudio.Inventory;
 using SandSailorStudio.UI;
 using SSSGame;
@@ -12,6 +14,7 @@ using SSSGame.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,6 +35,7 @@ namespace askaplus.bepinex.mod
         internal static ConfigEntry<bool> configTorchesBuildingShadowsEnable;
         internal static ConfigEntry<bool> configSeedsDecayEnable;
         internal static ConfigEntry<bool> configFoodEnable;
+        internal static ConfigEntry<bool> configRecipesEnable;
 
         public override void Load()
         {
@@ -48,10 +52,11 @@ namespace askaplus.bepinex.mod
             configTorchesBuildingShadowsEnable = Config.Bind("Torches to buildings", "Enable shadows", true, "If torches should cast shadows. False can improve performance.");
             configSeedsDecayEnable = Config.Bind("Seeds mod", "Enable mod", true, "If seeds decay rate should be increased to get rid of a seeds mess on floor.");
             configFoodEnable = Config.Bind("Food mod", "Increase duration of food buff", true, "If foods duration effect should be increased to 5 minutes");
+            configRecipesEnable = Config.Bind("Recipes mod", "Add custom recipes", true, "Add custom recipes to some stations");
 
 
             ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
-
+            
             //ClassInjector.RegisterTypeInIl2Cpp<RoadMakerMOD>();
             Harmony.CreateAndPatchAll(typeof(SpikesSelfDamageMod));
             SettingsMenuPatch.OnSettingsMenu += SpikesSelfDamageMod.OnSettingsMenu;
@@ -75,8 +80,9 @@ namespace askaplus.bepinex.mod
 
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
             Harmony.CreateAndPatchAll(typeof(Test));
- //           Harmony.CreateAndPatchAll(typeof(AskaRecipes));
             Helpers.ResourceInfos();
+            AskaRecipes.CreateRecipes();
+            SettingsMenuPatch.OnSettingsMenu += AskaRecipes.OnSettingsMenu;
         }
 
         internal static class Helpers
@@ -86,9 +92,15 @@ namespace askaplus.bepinex.mod
             public static Color SelectedOpt = new Color(1f,0.6824f,0f);
             public static Color UnselectedOpt = new Color(1f,1f,1f);
             public static readonly Vector2 HalfHalf = new Vector2(0.5f, 0.5f);
-            public static Dictionary<string, AssetBundle> loadedAssetBundles = new Dictionary<string, AssetBundle>();
-            public static Dictionary<string, ResourceInfo> resourceInfoSO = new Dictionary<string, ResourceInfo>();
-            public static Dictionary<string, ItemInfo> itemInfoSO = new Dictionary<string, ItemInfo>();
+            public static Dictionary<string, AssetBundle> loadedAssetBundles = [];
+            public static Dictionary<string, ResourceInfo> resourceInfoSO = [];
+            public static Dictionary<string, ItemInfo> itemInfoSO = [];
+            public static Dictionary<string, BlueprintConditionsRule> Dict_BCR = [];
+            public static Dictionary<string, ItemStorageClass> Dict_ISC = [];
+            public static Dictionary<string, ItemCategoryInfo> Dict_ICI = [];
+            public static Dictionary<string, CraftInteraction> Dict_CI = [];
+            public static Dictionary<string, ItemInfoList> Dict_BlueprintsList = [];
+
             public enum AskaAttributesEnum
             {
                 WoodHarvest = 300,
@@ -279,18 +291,42 @@ namespace askaplus.bepinex.mod
             {
                 //preload all resources before menu, after menu loading we can modify items
                 var allScriptableObjects = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.ResourceInfo, Assembly-CSharp"));
-                var AllcraftBP = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.CraftBlueprint, Assembly-Csharp"));
-               
-                resourceInfoSO = Resources.FindObjectsOfTypeAll<ResourceInfo>().ToDictionary(name => name.name, ri => ri);
-                var BPinfo = Resources.FindObjectsOfTypeAll<SSSGame.CraftBlueprintInfo>(); 
-              
-                Plugin.Log.LogMessage("BPInfos");
 
-                foreach (var item in BPinfo) {
-                    Plugin.Log.LogMessage($"BP ({item.name}) amount: {item.quantity} cost: {item.cost?.quantity}, Parts count: {item.parts?.Length}");
+                var itemInfo = Resources.FindObjectsOfTypeAll<ItemInfo>();
+                foreach (var item in itemInfo)
+                {
+                    if (itemInfoSO.ContainsKey(item.name)) continue;
+                    itemInfoSO.Add(item.name, item);
+                }
+                resourceInfoSO = Resources.FindObjectsOfTypeAll<ResourceInfo>().ToDictionary(name => name.name, ri => ri);
+
+                //RECIPES
+                Dict_BlueprintsList = Resources.FindObjectsOfTypeAll<ItemInfoList>().ToDictionary(name => name.name,i=>i);
+
+                //Get Blueprint condition rules
+                Plugin.Log.LogMessage("-----BlueprintsConditionRule-----");
+                Dict_BCR = Resources.FindObjectsOfTypeAll<BlueprintConditionsRule>().ToDictionary(name => name.name, bcr => bcr);
+                
+                Plugin.Log.LogMessage("-----ItemStorageClass-----");
+                Dict_ISC = Resources.FindObjectsOfTypeAll<ItemStorageClass>().ToDictionary(name => name.name, bcr => bcr);
+                
+                //Get ItemInfoCategory
+                Plugin.Log.LogMessage("-----ItemInfoCategory-----");
+                Dict_ICI = Resources.FindObjectsOfTypeAll<ItemCategoryInfo>().ToDictionary(name => name.name, bcr => bcr);
+               
+                //Get CraftInteractions
+                Plugin.Log.LogMessage("-----CraftInteractions-----");
+                var _CI = Resources.FindObjectsOfTypeAll<CraftInteraction>();
+                Dict_CI = [];
+                foreach (var _item in _CI)
+                {
+                    if (!Dict_CI.ContainsKey(_item.name))
+                    {
+                        //Plugin.Log.LogMessage($"{_item.name}");
+                        Dict_CI.Add(_item.name, _item);
+                    }
                 }
 
-                Plugin.Log.LogMessage($"CraftBlueprints {AllcraftBP.Length}");
             }
         }
     }

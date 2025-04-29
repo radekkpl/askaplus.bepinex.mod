@@ -85,19 +85,22 @@ namespace askaplus.bepinex.mod
             if (playerInteractionAgent._favoritePickable is null)   return;
             if (playerInteractionAgent._favoritePickable.gameObject == lastPickable) return;
 
-            lastPickable = playerInteractionAgent._favoritePickable.gameObject;
+            lastPickable = playerInteractionAgent._favoritePickable?.gameObject;
              
            // Plugin.Log.LogInfo($"Target changed to {lastPickable.name}");
 
             switch (lastPickable.name)
             {
-                case "Harvest_Stone_StoneClump":
-                case "Harvest_Stone_StoneClumpSmall":
+                case "Harvest_Stone4":
+                case "Harvest_StoneClumpSmall":
                     TryAddBonusSpawner(lastPickable, AskaAttributesEnum.StoneHarvest, Helpers.resourceInfoSO["Item_Stone_Raw"], Vector3.zero, 1, true, true);
                     break;
                 case "Item_Wood_birch1":
                 case "Item_Wood_birch2":
                     TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"], Vector3.zero, 1, true,true);
+                    break;
+                case "Item_Wood_Willow":
+                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"], Vector3.zero, 2, false, true);
                     break;
                 case "Item_Wood_Fir1":
                 case "Item_Wood_Fir2":
@@ -105,6 +108,9 @@ namespace askaplus.bepinex.mod
                 case "Item_Wood_Fir4":
                 case "Item_Wood_Fir5":
                     TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_RawLog"], Vector3.zero, 1, true, true);
+                    break;
+                case "Harvest_JotunBlood":
+                case "Harvest_JotunBloodSmall":
                     break;
                 case "Item_Misc_CrawlerEgg1":
                 case "Item_Misc_CrawlerEgg2":
@@ -147,6 +153,9 @@ namespace askaplus.bepinex.mod
             }
             if(RunOnFullyHarvested) bonusSpawner.UseFullyHarvested = true;
             Plugin.Log.LogMessage($"Adding harvestInteraction to bonusSpawner.");
+            bonusSpawner.positionNoise = 0.5f;
+            bonusSpawner.rotationNoise = 0.2f;
+            bonusSpawner.spacing = new Vector3(2, 0, 0); 
             bonusSpawner.harvestInteraction = harvestInteraction;
             bonusSpawner.componentInfo = whatToSpawn;
             bonusSpawner.ignoreMasterItem = true;
