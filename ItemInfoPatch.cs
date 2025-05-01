@@ -18,27 +18,24 @@ namespace askaplus.bepinex.mod
         public static void ItemInfoConfigurePreFix(ref ItemInfo __instance)
         {
             //Plugin.Log.LogInfo($"PlantableItemInfoConfigurePostFix - {__instance.name}");
-            if (configSeedsDecayEnable.Value &&  __instance.name.Contains("Seed"))
+            if (configSeedsDecayEnable.Value && __instance.name.Contains("Seed") && __instance.TryCast<PlantableItemInfo>() == true)
             {
-                if (__instance.TryCast<PlantableItemInfo>() == true)
+                var pi = __instance.Cast<PlantableItemInfo>();
+
+                //TO BE ABLE GROW PLANTS FULLY AT THE END OF THE SEASON CHANGE OF SEASON
+                pi.MaxOffseasonDays = pi.TimeToGrow;
+                var decayAttributes = pi.attributes.Where(at => at.attribute.attributeId == 1011).Select(at => at).ToArray();
+                if (decayAttributes.Length != 1)
                 {
-                    var pi = __instance.Cast<PlantableItemInfo>();
-
-                    //TO BE ABLE GROW PLANTS FULLY AT THE END OF THE SEASON CHANGE OF SEASON
-                    pi.MaxOffseasonDays = pi.TimeToGrow;
-                    var decayAttributes = pi.attributes.Where(at => at.attribute.attributeId == 1011).Select(at => at).ToArray();
-                    if (decayAttributes.Length != 1)
-                    {
-                        Plugin.Log.LogError($"Decay attribute (id 1011) not found at object {__instance.name}");
-                        return;
-                    }
-                    Plugin.Log.LogInfo($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.1f}");
-
-                    //QUICKEST DECAY OF SEEDS = NO MORE WASTE EVERYWHERE
-                    decayAttributes[0].value = 0.1f;
+                    Plugin.Log.LogError($"Decay attribute (id 1011) not found at object {__instance.name}");
+                    return;
                 }
+                Plugin.Log.LogInfo($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.05f}");
+
+                //QUICKEST DECAY OF SEEDS = NO MORE WASTE EVERYWHERE
+                decayAttributes[0].value = 0.05f;
             }
-            
+
             if (configFoodEnable.Value && __instance.name.Contains("_Food_"))
             {
                 //   Plugin.Log.LogInfo($"Found {__instance.name}:");
@@ -91,6 +88,15 @@ namespace askaplus.bepinex.mod
                             }
                         }
                     }
+                }
+            }
+            
+            //temporarily increase spawn chance of CrawlerEgg for resin recipe until next patch
+            if (__instance.name.Contains("Item_Misc_CrawlerEgg"))
+            {
+                foreach (var iich in __instance.components)
+                {
+                    if (iich.chance == 0.2f) iich.chance = 0.7f;
                 }
             }
         }
