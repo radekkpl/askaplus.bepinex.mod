@@ -62,7 +62,7 @@ namespace askaplus.bepinex.mod
 
             switch (lastInteraction.parent.name)
             {
-                case "Harvest_Stone_StoneClump":
+                case "Harvest_Stone4":
                 case "Harvest_Stone_StoneClumpSmall":
                     TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.StoneHarvest, Helpers.resourceInfoSO["Item_Stone_Raw"], Vector3.zero, 1, true, true);
                     break;
