@@ -34,9 +34,10 @@ namespace askaplus.bepinex.mod
             ResinFromSack.Category = Helpers.Dict_ICI["Categ_Blueprints_Materials"];
             ResinFromSack.Interaction = Helpers.Dict_CI["VirtualCraftingStation"];
             ResinFromSack.ItemInfoListTargets = ["WorkshopBlueprints_T2" , "WorkshopBlueprints_T1"];
-            ResinFromSack.Description = "Found in fir trees";
+            ResinFromSack.Description = "ASKA+ Found in fir trees";
             ResinFromSack.Lore = String.Empty;
             ResinFromSack.Name = "Resin";
+            AddRecipe(ResinFromSack);
 
             //FireWood from Resin, Stick, Bark
             RecipeCreateStruct Firewood = new RecipeCreateStruct();
@@ -54,14 +55,102 @@ namespace askaplus.bepinex.mod
             Firewood.Result = Helpers.itemInfoSO["Item_Wood_Firewood"];
             Firewood.Category = Helpers.Dict_ICI["Categ_Blueprints_Materials"];
             Firewood.ItemInfoListTargets = ["WorkshopBlueprints_T2", "WorkshopBlueprints_T1"];
-            Firewood.Description = "Found in Logs";
+            Firewood.Description = "ASKA+ Found in Logs";
             Firewood.Lore = "General purpose fuel obtained by harvesting logs and removing tree stumps.";
             Firewood.Name = "Firewood";
-
-
-            AddRecipe(ResinFromSack);
+           
             AddRecipe(Firewood);
 
+
+            //Compost
+            RecipeCreateStruct Compost1 = new RecipeCreateStruct();
+            Compost1.RecipeName = "Aska+ Compost 1";
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_BeetrootSeeds"] }
+                ]);
+
+            Compost1.BlueprintConditionsRules = new();
+            Compost1.BlueprintConditionsRules.Add(Helpers.Dict_BCR["Farm_Rule"]);
+
+            Compost1.Quantity = 1;
+            Compost1.Result = Helpers.itemInfoSO["Item_Junk_Compost"];
+            Compost1.Category = Helpers.Dict_ICI["Categ_Blueprints_Materials"];
+            Compost1.ItemInfoListTargets = ["WorkshopBlueprints_T2", "WorkshopBlueprints_T1"];
+            Compost1.Description = "ASKA+ It is just a junk, but pLants will love it";
+            Compost1.Lore = "General purpose compost.";
+            Compost1.Name = "Compost";
+            AddRecipe(Compost1);
+
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_BerriesSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_CabbageSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_CarrotSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_FlaxSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_GarlicSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_OnionSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_ReedsSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_SpruceSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+
+
+            //Resin from sacks
+            ResinFromSack = new RecipeCreateStruct();
+            ResinFromSack.RecipeName = "Aska+ Resin";
+            ResinFromSack.Ingredients = [new() { quantity = 2, itemInfo = Helpers.itemInfoSO["Item_Wood_Bark"] }];
+
+            ResinFromSack.BlueprintConditionsRules = new();
+            ResinFromSack.BlueprintConditionsRules.Add(Helpers.Dict_BCR["WoodCutterL0_Rule"]);
+            ResinFromSack.BlueprintConditionsRules.Add(Helpers.Dict_BCR["WorkshopL0_Rule"]);
+
+            ResinFromSack.Quantity = 1;
+            ResinFromSack.Result = Helpers.itemInfoSO["Item_Wood_Resin"];
+            ResinFromSack.Category = Helpers.Dict_ICI["Categ_Blueprints_Materials"];
+            ResinFromSack.Interaction = Helpers.Dict_CI["VirtualCraftingStation"];
+            ResinFromSack.ItemInfoListTargets = ["WorkshopBlueprints_T2", "WorkshopBlueprints_T1", "WorkshopBlueprints_T0"];
+            ResinFromSack.Description = "ASKA+ Found in fir trees";
+            ResinFromSack.Lore = String.Empty;
+            ResinFromSack.Name = "Resin";
+            AddRecipe(ResinFromSack);
             //TODO MODIFY Workshop to be able drop firewood to crates
 
         }
