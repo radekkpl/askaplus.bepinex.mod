@@ -18,7 +18,7 @@ namespace askaplus.bepinex.mod
         public static void ItemInfoConfigurePreFix(ref ItemInfo __instance)
         {
             //Plugin.Log.LogInfo($"PlantableItemInfoConfigurePostFix - {__instance.name}");
-            if (__instance.name.Contains("Seed"))
+            if (configSeedsDecayEnable.Value &&  __instance.name.Contains("Seed"))
             {
                 if (__instance.TryCast<PlantableItemInfo>() == true)
                 {
@@ -38,9 +38,9 @@ namespace askaplus.bepinex.mod
                     decayAttributes[0].value = 0.1f;
                 }
             }
-            else if (__instance.name.Contains("_Food_"))
+            
+            if (configFoodEnable.Value && __instance.name.Contains("_Food_"))
             {
-
                 //   Plugin.Log.LogInfo($"Found {__instance.name}:");
                 //FOOD PATCH
                 if (__instance.TryCast<ConsumableInfo>() == true)
