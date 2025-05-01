@@ -40,12 +40,16 @@ Added recipes to workstation
 	- Big Stone
 
 ## Planned features
-- Ingame settings of mod attributes (Enable/disable feature, etc.)
 - Adding workstations as target for Market
 	- gathering info from code
 - Prevent villagers or warehouse workers grabbing materials needed for crafting from workstations - no more multiple warehouses and Whitelists
 - 
 - 
+
+## How to enable / disable some features
+- Mod has ingame settings (Enable/disable feature, etc.) in game settings menu.
+- Most of the settings need to restart the game.
+- Be carefull when for example disabling new recipes while have them in crafting task. I did not found this as problem yet, but something can happen.
 
 ## Installation - This is your first mod
 1. BepInEx is required and can be downloaded from here\
