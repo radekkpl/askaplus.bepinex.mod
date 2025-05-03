@@ -1,13 +1,9 @@
-﻿using HarmonyLib;
-using Microsoft.VisualBasic;
-using SandSailorStudio.Attributes;
+﻿using SandSailorStudio.Attributes;
 using SandSailorStudio.Inventory;
 using SSSGame;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 using static askaplus.bepinex.mod.Plugin;
 
 namespace askaplus.bepinex.mod
@@ -67,8 +63,8 @@ namespace askaplus.bepinex.mod
             Compost1.RecipeName = "Aska+ Compost 1";
             Compost1.Ingredients = new List<ItemInfoQuantity>([
                 new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_BeetrootSeeds"] }
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_BeetrootSeeds"] }
                 ]);
 
             Compost1.BlueprintConditionsRules = new();
@@ -85,55 +81,55 @@ namespace askaplus.bepinex.mod
 
             Compost1.Ingredients = new List<ItemInfoQuantity>([
                 new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_BerriesSeeds"] }
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_BerriesSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
                 new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_CabbageSeeds"] }
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_CabbageSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
                 new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_CarrotSeeds"] }
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_CarrotSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
                 new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_FlaxSeeds"] }
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_FlaxSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
                 new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_GarlicSeeds"] }
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_GarlicSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
                 new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_OnionSeeds"] }
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_OnionSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
                 new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_ReedsSeeds"] }
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_ReedsSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
                 new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Seeds_SpruceSeeds"] }
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_SpruceSeeds"] }
                 ]);
             AddRecipe(Compost1);
 
 
-            //Resin from sacks
+            //Resin from Bark
             ResinFromSack = new RecipeCreateStruct();
             ResinFromSack.RecipeName = "Aska+ Resin";
             ResinFromSack.Ingredients = [new() { quantity = 2, itemInfo = Helpers.itemInfoSO["Item_Wood_Bark"] }];
@@ -151,6 +147,26 @@ namespace askaplus.bepinex.mod
             ResinFromSack.Lore = String.Empty;
             ResinFromSack.Name = "Resin";
             AddRecipe(ResinFromSack);
+
+            //Heawy pelt from pelt and 
+            var HeavyPelt = new RecipeCreateStruct();
+            HeavyPelt.RecipeName = "Aska+ Heavy pelt";
+            HeavyPelt.Ingredients = [new() { quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherPelt"]} ,
+                                     new() {  quantity = 8, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherHide"]} ];
+
+            HeavyPelt.BlueprintConditionsRules = new();
+            HeavyPelt.BlueprintConditionsRules.Add(Helpers.Dict_BCR["LeatherWorkerL2_Rule"]);
+
+            HeavyPelt.Quantity = 1;
+            HeavyPelt.Result = Helpers.itemInfoSO["Item_Materials_LeatherHeavyPelt"];
+            HeavyPelt.Category = Helpers.Dict_ICI["Categ_Blueprints_Materials"];
+            HeavyPelt.Interaction = Helpers.Dict_CI["LeatherworkerTableInteraction"];
+            HeavyPelt.ItemInfoListTargets = ["LeatherworkerBlueprints_T1"];
+            HeavyPelt.Description = "ASKA+ Heavy pelt from pelt and hide";
+            HeavyPelt.Lore = String.Empty;
+            HeavyPelt.Name = "Heavy pelt";
+            AddRecipe(HeavyPelt);
+
             //TODO MODIFY Workshop to be able drop firewood to crates
 
         }
@@ -176,11 +192,11 @@ namespace askaplus.bepinex.mod
            
 
             test.availableInTrialVersion = false;
-            Plugin.Log.LogMessage($"Adding BRC");
+            //Plugin.Log.LogMessage($"Adding BRC");
             test.blueprintConditionsRules = data.BlueprintConditionsRules;
             test.craftVolume = 1f;
             test.quantity = data.Quantity;
-            Plugin.Log.LogMessage($"Adding ICI");
+            //Plugin.Log.LogMessage($"Adding ICI");
 
             test.category = data.Category;
             test.parts = data.Ingredients.ToArray();
@@ -212,8 +228,6 @@ namespace askaplus.bepinex.mod
             {
                 Helpers.Dict_BlueprintsList[item].itemInfoList.Add(test);
             }
-
-          
         }
         
 

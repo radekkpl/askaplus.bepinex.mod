@@ -74,7 +74,7 @@ namespace askaplus.bepinex.mod
     {
         private PlayerInteractionAgent playerInteractionAgent;
         private AttributeManager attributeManager;
-        private GameObject lastPickable;
+        public GameObject? lastPickable;
 
         
         private void Update()
@@ -82,14 +82,26 @@ namespace askaplus.bepinex.mod
             if (Plugin.configBonusSpawnEnable.Value == false) return;
             if (playerInteractionAgent is null) { Plugin.Log.LogError("PlayerInteractionAgent is null"); }
 
-            if (playerInteractionAgent._favoritePickable is null)   return;
-            if (playerInteractionAgent._favoritePickable.gameObject == lastPickable) return;
+            var _pickable = playerInteractionAgent._favoritePickable;
+            if (_pickable is null)   return;
 
-            lastPickable = playerInteractionAgent._favoritePickable?.gameObject;
-             
-           // Plugin.Log.LogInfo($"Target changed to {lastPickable.name}");
+            //when last object is destroyed just before this call
+            if (lastPickable is null)
+            {
+                Plugin.Log.LogInfo("Last pickable was null. Trying to get game object");
+                lastPickable = _pickable?.gameObject;
+            }
+            //if looking to same object as in previous frame
+            if (_pickable?.gameObject == lastPickable) return;
 
-            switch (lastPickable.name)
+            //update last pickable and proceed
+            lastPickable = _pickable?.gameObject;
+
+            //last return
+            if (lastPickable is null) return;
+
+            Plugin.Log.LogInfo($"Target changed to {lastPickable?.name}");
+            switch (lastPickable?.name)
             {
                 case "Harvest_Stone4":
                 case "Harvest_StoneClumpSmall":

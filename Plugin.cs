@@ -36,7 +36,7 @@ namespace askaplus.bepinex.mod
         internal static ConfigEntry<bool> configSeedsDecayEnable;
         internal static ConfigEntry<bool> configFoodEnable;
         internal static ConfigEntry<bool> configRecipesEnable;
-
+        internal static ConfigEntry<bool> configTorchesLightExtended;
         public override void Load()
         {
 
@@ -53,7 +53,7 @@ namespace askaplus.bepinex.mod
             configSeedsDecayEnable = Config.Bind("Seeds mod", "Enable mod", true, "If seeds decay rate should be increased to get rid of a seeds mess on floor.");
             configFoodEnable = Config.Bind("Food mod", "Increase duration of food buff", true, "If foods duration effect should be increased to 5 minutes");
             configRecipesEnable = Config.Bind("Recipes mod", "Add custom recipes", true, "Add custom recipes to some stations");
-
+            configTorchesLightExtended = Config.Bind("Torches to buildings", "Extended visibility range", false, "Light visibility distance. Default 60m, extended 200m");
 
             ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
             

@@ -50,6 +50,7 @@ namespace askaplus.bepinex.mod
             Component.DestroyImmediate(torch.GetComponent<MultiInteractionProxy>());
             Component.DestroyImmediate(torch.transform.GetChild(1).GetChild(2).gameObject);
             var light = torch.transform.FindChildByNameRecursive("Point Light").GetComponent<Light>();
+            var hdData = light.gameObject.GetComponent<UnityEngine.Rendering.HighDefinition.HDAdditionalLightData>();
 
             if (Plugin.configTorchesBuildingShadowsEnable.Value)
             {
@@ -59,7 +60,14 @@ namespace askaplus.bepinex.mod
             {
                 light.shadows = LightShadows.None;
             }
-
+            if (Plugin.configTorchesLightExtended.Value)
+            {
+                hdData.fadeDistance = 200f;
+            }
+            else
+            {
+                hdData.fadeDistance = 60f;
+            }
             torch.transform.GetChild(1).gameObject.SetActive(true);
             torch.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
 
@@ -416,7 +424,7 @@ namespace askaplus.bepinex.mod
             Helpers.CreateCategory(parent, "Torches to buildings");
             Helpers.CreateSwitch(parent, "* Enable Mod", configTorchesBuildingEnable);
             Helpers.CreateSwitch(parent, "* Enable shadows", configTorchesBuildingShadowsEnable);
-
+            Helpers.CreateSwitch(parent, "* Light extended visibility", configTorchesLightExtended);
             UnityAction applyCallback = (UnityAction)(() =>
             {
                 Plugin.configGrassPaintKey.Value = KeyCode.Z;

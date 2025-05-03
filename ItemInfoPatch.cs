@@ -22,7 +22,7 @@ namespace askaplus.bepinex.mod
             {
                 var pi = __instance.Cast<PlantableItemInfo>();
 
-                //TO BE ABLE GROW PLANTS FULLY AT THE END OF THE SEASON CHANGE OF SEASON
+                //TO BE ABLE GROW PLANTS FULLY AT THE END OF THE SEASON
                 pi.MaxOffseasonDays = pi.TimeToGrow;
                 var decayAttributes = pi.attributes.Where(at => at.attribute.attributeId == 1011).Select(at => at).ToArray();
                 if (decayAttributes.Length != 1)
@@ -30,10 +30,10 @@ namespace askaplus.bepinex.mod
                     Plugin.Log.LogError($"Decay attribute (id 1011) not found at object {__instance.name}");
                     return;
                 }
-                Plugin.Log.LogInfo($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.05f}");
+                Plugin.Log.LogInfo($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.07f}");
 
                 //QUICKEST DECAY OF SEEDS = NO MORE WASTE EVERYWHERE
-                decayAttributes[0].value = 0.05f;
+                decayAttributes[0].value = 0.07f;
             }
 
             if (configFoodEnable.Value && __instance.name.Contains("_Food_"))
@@ -96,7 +96,7 @@ namespace askaplus.bepinex.mod
             {
                 foreach (var iich in __instance.components)
                 {
-                    if (iich.chance == 0.2f) iich.chance = 0.7f;
+                    if (iich.chance == 0.2f) iich.chance = 0.4f;
                 }
             }
         }

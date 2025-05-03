@@ -55,6 +55,10 @@
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\SandSailorStudio.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+      <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ASKA\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
