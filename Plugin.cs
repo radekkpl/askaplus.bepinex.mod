@@ -2,19 +2,16 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
-using Fusion.CodeGen;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
-using SandSailorStudio.Attributes;
+using Mono.Cecil.Cil;
 using SandSailorStudio.Inventory;
 using SandSailorStudio.UI;
 using SSSGame;
-using SSSGame.Deeds;
 using SSSGame.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -37,6 +34,14 @@ namespace askaplus.bepinex.mod
         internal static ConfigEntry<bool> configFoodEnable;
         internal static ConfigEntry<bool> configRecipesEnable;
         internal static ConfigEntry<bool> configTorchesLightExtended;
+        internal static ConfigEntry<bool> configMarksEnable;
+        internal static ConfigEntry<float> configMarks_FoodHarvestRange;
+        internal static ConfigEntry<float> configMarks_WoodHarvestRange;
+        internal static ConfigEntry<float> configMarks_ForestryRange;
+        internal static ConfigEntry<float> configMarks_StoneHarvestRange;
+        internal static ConfigEntry<float> configMarks_HuntingRange;
+        internal static ConfigEntry<float> configMarks_BuildingResourcesRange;
+        
         public override void Load()
         {
 
@@ -54,6 +59,13 @@ namespace askaplus.bepinex.mod
             configFoodEnable = Config.Bind("Food mod", "Increase duration of food buff", true, "If foods duration effect should be increased to 5 minutes");
             configRecipesEnable = Config.Bind("Recipes mod", "Add custom recipes", true, "Add custom recipes to some stations");
             configTorchesLightExtended = Config.Bind("Torches to buildings", "Extended visibility range", false, "Light visibility distance. Default 60m, extended 200m");
+            configMarksEnable = Config.Bind("Marks","Enable mod",true, "Enable or disable mod");
+            configMarks_WoodHarvestRange = Config.Bind("Marks", "Wood Harvest Distance", 2.5f, "Distance multiplikator");
+            configMarks_StoneHarvestRange = Config.Bind("Marks", "Stone Harvest Distance", 2.5f, "Distance multiplikator");
+            configMarks_FoodHarvestRange = Config.Bind("Marks", "Food Harvest Distance", 2.5f, "Distance multiplikator");
+            configMarks_HuntingRange = Config.Bind("Marks", "Hunting Distance", 2.5f, "Distance multiplikator");
+            configMarks_BuildingResourcesRange = Config.Bind("Marks", "Building Resources Distance", 2.5f, "Distance multiplikator");
+            configMarks_ForestryRange = Config.Bind("Marks", "Forestry Distance", 2.5f, "Distance multiplikator");
 
             ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
             
@@ -77,6 +89,9 @@ namespace askaplus.bepinex.mod
             Harmony.CreateAndPatchAll(typeof(AnchorsFix));
             Harmony.CreateAndPatchAll(typeof(ItemInfoPatch));
             SettingsMenuPatch.OnSettingsMenu += ItemInfoPatch.OnSettingsMenu;
+
+            Harmony.CreateAndPatchAll(typeof(Marks));
+            SettingsMenuPatch.OnSettingsMenu += Marks.OnSettingsMenu;
 
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
             Harmony.CreateAndPatchAll(typeof(Test));
@@ -223,6 +238,118 @@ namespace askaplus.bepinex.mod
 
                 btn1.onClick.AddListener(onIncreaseDelegate);
                 btn2.onClick.AddListener(onIncreaseDelegate);
+            }
+            internal static void CreateSelectRange(Transform parent, string text, ConfigEntry<float> configEntry, float[] ranges)
+            {
+                var button = GameObject.Instantiate(SettingsMenuPatch.SelectRange, parent);
+                button.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = text;
+                button.transform.GetChild(8).gameObject.SetActive(true);
+                Plugin.Log.LogInfo($"Item has this amount of childrens {button.transform.GetChild(8).childCount}");
+
+                var valu = button.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+                switch (configEntry.Value)
+                {
+                    case 1f:
+                        valu.text = "Default";
+                        break;
+                    case 1.5f:
+                        valu.text = "Extended";
+                        break;
+                    case 3f:
+                        valu.text = "Big";
+                        break;
+                    case 5f:
+                        valu.text = "Huge";
+                        break;
+                    default:
+                        valu.text = "Default";
+                        configEntry.Value = 1f;
+                        break;
+                }
+                Plugin.Log.LogInfo("Creating images");
+
+             
+                for (int i = 1; i < ranges.Length; i++) 
+                {
+                    var imgA = button.transform.GetChild(8).GetChild(0).gameObject;
+                    var imgB = GameObject.Instantiate(imgA, imgA.transform.parent);
+                    imgA.GetComponent<Image>().color = configEntry.Value == ranges[0] ? SelectedOpt : UnselectedOpt;
+                    imgB.GetComponent<Image>().color = configEntry.Value == ranges[i] ? SelectedOpt : UnselectedOpt;
+                }
+
+              
+                Component.DestroyImmediate(button.transform.GetChild(7).GetComponent<LocalizedText>());
+                var ColorSchema = button.transform.GetChild(6).GetComponent<Button>().colors;
+                Component.DestroyImmediate(button.transform.GetChild(6).GetComponent<Button>());
+                Component.DestroyImmediate(button.transform.GetChild(5).GetComponent<Button>());
+                Component.DestroyImmediate(button.GetComponent<IncreaseDecreasePanel>());
+
+                Button btn1 = button.transform.GetChild(5).gameObject.AddComponent<Button>();
+                Button btn2 = button.transform.GetChild(6).gameObject.AddComponent<Button>();
+
+                btn1.targetGraphic = btn1.transform.GetChild(0).GetComponent<Image>();
+                btn2.targetGraphic = btn2.transform.GetChild(0).GetComponent<Image>();
+                btn1.colors = ColorSchema;
+                btn2.colors = ColorSchema;
+
+                UnityAction onIncreaseDelegate =
+                    (UnityAction)(() =>
+                    {
+                        switch (configEntry.Value) 
+                        {
+                            case 1f:
+                                valu.text = "Extended";
+                                configEntry.Value = 1.5f;
+                                button.transform.GetChild(8).GetChild(0).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(1).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            case 1.5f:
+                                valu.text = "Big";
+                                configEntry.Value = 3f;
+                                button.transform.GetChild(8).GetChild(1).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(2).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            case 3f:
+                                if (ranges.Length == 3) break;
+                                valu.text = "Huge";
+                                configEntry.Value = 5f;
+                                button.transform.GetChild(8).GetChild(2).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(3).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            default:
+                                break;
+                        }
+                    });
+                UnityAction onDecreaseDelegate =
+                    (UnityAction)(() =>
+                    {
+                        switch (configEntry.Value)
+                        {
+                            case 5f:
+                                valu.text = "Big";
+                                configEntry.Value = 3f;
+                                button.transform.GetChild(8).GetChild(3).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(2).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            case 3f:
+                                valu.text = "Extended";
+                                configEntry.Value = 1.5f;
+                                button.transform.GetChild(8).GetChild(2).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(1).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            case 1.5f:
+                                valu.text = "Default";
+                                configEntry.Value = 1f;
+                                button.transform.GetChild(8).GetChild(1).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(0).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            default:
+                                break;
+                        }
+                    });
+
+                btn2.onClick.AddListener(onDecreaseDelegate);
+                btn1.onClick.AddListener(onIncreaseDelegate);
             }
 
             internal static void CreateCategory(Transform parent, string text)

@@ -1,8 +1,5 @@
-﻿using BepInEx.Configuration;
-using HarmonyLib;
-using Il2CppSystem.Collections.Generic;
+﻿using HarmonyLib;
 using Invector;
-//using Invector;
 using SandSailorStudio.Inventory;
 using SandSailorStudio.Pooling;
 using SSSGame;
@@ -107,7 +104,7 @@ namespace askaplus.bepinex.mod
             var Carts = Resources.FindObjectsOfTypeAll<CartStructure>();
             foreach (var sb in Buildings)
             {
-                System.Collections.Generic.List<PosRot> posRots = new();
+                System.Collections.Generic.List<PosRot> posRots = [];
                 switch (sb.gameObject.name)
                 {
                     case "ArcheryRange_L1":
