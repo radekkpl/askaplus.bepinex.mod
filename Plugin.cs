@@ -85,6 +85,7 @@ namespace askaplus.bepinex.mod
 
 
             Harmony.CreateAndPatchAll(typeof(TorchesToBuildings));
+            Harmony.CreateAndPatchAll(typeof(StrucutrePatch));
             SettingsMenuPatch.OnSettingsMenu += TorchesToBuildings.OnSettingsMenu;
             Harmony.CreateAndPatchAll(typeof(AnchorsFix));
             Harmony.CreateAndPatchAll(typeof(ItemInfoPatch));
@@ -228,13 +229,6 @@ namespace askaplus.bepinex.mod
                         imgB.GetComponent<Image>().color = valu.text == "Off" ? UnselectedOpt:SelectedOpt;
                       
                     });
-                //UnityAction onDecreaseDelegate =
-                //    (UnityAction)(() =>
-                //    {
-                //        valu.text = valu.text == "On" ? "Off" : "On";
-
-                //        configEntry.Value = valu.text == "On";
-                //    });
 
                 btn1.onClick.AddListener(onIncreaseDelegate);
                 btn2.onClick.AddListener(onIncreaseDelegate);
@@ -372,42 +366,42 @@ namespace askaplus.bepinex.mod
                         if (ri.TryCast<ConsumableInfo>() == true)
                         {
                             var ci = ri.Cast<ConsumableInfo>();
-                            //    Plugin.Log.LogMessage($"{ci.name} is type of {ci.GetType().Name}");
-                            //   Plugin.Log.LogInfo($"{ri.name} has {ci.modulatedConsumeEffects.Length} effects");
-                            //foreach (var ce in ci.modulatedConsumeEffects)
-                            //{
-                            //    Plugin.Log.LogInfo($"from {ce.normalizedRange.min} to {ce.normalizedRange.max} has {ce.randomStatusEffects.Length} effects");
-                            //    foreach (var se in ce.randomStatusEffects)
-                            //    {
-                            //        Plugin.Log.LogInfo($"duration {se.duration} with effect {se.table.effectType.name}({se.table.dialogueAdded}) which modify {se.table.vattrElements.Count} vital attributes and modify {se.table.attrElements.Count} character attributes");
-                            //        foreach (var vattel in se.table.vattrElements)
-                            //        {
-                            //            Plugin.Log.LogInfo($"VITAL ATTRIBUTE: {vattel.modifier.mode} effect give {vattel.modifier.value} of attribute {vattel.targetAttribute.name}/{vattel.targetAttribute.localizedName} (attribid: {vattel.targetAttribute.attributeId}, type {vattel.targetAttribute.attributeType?.name})");
-                            //        }
-                            //        foreach (var attel in se.table.attrElements)
-                            //        {
-                            //            Plugin.Log.LogInfo($"CHARACTER ATTRIBUTE: {attel.modifier.Operation} effect give {attel.modifier.Value} of attribute {attel.targetAttribute.name}/{attel.targetAttribute.localizedName} (attribid: {attel.targetAttribute.attributeId}, type {attel.targetAttribute.attributeType?.name})");
-                            //        }
-                            //    }
-                            //}
+                            Plugin.Log.LogMessage($"{ci.name} is type of {ci.GetType().Name}");
+                            Plugin.Log.LogInfo($"{ri.name} has {ci.modulatedConsumeEffects.Length} effects");
+                            foreach (var ce in ci.modulatedConsumeEffects)
+                            {
+                                Plugin.Log.LogInfo($"from {ce.normalizedRange.min} to {ce.normalizedRange.max} has {ce.randomStatusEffects.Length} effects");
+                                foreach (var se in ce.randomStatusEffects)
+                                {
+                                    Plugin.Log.LogInfo($"duration {se.duration} with effect {se.table.effectType.name}({se.table.dialogueAdded}) which modify {se.table.vattrElements.Count} vital attributes and modify {se.table.attrElements.Count} character attributes");
+                                    foreach (var vattel in se.table.vattrElements)
+                                    {
+                                        Plugin.Log.LogInfo($"VITAL ATTRIBUTE: {vattel.modifier.mode} effect give {vattel.modifier.value} of attribute {vattel.targetAttribute.name}/{vattel.targetAttribute.localizedName} (attribid: {vattel.targetAttribute.attributeId}, type {vattel.targetAttribute.attributeType?.name})");
+                                    }
+                                    foreach (var attel in se.table.attrElements)
+                                    {
+                                        Plugin.Log.LogInfo($"CHARACTER ATTRIBUTE: {attel.modifier.Operation} effect give {attel.modifier.Value} of attribute {attel.targetAttribute.name}/{attel.targetAttribute.localizedName} (attribid: {attel.targetAttribute.attributeId}, type {attel.targetAttribute.attributeType?.name})");
+                                    }
+                                }
+                            }
 
 
 
-                            //Plugin.Log.LogMessage("EXPORT strings:");
-                            //foreach (var ce in ci.modulatedConsumeEffects)
-                            //{
-                            //    foreach (var se in ce.randomStatusEffects)
-                            //    {
-                            //        foreach (var vattel in se.table.vattrElements)
-                            //        {
-                            //            Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{vattel.modifier.mode};{vattel.targetAttribute.name};{vattel.modifier.value}");
-                            //        }
-                            //        foreach (var attel in se.table.attrElements)
-                            //        {
-                            //            Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{attel.modifier.Operation};{attel.targetAttribute.name};{attel.modifier.Value}");
-                            //        }
-                            //    }
-                            //}
+                            Plugin.Log.LogMessage("EXPORT strings:");
+                            foreach (var ce in ci.modulatedConsumeEffects)
+                            {
+                                foreach (var se in ce.randomStatusEffects)
+                                {
+                                    foreach (var vattel in se.table.vattrElements)
+                                    {
+                                        Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{vattel.modifier.mode};{vattel.targetAttribute.name};{vattel.modifier.value}");
+                                    }
+                                    foreach (var attel in se.table.attrElements)
+                                    {
+                                        Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{attel.modifier.Operation};{attel.targetAttribute.name};{attel.modifier.Value}");
+                                    }
+                                }
+                            }
 
                         }
                     }
