@@ -62,7 +62,7 @@ namespace askaplus.bepinex.mod
             RecipeCreateStruct Compost1 = new RecipeCreateStruct();
             Compost1.RecipeName = "Aska+ Compost 1";
             Compost1.Ingredients = new List<ItemInfoQuantity>([
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
                 new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
                 new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_BeetrootSeeds"] }
                 ]);
@@ -80,49 +80,49 @@ namespace askaplus.bepinex.mod
             AddRecipe(Compost1);
 
             Compost1.Ingredients = new List<ItemInfoQuantity>([
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
                 new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
                 new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_BerriesSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
                 new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
                 new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_CabbageSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
                 new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
                 new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_CarrotSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
                 new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
                 new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_FlaxSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
                 new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
                 new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_GarlicSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
                 new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
                 new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_OnionSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
                 new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
                 new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_ReedsSeeds"] }
                 ]);
             AddRecipe(Compost1);
             Compost1.Ingredients = new List<ItemInfoQuantity>([
-                new(){ quantity = 5, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
                 new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
                 new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_SpruceSeeds"] }
                 ]);

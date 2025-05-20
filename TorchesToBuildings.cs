@@ -126,11 +126,11 @@ namespace askaplus.bepinex.mod
                         AddTorches(sb, sourcePillar, torch, "barber_complete_2_0_roof", posRots);
                         break;
                     case "Armorsmith_L1":
-                        posRots.Add(new PosRot(new Vector3(-2.3202f, 0f, 0f), Quaternion.Euler(0f, 180f, 20f)));
+                        posRots.Add(new PosRot(new Vector3(0f, 0f, 1.18f), Quaternion.Euler(0f, 90f, 10f)));
                         AddTorches(sb, sourcePillar, torch, "armorsmith_complete_2_0_roof", posRots);
                         break;
                     case "Armorsmith_L2":
-                        posRots.Add(new PosRot(new Vector3(-0.55f, -0.4347f, 6.7166f), Quaternion.Euler(0f, 45f, 10f)));
+                        posRots.Add(new PosRot(new Vector3(0f, 0f, 1.6f), Quaternion.Euler(0f, 90f, 10f)));
                         AddTorches(sb, sourcePillar, torch, "armorsmith_complete_1_0_walls", posRots);
                         break;
                     case "Barracks_L1":
@@ -220,7 +220,7 @@ namespace askaplus.bepinex.mod
                         AddTorches(sb, sourcePillar, torch, "healing_house_l1_complete_1_0_walls", posRots);
                         break;
                     case "HealingHouse_L2":
-                        posRots.Add(new PosRot(new Vector3(-1.6927f, 0f, -1.7145f), Quaternion.Euler(0f, 290f, 20f)));
+                        posRots.Add(new PosRot(new Vector3(-1.9f, 0f, -1.9f), Quaternion.Euler(0f, 290f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "structure_complete_1_0_walls", posRots);
                         break;
                     case "House_L1":
@@ -233,8 +233,8 @@ namespace askaplus.bepinex.mod
                         AddTorches(sb, sourcePillar, torch, "house1_complete_1_0_frame", posRots);
                         break;
                     case "House_L2_Chieftain":
-                        posRots.Add(new PosRot(new Vector3(-0.55f, -0.4347f, 6.7166f), Quaternion.Euler(0f, 45f, 10f)));
-                        posRots.Add(new PosRot(new Vector3(0.5936f, -0.3456f, 6.8236f), Quaternion.Euler(-0f, 135f, 10f)));
+                        posRots.Add(new PosRot(new Vector3(-0.62f, -0.44f, 6.85f), Quaternion.Euler(0f, 45f, 10f)));
+                        posRots.Add(new PosRot(new Vector3(0.28f, -0.3456f, 6.66f), Quaternion.Euler(-0f, 135f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "structure_complete_1_0_frame", posRots);
                         break;
 
@@ -255,7 +255,7 @@ namespace askaplus.bepinex.mod
                         AddTorches(sb, sourcePillar, torch, "trading_post_l0_complete_1_0_frame", posRots);
                         break;
                     case "Market_T2":
-                        posRots.Add(new PosRot(new Vector3(0.4814f, 0f, 2.2372f), Quaternion.Euler(0f, 90f, 20f)));
+                        posRots.Add(new PosRot(new Vector3(0.5f, 0f, 2.2372f), Quaternion.Euler(0f, 90f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "structure_complete_1_0_walls", posRots);
                         break;
                     case "OuthouseL1":
