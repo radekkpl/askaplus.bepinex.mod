@@ -74,7 +74,7 @@ namespace askaplus.bepinex.mod
     {
         private PlayerInteractionAgent playerInteractionAgent;
         private AttributeManager attributeManager;
-        public GameObject? lastPickable;
+        public GameObject lastPickable;
 
         
         private void Update()

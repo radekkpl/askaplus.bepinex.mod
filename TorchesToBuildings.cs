@@ -503,11 +503,11 @@ namespace askaplus.bepinex.mod
                 case "WallPlankSectionShortL2_SkewUp30(Clone)":
                 case "WallPlankSectionShortL2_SkewDown30(Clone)":
                 case "WallPlankSectionShortL2(Clone)":
-                    Vector2 position = new Vector2(__instance.transform.position.x, __instance.transform.position.y);
-                    float noiseValue = Mathf.PerlinNoise(position.x*10, position.y*10);
+                    Vector2 position = new Vector2(__instance.transform.position.x, __instance.transform.position.z);
+                    float noiseValue = Mathf.PerlinNoise(position.x*20, position.y*20);
 
                     Transform askaplustorches = __instance.gameObject.transform.FindChildByNameRecursive("AskaPlusTorches");
-                    askaplustorches?.gameObject.SetActive(noiseValue<0.3);
+                    askaplustorches?.gameObject.SetActive(noiseValue<0.1 || (noiseValue > 0.4 && noiseValue < 0.5) || (noiseValue > 0.9));
                     Plugin.Log.LogMessage($"Structure {__instance.name} spawned. Perlin value is {noiseValue}");
                     break;
                 default:
