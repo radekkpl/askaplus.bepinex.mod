@@ -4,10 +4,10 @@ using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
+using Mono.Cecil.Cil;
 using SandSailorStudio.Inventory;
 using SandSailorStudio.UI;
 using SSSGame;
-using SSSGame.Deeds;
 using SSSGame.Localization;
 using System;
 using System.Collections.Generic;
@@ -32,7 +32,16 @@ namespace askaplus.bepinex.mod
         internal static ConfigEntry<bool> configTorchesBuildingShadowsEnable;
         internal static ConfigEntry<bool> configSeedsDecayEnable;
         internal static ConfigEntry<bool> configFoodEnable;
-
+        internal static ConfigEntry<bool> configRecipesEnable;
+        internal static ConfigEntry<bool> configTorchesLightExtended;
+        internal static ConfigEntry<bool> configMarksEnable;
+        internal static ConfigEntry<float> configMarks_FoodHarvestRange;
+        internal static ConfigEntry<float> configMarks_WoodHarvestRange;
+        internal static ConfigEntry<float> configMarks_ForestryRange;
+        internal static ConfigEntry<float> configMarks_StoneHarvestRange;
+        internal static ConfigEntry<float> configMarks_HuntingRange;
+        internal static ConfigEntry<float> configMarks_BuildingResourcesRange;
+        
         public override void Load()
         {
 
@@ -48,10 +57,18 @@ namespace askaplus.bepinex.mod
             configTorchesBuildingShadowsEnable = Config.Bind("Torches to buildings", "Enable shadows", true, "If torches should cast shadows. False can improve performance.");
             configSeedsDecayEnable = Config.Bind("Seeds mod", "Enable mod", true, "If seeds decay rate should be increased to get rid of a seeds mess on floor.");
             configFoodEnable = Config.Bind("Food mod", "Increase duration of food buff", true, "If foods duration effect should be increased to 5 minutes");
-
+            configRecipesEnable = Config.Bind("Recipes mod", "Add custom recipes", true, "Add custom recipes to some stations");
+            configTorchesLightExtended = Config.Bind("Torches to buildings", "Extended visibility range", false, "Light visibility distance. Default 60m, extended 200m");
+            configMarksEnable = Config.Bind("Marks","Enable mod",true, "Enable or disable mod");
+            configMarks_WoodHarvestRange = Config.Bind("Marks", "Wood Harvest Distance", 2.5f, "Distance multiplikator");
+            configMarks_StoneHarvestRange = Config.Bind("Marks", "Stone Harvest Distance", 2.5f, "Distance multiplikator");
+            configMarks_FoodHarvestRange = Config.Bind("Marks", "Food Harvest Distance", 2.5f, "Distance multiplikator");
+            configMarks_HuntingRange = Config.Bind("Marks", "Hunting Distance", 2.5f, "Distance multiplikator");
+            configMarks_BuildingResourcesRange = Config.Bind("Marks", "Building Resources Distance", 2.5f, "Distance multiplikator");
+            configMarks_ForestryRange = Config.Bind("Marks", "Forestry Distance", 2.5f, "Distance multiplikator");
 
             ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
-
+            
             //ClassInjector.RegisterTypeInIl2Cpp<RoadMakerMOD>();
             Harmony.CreateAndPatchAll(typeof(SpikesSelfDamageMod));
             SettingsMenuPatch.OnSettingsMenu += SpikesSelfDamageMod.OnSettingsMenu;
@@ -68,15 +85,20 @@ namespace askaplus.bepinex.mod
 
 
             Harmony.CreateAndPatchAll(typeof(TorchesToBuildings));
+            Harmony.CreateAndPatchAll(typeof(StrucutrePatch));
             SettingsMenuPatch.OnSettingsMenu += TorchesToBuildings.OnSettingsMenu;
             Harmony.CreateAndPatchAll(typeof(AnchorsFix));
             Harmony.CreateAndPatchAll(typeof(ItemInfoPatch));
             SettingsMenuPatch.OnSettingsMenu += ItemInfoPatch.OnSettingsMenu;
 
+            Harmony.CreateAndPatchAll(typeof(Marks));
+            SettingsMenuPatch.OnSettingsMenu += Marks.OnSettingsMenu;
+
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
             Harmony.CreateAndPatchAll(typeof(Test));
- //           Harmony.CreateAndPatchAll(typeof(AskaRecipes));
             Helpers.ResourceInfos();
+            AskaRecipes.CreateRecipes();
+            SettingsMenuPatch.OnSettingsMenu += AskaRecipes.OnSettingsMenu;
         }
 
         internal static class Helpers
@@ -86,9 +108,15 @@ namespace askaplus.bepinex.mod
             public static Color SelectedOpt = new Color(1f,0.6824f,0f);
             public static Color UnselectedOpt = new Color(1f,1f,1f);
             public static readonly Vector2 HalfHalf = new Vector2(0.5f, 0.5f);
-            public static Dictionary<string, AssetBundle> loadedAssetBundles = new Dictionary<string, AssetBundle>();
-            public static Dictionary<string, ResourceInfo> resourceInfoSO = new Dictionary<string, ResourceInfo>();
-            public static Dictionary<string, ItemInfo> itemInfoSO = new Dictionary<string, ItemInfo>();
+            public static Dictionary<string, AssetBundle> loadedAssetBundles = [];
+            public static Dictionary<string, ResourceInfo> resourceInfoSO = [];
+            public static Dictionary<string, ItemInfo> itemInfoSO = [];
+            public static Dictionary<string, BlueprintConditionsRule> Dict_BCR = [];
+            public static Dictionary<string, ItemStorageClass> Dict_ISC = [];
+            public static Dictionary<string, ItemCategoryInfo> Dict_ICI = [];
+            public static Dictionary<string, CraftInteraction> Dict_CI = [];
+            public static Dictionary<string, ItemInfoList> Dict_BlueprintsList = [];
+
             public enum AskaAttributesEnum
             {
                 WoodHarvest = 300,
@@ -201,16 +229,121 @@ namespace askaplus.bepinex.mod
                         imgB.GetComponent<Image>().color = valu.text == "Off" ? UnselectedOpt:SelectedOpt;
                       
                     });
-                //UnityAction onDecreaseDelegate =
-                //    (UnityAction)(() =>
-                //    {
-                //        valu.text = valu.text == "On" ? "Off" : "On";
-
-                //        configEntry.Value = valu.text == "On";
-                //    });
 
                 btn1.onClick.AddListener(onIncreaseDelegate);
                 btn2.onClick.AddListener(onIncreaseDelegate);
+            }
+            internal static void CreateSelectRange(Transform parent, string text, ConfigEntry<float> configEntry, float[] ranges)
+            {
+                var button = GameObject.Instantiate(SettingsMenuPatch.SelectRange, parent);
+                button.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = text;
+                button.transform.GetChild(8).gameObject.SetActive(true);
+                Plugin.Log.LogInfo($"Item has this amount of childrens {button.transform.GetChild(8).childCount}");
+
+                var valu = button.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+                switch (configEntry.Value)
+                {
+                    case 1f:
+                        valu.text = "Default";
+                        break;
+                    case 1.5f:
+                        valu.text = "Extended";
+                        break;
+                    case 3f:
+                        valu.text = "Big";
+                        break;
+                    case 5f:
+                        valu.text = "Huge";
+                        break;
+                    default:
+                        valu.text = "Default";
+                        configEntry.Value = 1f;
+                        break;
+                }
+                Plugin.Log.LogInfo("Creating images");
+
+             
+                for (int i = 1; i < ranges.Length; i++) 
+                {
+                    var imgA = button.transform.GetChild(8).GetChild(0).gameObject;
+                    var imgB = GameObject.Instantiate(imgA, imgA.transform.parent);
+                    imgA.GetComponent<Image>().color = configEntry.Value == ranges[0] ? SelectedOpt : UnselectedOpt;
+                    imgB.GetComponent<Image>().color = configEntry.Value == ranges[i] ? SelectedOpt : UnselectedOpt;
+                }
+
+              
+                Component.DestroyImmediate(button.transform.GetChild(7).GetComponent<LocalizedText>());
+                var ColorSchema = button.transform.GetChild(6).GetComponent<Button>().colors;
+                Component.DestroyImmediate(button.transform.GetChild(6).GetComponent<Button>());
+                Component.DestroyImmediate(button.transform.GetChild(5).GetComponent<Button>());
+                Component.DestroyImmediate(button.GetComponent<IncreaseDecreasePanel>());
+
+                Button btn1 = button.transform.GetChild(5).gameObject.AddComponent<Button>();
+                Button btn2 = button.transform.GetChild(6).gameObject.AddComponent<Button>();
+
+                btn1.targetGraphic = btn1.transform.GetChild(0).GetComponent<Image>();
+                btn2.targetGraphic = btn2.transform.GetChild(0).GetComponent<Image>();
+                btn1.colors = ColorSchema;
+                btn2.colors = ColorSchema;
+
+                UnityAction onIncreaseDelegate =
+                    (UnityAction)(() =>
+                    {
+                        switch (configEntry.Value) 
+                        {
+                            case 1f:
+                                valu.text = "Extended";
+                                configEntry.Value = 1.5f;
+                                button.transform.GetChild(8).GetChild(0).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(1).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            case 1.5f:
+                                valu.text = "Big";
+                                configEntry.Value = 3f;
+                                button.transform.GetChild(8).GetChild(1).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(2).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            case 3f:
+                                if (ranges.Length == 3) break;
+                                valu.text = "Huge";
+                                configEntry.Value = 5f;
+                                button.transform.GetChild(8).GetChild(2).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(3).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            default:
+                                break;
+                        }
+                    });
+                UnityAction onDecreaseDelegate =
+                    (UnityAction)(() =>
+                    {
+                        switch (configEntry.Value)
+                        {
+                            case 5f:
+                                valu.text = "Big";
+                                configEntry.Value = 3f;
+                                button.transform.GetChild(8).GetChild(3).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(2).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            case 3f:
+                                valu.text = "Extended";
+                                configEntry.Value = 1.5f;
+                                button.transform.GetChild(8).GetChild(2).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(1).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            case 1.5f:
+                                valu.text = "Default";
+                                configEntry.Value = 1f;
+                                button.transform.GetChild(8).GetChild(1).gameObject.GetComponent<Image>().color = UnselectedOpt;
+                                button.transform.GetChild(8).GetChild(0).gameObject.GetComponent<Image>().color = SelectedOpt;
+                                break;
+                            default:
+                                break;
+                        }
+                    });
+
+                btn2.onClick.AddListener(onDecreaseDelegate);
+                btn1.onClick.AddListener(onIncreaseDelegate);
             }
 
             internal static void CreateCategory(Transform parent, string text)
@@ -233,42 +366,42 @@ namespace askaplus.bepinex.mod
                         if (ri.TryCast<ConsumableInfo>() == true)
                         {
                             var ci = ri.Cast<ConsumableInfo>();
-                            //    Plugin.Log.LogMessage($"{ci.name} is type of {ci.GetType().Name}");
-                            //   Plugin.Log.LogInfo($"{ri.name} has {ci.modulatedConsumeEffects.Length} effects");
-                            //foreach (var ce in ci.modulatedConsumeEffects)
-                            //{
-                            //    Plugin.Log.LogInfo($"from {ce.normalizedRange.min} to {ce.normalizedRange.max} has {ce.randomStatusEffects.Length} effects");
-                            //    foreach (var se in ce.randomStatusEffects)
-                            //    {
-                            //        Plugin.Log.LogInfo($"duration {se.duration} with effect {se.table.effectType.name}({se.table.dialogueAdded}) which modify {se.table.vattrElements.Count} vital attributes and modify {se.table.attrElements.Count} character attributes");
-                            //        foreach (var vattel in se.table.vattrElements)
-                            //        {
-                            //            Plugin.Log.LogInfo($"VITAL ATTRIBUTE: {vattel.modifier.mode} effect give {vattel.modifier.value} of attribute {vattel.targetAttribute.name}/{vattel.targetAttribute.localizedName} (attribid: {vattel.targetAttribute.attributeId}, type {vattel.targetAttribute.attributeType?.name})");
-                            //        }
-                            //        foreach (var attel in se.table.attrElements)
-                            //        {
-                            //            Plugin.Log.LogInfo($"CHARACTER ATTRIBUTE: {attel.modifier.Operation} effect give {attel.modifier.Value} of attribute {attel.targetAttribute.name}/{attel.targetAttribute.localizedName} (attribid: {attel.targetAttribute.attributeId}, type {attel.targetAttribute.attributeType?.name})");
-                            //        }
-                            //    }
-                            //}
+                            Plugin.Log.LogMessage($"{ci.name} is type of {ci.GetType().Name}");
+                            Plugin.Log.LogInfo($"{ri.name} has {ci.modulatedConsumeEffects.Length} effects");
+                            foreach (var ce in ci.modulatedConsumeEffects)
+                            {
+                                Plugin.Log.LogInfo($"from {ce.normalizedRange.min} to {ce.normalizedRange.max} has {ce.randomStatusEffects.Length} effects");
+                                foreach (var se in ce.randomStatusEffects)
+                                {
+                                    Plugin.Log.LogInfo($"duration {se.duration} with effect {se.table.effectType.name}({se.table.dialogueAdded}) which modify {se.table.vattrElements.Count} vital attributes and modify {se.table.attrElements.Count} character attributes");
+                                    foreach (var vattel in se.table.vattrElements)
+                                    {
+                                        Plugin.Log.LogInfo($"VITAL ATTRIBUTE: {vattel.modifier.mode} effect give {vattel.modifier.value} of attribute {vattel.targetAttribute.name}/{vattel.targetAttribute.localizedName} (attribid: {vattel.targetAttribute.attributeId}, type {vattel.targetAttribute.attributeType?.name})");
+                                    }
+                                    foreach (var attel in se.table.attrElements)
+                                    {
+                                        Plugin.Log.LogInfo($"CHARACTER ATTRIBUTE: {attel.modifier.Operation} effect give {attel.modifier.Value} of attribute {attel.targetAttribute.name}/{attel.targetAttribute.localizedName} (attribid: {attel.targetAttribute.attributeId}, type {attel.targetAttribute.attributeType?.name})");
+                                    }
+                                }
+                            }
 
 
 
-                            //Plugin.Log.LogMessage("EXPORT strings:");
-                            //foreach (var ce in ci.modulatedConsumeEffects)
-                            //{
-                            //    foreach (var se in ce.randomStatusEffects)
-                            //    {
-                            //        foreach (var vattel in se.table.vattrElements)
-                            //        {
-                            //            Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{vattel.modifier.mode};{vattel.targetAttribute.name};{vattel.modifier.value}");
-                            //        }
-                            //        foreach (var attel in se.table.attrElements)
-                            //        {
-                            //            Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{attel.modifier.Operation};{attel.targetAttribute.name};{attel.modifier.Value}");
-                            //        }
-                            //    }
-                            //}
+                            Plugin.Log.LogMessage("EXPORT strings:");
+                            foreach (var ce in ci.modulatedConsumeEffects)
+                            {
+                                foreach (var se in ce.randomStatusEffects)
+                                {
+                                    foreach (var vattel in se.table.vattrElements)
+                                    {
+                                        Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{vattel.modifier.mode};{vattel.targetAttribute.name};{vattel.modifier.value}");
+                                    }
+                                    foreach (var attel in se.table.attrElements)
+                                    {
+                                        Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{attel.modifier.Operation};{attel.targetAttribute.name};{attel.modifier.Value}");
+                                    }
+                                }
+                            }
 
                         }
                     }
@@ -279,18 +412,42 @@ namespace askaplus.bepinex.mod
             {
                 //preload all resources before menu, after menu loading we can modify items
                 var allScriptableObjects = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.ResourceInfo, Assembly-CSharp"));
-                var AllcraftBP = Resources.LoadAll("", Il2CppSystem.Type.GetType("SSSGame.CraftBlueprint, Assembly-Csharp"));
-               
-                resourceInfoSO = Resources.FindObjectsOfTypeAll<ResourceInfo>().ToDictionary(name => name.name, ri => ri);
-                var BPinfo = Resources.FindObjectsOfTypeAll<SSSGame.CraftBlueprintInfo>(); 
-              
-                Plugin.Log.LogMessage("BPInfos");
 
-                foreach (var item in BPinfo) {
-                    Plugin.Log.LogMessage($"BP ({item.name}) amount: {item.quantity} cost: {item.cost?.quantity}, Parts count: {item.parts?.Length}");
+                var itemInfo = Resources.FindObjectsOfTypeAll<ItemInfo>();
+                foreach (var item in itemInfo)
+                {
+                    if (itemInfoSO.ContainsKey(item.name)) continue;
+                    itemInfoSO.Add(item.name, item);
+                }
+                resourceInfoSO = Resources.FindObjectsOfTypeAll<ResourceInfo>().ToDictionary(name => name.name, ri => ri);
+
+                //RECIPES
+                Dict_BlueprintsList = Resources.FindObjectsOfTypeAll<ItemInfoList>().ToDictionary(name => name.name,i=>i);
+
+                //Get Blueprint condition rules
+                Plugin.Log.LogMessage("-----BlueprintsConditionRule-----");
+                Dict_BCR = Resources.FindObjectsOfTypeAll<BlueprintConditionsRule>().ToDictionary(name => name.name, bcr => bcr);
+                
+                Plugin.Log.LogMessage("-----ItemStorageClass-----");
+                Dict_ISC = Resources.FindObjectsOfTypeAll<ItemStorageClass>().ToDictionary(name => name.name, bcr => bcr);
+                
+                //Get ItemInfoCategory
+                Plugin.Log.LogMessage("-----ItemInfoCategory-----");
+                Dict_ICI = Resources.FindObjectsOfTypeAll<ItemCategoryInfo>().ToDictionary(name => name.name, bcr => bcr);
+               
+                //Get CraftInteractions
+                Plugin.Log.LogMessage("-----CraftInteractions-----");
+                var _CI = Resources.FindObjectsOfTypeAll<CraftInteraction>();
+                Dict_CI = [];
+                foreach (var _item in _CI)
+                {
+                    if (!Dict_CI.ContainsKey(_item.name))
+                    {
+                        //Plugin.Log.LogMessage($"{_item.name}");
+                        Dict_CI.Add(_item.name, _item);
+                    }
                 }
 
-                Plugin.Log.LogMessage($"CraftBlueprints {AllcraftBP.Length}");
             }
         }
     }

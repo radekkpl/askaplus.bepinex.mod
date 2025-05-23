@@ -28,19 +28,28 @@ Increased duration effects from 60sec to 5min.
 ## Seed PATCH
 Seeds decay rate significantly increased to avoid seeds everywhere (please get feedback if is too high or still to low and on which decay settings you play).
 
+## Aska+ Recipes
+Added recipes to workstation
+25 resin from Crawler sack. - need have Cave Level 2 - Recipe can be made by villagers
+1 Firewood from 1x Stick + 1x Resin + 1x Bark - Recipe can be made only by players. Need to adjust workstation so villagers have place where to put Firewood.
 
 ## Features in progress
-- Increase some harvestable items based on Villager/Player skill. lvl.0 - lvl.100 = 0 - 100% percentage chance to spawn bonus resource.\
-	- Hardwood log - done
-	- 
+- Increase some harvestable items based on Villager/Player skill. lvl.0 - lvl.75 = 0 - 100% percentage chance to spawn bonus resource.\
+	- Hardwood log
+	- Log
+	- Big Stone
 
 ## Planned features
-- Ingame settings of mod attributes (Enable/disable feature, etc.)
 - Adding workstations as target for Market
 	- gathering info from code
 - Prevent villagers or warehouse workers grabbing materials needed for crafting from workstations - no more multiple warehouses and Whitelists
 - 
 - 
+
+## How to enable / disable some features
+- Mod has ingame settings (Enable/disable feature, etc.) in game settings menu.
+- Most of the settings need to restart the game.
+- Be carefull when for example disabling new recipes while have them in crafting task. I did not found this as problem yet, but something can happen.
 
 ## Installation - This is your first mod
 1. BepInEx is required and can be downloaded from here\

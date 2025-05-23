@@ -1,17 +1,16 @@
-﻿using BepInEx.Configuration;
-using HarmonyLib;
-using Il2CppSystem.Collections.Generic;
+﻿using HarmonyLib;
 using Invector;
-//using Invector;
 using SandSailorStudio.Inventory;
 using SandSailorStudio.Pooling;
 using SSSGame;
 using SSSGame.Combat;
 using SSSGame.Network;
 using SSSGame.Render;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using static askaplus.bepinex.mod.Plugin;
+using static askaplus.bepinex.mod.TorchesToBuildings;
 
 namespace askaplus.bepinex.mod
 {
@@ -32,7 +31,7 @@ namespace askaplus.bepinex.mod
 
             //Tests for adding Torches to b buildings
             var torches = Resources.FindObjectsOfTypeAll<Torch>();
- 
+
             var torch = GameObject.Instantiate(torches[0].gameObject);
             Plugin.Log.LogDebug($"Torch instantiated");
             Component.DestroyImmediate(torch.GetComponent<WeaponizedItemObject>());
@@ -50,6 +49,7 @@ namespace askaplus.bepinex.mod
             Component.DestroyImmediate(torch.GetComponent<MultiInteractionProxy>());
             Component.DestroyImmediate(torch.transform.GetChild(1).GetChild(2).gameObject);
             var light = torch.transform.FindChildByNameRecursive("Point Light").GetComponent<Light>();
+            var hdData = light.gameObject.GetComponent<UnityEngine.Rendering.HighDefinition.HDAdditionalLightData>();
 
             if (Plugin.configTorchesBuildingShadowsEnable.Value)
             {
@@ -59,7 +59,14 @@ namespace askaplus.bepinex.mod
             {
                 light.shadows = LightShadows.None;
             }
-
+            if (Plugin.configTorchesLightExtended.Value)
+            {
+                hdData.fadeDistance = 200f;
+            }
+            else
+            {
+                hdData.fadeDistance = 60f;
+            }
             torch.transform.GetChild(1).gameObject.SetActive(true);
             torch.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
 
@@ -67,16 +74,16 @@ namespace askaplus.bepinex.mod
 
             foreach (var mb in cave)
             {
-                if (mb.gameObject.transform.parent.name == "CaveCorridor")
+                if (mb.gameObject?.transform?.parent?.name == "CaveCorridor")
                 {
-                    Plugin.Log.LogDebug($"Found CaveTorchOutlet in {mb.gameObject?.name} in {mb.gameObject.transform.parent.name}");
+                    Plugin.Log.LogDebug($"Found CaveTorchOutlet in {mb.gameObject.name} in {mb.gameObject.transform.parent.name}");
                     Plugin.Log.LogError($"Ignore next NullObjectError. It is perfectly OK and cannot be avoided. Yet. Or Forever.");
                     sourcePillar = GameObject.Instantiate(mb.gameObject.transform.gameObject);
                     Plugin.Log.LogDebug($"Source pillar instantiated");
                 }
             }
 
-            if (sourcePillar is null) Plugin.Log.LogError("SourcePillar is null");
+            if (sourcePillar is null) { Plugin.Log.LogError("SourcePillar is null"); return; }
             Component.DestroyImmediate(sourcePillar.GetComponent<CaveTorchOutlet>());
             Component.DestroyImmediate(sourcePillar.GetComponentInChildren<EquipmentDisplaySlot>());
             Component.DestroyImmediate(sourcePillar.GetComponentInChildren<AnimatorEventPlaySounds>());
@@ -99,7 +106,7 @@ namespace askaplus.bepinex.mod
             var Carts = Resources.FindObjectsOfTypeAll<CartStructure>();
             foreach (var sb in Buildings)
             {
-                System.Collections.Generic.List<PosRot> posRots = new();
+                System.Collections.Generic.List<PosRot> posRots = [];
                 switch (sb.gameObject.name)
                 {
                     case "ArcheryRange_L1":
@@ -117,6 +124,14 @@ namespace askaplus.bepinex.mod
                     case "Barber_L2":
                         posRots.Add(new PosRot(new Vector3(-2.3202f, 0f, 0f), Quaternion.Euler(0f, 180f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "barber_complete_2_0_roof", posRots);
+                        break;
+                    case "Armorsmith_L1":
+                        posRots.Add(new PosRot(new Vector3(0f, 0f, 1.18f), Quaternion.Euler(0f, 90f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "armorsmith_complete_2_0_roof", posRots);
+                        break;
+                    case "Armorsmith_L2":
+                        posRots.Add(new PosRot(new Vector3(0f, 0f, 1.6f), Quaternion.Euler(0f, 90f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "armorsmith_complete_1_0_walls", posRots);
                         break;
                     case "Barracks_L1":
                         posRots.Add(new PosRot(new Vector3(2.7526f, -0.1073f, 2.6436f), Quaternion.Euler(-0f, 90f, 10f)));
@@ -204,6 +219,10 @@ namespace askaplus.bepinex.mod
                         posRots.Add(new PosRot(new Vector3(-1.6927f, 0f, -1.7145f), Quaternion.Euler(0f, 290f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "healing_house_l1_complete_1_0_walls", posRots);
                         break;
+                    case "HealingHouse_L2":
+                        posRots.Add(new PosRot(new Vector3(-1.9f, 0f, -1.9f), Quaternion.Euler(0f, 290f, 20f)));
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_1_0_walls", posRots);
+                        break;
                     case "House_L1":
                         posRots.Add(new PosRot(new Vector3(1.2573f, 0f, 3.8631f), Quaternion.Euler(-0f, 90f, 10f)));
                         AddTorches(sb, sourcePillar, torch, "house1_complete_1_0_frame", posRots);
@@ -213,6 +232,12 @@ namespace askaplus.bepinex.mod
                         posRots.Add(new PosRot(new Vector3(0.5936f, -0.3456f, 6.8236f), Quaternion.Euler(-0f, 135f, 10f)));
                         AddTorches(sb, sourcePillar, torch, "house1_complete_1_0_frame", posRots);
                         break;
+                    case "House_L2_Chieftain":
+                        posRots.Add(new PosRot(new Vector3(-0.62f, -0.44f, 6.85f), Quaternion.Euler(0f, 45f, 10f)));
+                        posRots.Add(new PosRot(new Vector3(0.28f, -0.3456f, 6.66f), Quaternion.Euler(-0f, 135f, 20f)));
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_1_0_frame", posRots);
+                        break;
+
                     case "House_L2":
                         posRots.Add(new PosRot(new Vector3(1.8194f, 0.5035f, 4.368f), Quaternion.Euler(0f, 90f, 10f)));
                         AddTorches(sb, sourcePillar, torch, "wall_t1_D_1_exterior_complete_0_0", posRots);
@@ -228,6 +253,10 @@ namespace askaplus.bepinex.mod
                     case "Market_T1":
                         posRots.Add(new PosRot(new Vector3(0.4814f, 0f, 2.2372f), Quaternion.Euler(0f, 90f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "trading_post_l0_complete_1_0_frame", posRots);
+                        break;
+                    case "Market_T2":
+                        posRots.Add(new PosRot(new Vector3(0.5f, 0f, 2.2372f), Quaternion.Euler(0f, 90f, 20f)));
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_1_0_walls", posRots);
                         break;
                     case "OuthouseL1":
                         posRots.Add(new PosRot(new Vector3(1.1673f, -1.0254f, 1.6219f), Quaternion.Euler(0f, 95f, 20f)));
@@ -273,6 +302,37 @@ namespace askaplus.bepinex.mod
                         posRots.Add(new PosRot(new Vector3(1.8727f, 0.5109f, 0.8455f), Quaternion.Euler(0f, 240f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "gate_plank_L2_complete_0_0", posRots);
                         break;
+
+                    case "WallPlankL2Section_SkewDown30":
+                        posRots.Add(new PosRot(new Vector3(2.25f, 0f, -0.58f), Quaternion.Euler(0f, 90f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        break;
+
+                    case "WallPlankL2Section_SkewUp30":
+                        posRots.Add(new PosRot(new Vector3(2.25f, 0f, -0.58f), Quaternion.Euler(0f, 90f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        break;
+
+                    case "WallPlankL2Section":
+                        posRots.Add(new PosRot(new Vector3(2.25f, 0f, -0.58f), Quaternion.Euler(0f, 90f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        break;
+
+                    case "WallPlankSectionShortL2":
+                        posRots.Add(new PosRot(new Vector3(1.22f, 0f, -0.49f), Quaternion.Euler(0f, 90f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0_structure", posRots);
+                        break;
+
+                    case "WallPlankSectionShortL2_SkewDown30":
+                        posRots.Add(new PosRot(new Vector3(1.22f, 0f, -0.49f), Quaternion.Euler(0f, 90f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0_structure", posRots);
+                        break;
+
+                    case "WallPlankSectionShortL2_SkewUp30":
+                        posRots.Add(new PosRot(new Vector3(1.22f, 0f, -0.49f), Quaternion.Euler(0f, 90f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_0_0_structure", posRots);
+                        break;
+
                     case "WallWatchtowerRoof":
                         posRots.Add(new PosRot(new Vector3(0.9473f, 6.16f, 2.1091f), Quaternion.Euler(0f, 270f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "tower_watchtower_roof", posRots);
@@ -314,7 +374,7 @@ namespace askaplus.bepinex.mod
                         AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     case "Workshop_L1_addon_Dyer":
-                        posRots.Add(new PosRot(new Vector3(2.7822f, - 0.2164f, - 0.0236f), Quaternion.Euler(0f, 0f, 20f)));
+                        posRots.Add(new PosRot(new Vector3(2.7822f, -0.2164f, -0.0236f), Quaternion.Euler(0f, 0f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "workshop_t1_addon_dyer_complete_0_0", posRots);
                         break;
                     case "Workshop_L1_addon_Leatherworker_T1":
@@ -350,7 +410,7 @@ namespace askaplus.bepinex.mod
                         AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
                         break;
                     default:
-//                        Plugin.Log.LogInfo($"Torshes not added to {sb.gameObject.name}");
+                        //                        Plugin.Log.LogInfo($"Torshes not added to {sb.gameObject.name}");
                         break;
                 }
             }
@@ -391,7 +451,7 @@ namespace askaplus.bepinex.mod
 
         private static void Structure_Cart(Structure targetStructure, GameObject targetPosSource, GameObject torchSource, string GOname)
         {
-          //  Plugin.Log.LogInfo($"Trying to add Torches to {targetStructure.gameObject.name}");
+            //  Plugin.Log.LogInfo($"Trying to add Torches to {targetStructure.gameObject.name}");
             var transf = targetStructure.transform.FindChildByNameRecursive(GOname);
             if (transf is null) return; GameObject AskaPlusGO = new GameObject("AskaPlusTorches");
             AskaPlusGO.transform.SetParent(transf, true);
@@ -416,7 +476,7 @@ namespace askaplus.bepinex.mod
             Helpers.CreateCategory(parent, "Torches to buildings");
             Helpers.CreateSwitch(parent, "* Enable Mod", configTorchesBuildingEnable);
             Helpers.CreateSwitch(parent, "* Enable shadows", configTorchesBuildingShadowsEnable);
-
+            Helpers.CreateSwitch(parent, "* Light extended visibility", configTorchesLightExtended);
             UnityAction applyCallback = (UnityAction)(() =>
             {
                 Plugin.configGrassPaintKey.Value = KeyCode.Z;
@@ -427,6 +487,35 @@ namespace askaplus.bepinex.mod
             internal Vector3 pos = _pos;
             internal Quaternion rot = _rot;
         }
+    }
+    [HarmonyPatch(typeof(Structure))]
+    internal class StrucutrePatch
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(Structure.Spawned))]
+        public static void StructureBuild(Structure __instance)
+        {
+            switch (__instance.name)
+            {
+                case "WallPlankL2Section_SkewDown30(Clone)":
+                case "WallPlankL2Section_SkewUp30(Clone)":
+                case "WallPlankL2Section(Clone)":
+                case "WallPlankSectionShortL2_SkewUp30(Clone)":
+                case "WallPlankSectionShortL2_SkewDown30(Clone)":
+                case "WallPlankSectionShortL2(Clone)":
+                    Vector2 position = new Vector2(__instance.transform.position.x, __instance.transform.position.z);
+                    float noiseValue = Mathf.PerlinNoise(position.x*20, position.y*20);
+
+                    Transform askaplustorches = __instance.gameObject.transform.FindChildByNameRecursive("AskaPlusTorches");
+                    askaplustorches?.gameObject.SetActive(noiseValue<0.1 || (noiseValue > 0.4 && noiseValue < 0.5) || (noiseValue > 0.9));
+                    Plugin.Log.LogMessage($"Structure {__instance.name} spawned. Perlin value is {noiseValue}");
+                    break;
+                default:
+                    break;
+            }
+           
+        }
+
     }
 }
 

@@ -1,70 +1,241 @@
-﻿using HarmonyLib;
+﻿using SandSailorStudio.Attributes;
 using SandSailorStudio.Inventory;
 using SSSGame;
-using System.Linq;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 using static askaplus.bepinex.mod.Plugin;
 
 namespace askaplus.bepinex.mod
 {
-    [HarmonyPatch(typeof(MainMenu))]
-    internal class AskaRecipes
+    internal static class AskaRecipes
     {
-        private static bool patched = false;
-        [HarmonyPostfix]
-        [HarmonyPatch(nameof(MainMenu.OnActivate))]
-        public static void PostAwake(MainMenu __instance)
+
+        internal static void CreateRecipes()
         {
-            if (patched) return;
-            patched = true;
+            if (!configRecipesEnable.Value) return;
 
 
-            var bpinfos = UnityEngine.Resources.FindObjectsOfTypeAll<BlueprintInfo>().ToDictionary(name => name.name, bp =>  bp);
-            var cbpinfos = UnityEngine.Resources.FindObjectsOfTypeAll<CraftBlueprintInfo>().ToDictionary(name => name.name, bp => bp);
 
-            //Plugin.Log.LogMessage("BLUEPRINT INFOS");
+            //Resin from sacks
+            RecipeCreateStruct ResinFromSack = new RecipeCreateStruct();
+            ResinFromSack.RecipeName = "Aska+ Resin";
+            ResinFromSack.Ingredients = [new() { quantity = 1, itemInfo = Helpers.itemInfoSO["Item_Misc_CrawlerSack"] }];
 
-            //foreach (var bp in bpinfos)
-            //{
-            //    Plugin.Log.LogMessage(bp.Key);
-            //}
-            //Plugin.Log.LogMessage("CRAFT BLUEPRINT INFOS");
+            ResinFromSack.BlueprintConditionsRules = new();
+            ResinFromSack.BlueprintConditionsRules.Add(Helpers.Dict_BCR["CaveEntranceL2_Rule"]);
 
-            //foreach (var cbp in cbpinfos)
-            //{
-            //    Plugin.Log.LogMessage(cbp.Key);
-            //}
+            ResinFromSack.Quantity = 25;
+            ResinFromSack.Result = Helpers.itemInfoSO["Item_Wood_Resin"];
+            ResinFromSack.Category = Helpers.Dict_ICI["Categ_Blueprints_Materials"];
+            ResinFromSack.Interaction = Helpers.Dict_CI["VirtualCraftingStation"];
+            ResinFromSack.ItemInfoListTargets = ["WorkshopBlueprints_T2" , "WorkshopBlueprints_T1"];
+            ResinFromSack.Description = "ASKA+ Found in fir trees";
+            ResinFromSack.Lore = String.Empty;
+            ResinFromSack.Name = "Resin";
+            AddRecipe(ResinFromSack);
+
+            //FireWood from Resin, Stick, Bark
+            RecipeCreateStruct Firewood = new RecipeCreateStruct();
+            Firewood.RecipeName = "Aska+ Firewood";
+            Firewood.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 1, itemInfo = Helpers.itemInfoSO["Item_Wood_Sticks"] }, 
+                new(){ quantity = 1, itemInfo = Helpers.itemInfoSO["Item_Wood_Bark"] },
+                new(){ quantity = 1, itemInfo = Helpers.itemInfoSO["Item_Wood_Resin"] }
+                ]);
+
+            Firewood.BlueprintConditionsRules = new();
+            Firewood.BlueprintConditionsRules.Add(Helpers.Dict_BCR["CarpenterL1_Rule"]);
+
+            Firewood.Quantity = 1;
+            Firewood.Result = Helpers.itemInfoSO["Item_Wood_Firewood"];
+            Firewood.Category = Helpers.Dict_ICI["Categ_Blueprints_Materials"];
+            Firewood.ItemInfoListTargets = ["WorkshopBlueprints_T2", "WorkshopBlueprints_T1"];
+            Firewood.Description = "ASKA+ Found in Logs";
+            Firewood.Lore = "General purpose fuel obtained by harvesting logs and removing tree stumps.";
+            Firewood.Name = "Firewood";
+           
+            AddRecipe(Firewood);
+
+
+            //Compost
+            RecipeCreateStruct Compost1 = new RecipeCreateStruct();
+            Compost1.RecipeName = "Aska+ Compost 1";
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_BeetrootSeeds"] }
+                ]);
+
+            Compost1.BlueprintConditionsRules = new();
+            Compost1.BlueprintConditionsRules.Add(Helpers.Dict_BCR["Farm_Rule"]);
+
+            Compost1.Quantity = 1;
+            Compost1.Result = Helpers.itemInfoSO["Item_Junk_Compost"];
+            Compost1.Category = Helpers.Dict_ICI["Categ_Blueprints_Materials"];
+            Compost1.ItemInfoListTargets = ["WorkshopBlueprints_T2", "WorkshopBlueprints_T1"];
+            Compost1.Description = "ASKA+ It is just a junk, but pLants will love it";
+            Compost1.Lore = "General purpose compost.";
+            Compost1.Name = "Compost";
+            AddRecipe(Compost1);
+
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_BerriesSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_CabbageSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_CarrotSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_FlaxSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_GarlicSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_OnionSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_ReedsSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+            Compost1.Ingredients = new List<ItemInfoQuantity>([
+                new(){ quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherScraps"] },
+                new(){ quantity = 4, itemInfo = Helpers.itemInfoSO["Item_Misc_BoneFragments"] },
+                new(){ quantity = 10, itemInfo = Helpers.itemInfoSO["Item_Seeds_SpruceSeeds"] }
+                ]);
+            AddRecipe(Compost1);
+
+
+            //Resin from Bark
+            ResinFromSack = new RecipeCreateStruct();
+            ResinFromSack.RecipeName = "Aska+ Resin";
+            ResinFromSack.Ingredients = [new() { quantity = 2, itemInfo = Helpers.itemInfoSO["Item_Wood_Bark"] }];
+
+            ResinFromSack.BlueprintConditionsRules = new();
+            ResinFromSack.BlueprintConditionsRules.Add(Helpers.Dict_BCR["WoodCutterL0_Rule"]);
+            ResinFromSack.BlueprintConditionsRules.Add(Helpers.Dict_BCR["WorkshopL0_Rule"]);
+
+            ResinFromSack.Quantity = 1;
+            ResinFromSack.Result = Helpers.itemInfoSO["Item_Wood_Resin"];
+            ResinFromSack.Category = Helpers.Dict_ICI["Categ_Blueprints_Materials"];
+            ResinFromSack.Interaction = Helpers.Dict_CI["VirtualCraftingStation"];
+            ResinFromSack.ItemInfoListTargets = ["WorkshopBlueprints_T2", "WorkshopBlueprints_T1", "WorkshopBlueprints_T0"];
+            ResinFromSack.Description = "ASKA+ Found in fir trees";
+            ResinFromSack.Lore = String.Empty;
+            ResinFromSack.Name = "Resin";
+            AddRecipe(ResinFromSack);
+
+            //Heawy pelt from pelt and 
+            var HeavyPelt = new RecipeCreateStruct();
+            HeavyPelt.RecipeName = "Aska+ Heavy pelt";
+            HeavyPelt.Ingredients = [new() { quantity = 3, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherPelt"]} ,
+                                     new() {  quantity = 8, itemInfo = Helpers.itemInfoSO["Item_Materials_LeatherHide"]} ];
+
+            HeavyPelt.BlueprintConditionsRules = new();
+            HeavyPelt.BlueprintConditionsRules.Add(Helpers.Dict_BCR["LeatherWorkerL2_Rule"]);
+
+            HeavyPelt.Quantity = 1;
+            HeavyPelt.Result = Helpers.itemInfoSO["Item_Materials_LeatherHeavyPelt"];
+            HeavyPelt.Category = Helpers.Dict_ICI["Categ_Blueprints_Materials"];
+            HeavyPelt.Interaction = Helpers.Dict_CI["LeatherworkerTableInteraction"];
+            HeavyPelt.ItemInfoListTargets = ["LeatherworkerBlueprints_T1"];
+            HeavyPelt.Description = "ASKA+ Heavy pelt from pelt and hide";
+            HeavyPelt.Lore = String.Empty;
+            HeavyPelt.Name = "Heavy pelt";
+            AddRecipe(HeavyPelt);
+
+            //TODO MODIFY Workshop to be able drop firewood to crates
+
         }
 
+        internal struct RecipeCreateStruct
+        {
+            internal string RecipeName;
+            internal List<ItemInfoQuantity> Ingredients;
+            internal Il2CppSystem.Collections.Generic.List<BlueprintConditionsRule> BlueprintConditionsRules;
+            internal int Quantity;
+            internal ItemCategoryInfo Category;
+            internal ItemInfo Result;
+            internal CraftInteraction Interaction;
+            internal string Description;
+            internal string Lore;
+            internal string Name;
+            internal List<string> ItemInfoListTargets;
+        }
+
+        internal static void AddRecipe (RecipeCreateStruct data)
+        {
+            CraftBlueprintInfo test = ScriptableObject.CreateInstance<CraftBlueprintInfo>();
+           
+
+            test.availableInTrialVersion = false;
+            //Plugin.Log.LogMessage($"Adding BRC");
+            test.blueprintConditionsRules = data.BlueprintConditionsRules;
+            test.craftVolume = 1f;
+            test.quantity = data.Quantity;
+            //Plugin.Log.LogMessage($"Adding ICI");
+
+            test.category = data.Category;
+            test.parts = data.Ingredients.ToArray();
+            test.cost = new ItemInfoQuantity();
+            test.result = data.Result;
+            test.interaction = data.Interaction;
+            test.icon = test.result.icon;
+            test.Localized = false;
+            test.localizedDescription = data.Description;
+            test.localizedLore = data.Lore;
+            test.localizedName = data.Name;
+            test.stackSize = 1;
+            test.spawnHeight = 1;
+            test._cachedComponents = new Il2CppSystem.Collections.Generic.List<ItemInfo>();
+            test._cachedComponentsTable = new Il2CppSystem.Collections.Generic.Dictionary<ItemInfo, Il2CppSystem.ValueTuple<int, int>>();
+            test.components = Array.Empty<ItemInfoChance>();
+            test.attributes = Array.Empty<AttributeData>();
+            test.networkedInventoryAttributes = Array.Empty<AttributeConfig>();
+            test.processes = Array.Empty<ItemProcess>();
+            test.unique = true;
+            test.name = data.RecipeName;
+            test.previewImage = test.result.previewImage;
+            test.storageClass = Helpers.Dict_ISC["VirtualItem"];
+            test.spawnObject = test.result.spawnObject;
+            test.id = test.GetHashCode();
+
+
+            foreach (var item in data.ItemInfoListTargets)
+            {
+                Helpers.Dict_BlueprintsList[item].itemInfoList.Add(test);
+            }
+        }
         
+
+        internal static void OnSettingsMenu(Transform parent)
+        {
+            Helpers.CreateCategory(parent, "Recipes mod");
+            Helpers.CreateSwitch(parent, "*! Enable Aska+ recipes", configRecipesEnable);
+        }
     }
-
-
-    //[HarmonyPatch(typeof(CraftingStation))]
-    //internal class CraftingStationFix 
-    //{
-    //    [HarmonyPostfix]
-    //    [HarmonyPatch(nameof(CraftingStation.GetMinimumFetchManifest))]
-    //    public static void GetMinimumFetchManifestPostFix(CraftingStation __instance) 
-    //    {
-    //        if (__instance.name.StartsWith("Workshop_L2("))
-    //        {
-    //            Plugin.Log.LogInfo($"Crafting station {__instance.name} called GetMinimumFetchManifest");
-    //            var items = __instance._minimumFetchManifest._items;
-
-    //            if (items.ContainsKey(Helpers.itemInfoSO["Item_Wood_HardWoodLog"])) 
-    //            {
-    //                Plugin.Log.LogInfo($"Contains {items[Helpers.itemInfoSO["Item_Wood_HardWoodLog"]]} items of Item_Wood_HardWoodLog");
-    //                items[Helpers.itemInfoSO["Item_Wood_HardWoodLog"]] = 9;
-    //            }
-    //            else
-    //            {
-    //                items.Add(Helpers.itemInfoSO["Item_Wood_HardWoodLog"], 9);
-    //            }
-
-    //        }
-    //    }
-    
-    //}
-
 
 }

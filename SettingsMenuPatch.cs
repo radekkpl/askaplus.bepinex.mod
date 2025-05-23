@@ -19,6 +19,8 @@ namespace askaplus.bepinex.mod
         internal static GameObject Label;
         internal static GameObject RebindKey;
         internal static GameObject Toggle;
+        internal static GameObject SelectRange;
+
         [HarmonyPostfix]
         [HarmonyPatch(nameof(SettingsMenu.Start))]
         public static void StartPostfix(SettingsMenu __instance)
@@ -26,6 +28,7 @@ namespace askaplus.bepinex.mod
             var panelRef = __instance.transform.FindChild("Panel");
             var videoSettingsTransform = panelRef.FindChild("VideoPage");
             var sourceForItems = panelRef.FindChildByNameRecursive("KeyboardButtonListContent");
+            var sourceForItems3 = panelRef.FindChildByNameRecursive("Autosave");
             //Plugin.Log.LogInfo("SourceForItem");
             var sourceForItems2 = panelRef.FindChild("ControlsPage").FindChild("LayoutGroup");
             //Plugin.Log.LogInfo("SourceForItem2");
@@ -87,7 +90,7 @@ namespace askaplus.bepinex.mod
             Label = sourceForItems.FindChild("Movement Categ Label").gameObject;
             RebindKey = sourceForItems.FindChild("RebindKey").gameObject;
             Toggle = sourceForItems2.FindChild("InvertLookX").gameObject;
-
+            SelectRange = sourceForItems3.gameObject;
 
             Plugin.Log.LogInfo("SettingsSources");
             Plugin.Log.LogInfo($"Custom settings: {customSettings.name} .childs: {customSettings.transform.GetChildCount()}");

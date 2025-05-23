@@ -74,7 +74,7 @@ namespace askaplus.bepinex.mod
     {
         private PlayerInteractionAgent playerInteractionAgent;
         private AttributeManager attributeManager;
-        private GameObject lastPickable;
+        public GameObject lastPickable;
 
         
         private void Update()
@@ -82,22 +82,37 @@ namespace askaplus.bepinex.mod
             if (Plugin.configBonusSpawnEnable.Value == false) return;
             if (playerInteractionAgent is null) { Plugin.Log.LogError("PlayerInteractionAgent is null"); }
 
-            if (playerInteractionAgent._favoritePickable is null)   return;
-            if (playerInteractionAgent._favoritePickable.gameObject == lastPickable) return;
+            var _pickable = playerInteractionAgent._favoritePickable;
+            if (_pickable is null)   return;
 
-            lastPickable = playerInteractionAgent._favoritePickable.gameObject;
-             
-           // Plugin.Log.LogInfo($"Target changed to {lastPickable.name}");
-
-            switch (lastPickable.name)
+            //when last object is destroyed just before this call
+            if (lastPickable is null)
             {
-                case "Harvest_Stone_StoneClump":
-                case "Harvest_Stone_StoneClumpSmall":
+                Plugin.Log.LogInfo("Last pickable was null. Trying to get game object");
+                lastPickable = _pickable?.gameObject;
+            }
+            //if looking to same object as in previous frame
+            if (_pickable?.gameObject == lastPickable) return;
+
+            //update last pickable and proceed
+            lastPickable = _pickable?.gameObject;
+
+            //last return
+            if (lastPickable is null) return;
+
+            Plugin.Log.LogInfo($"Target changed to {lastPickable?.name}");
+            switch (lastPickable?.name)
+            {
+                case "Harvest_Stone4":
+                case "Harvest_StoneClumpSmall":
                     TryAddBonusSpawner(lastPickable, AskaAttributesEnum.StoneHarvest, Helpers.resourceInfoSO["Item_Stone_Raw"], Vector3.zero, 1, true, true);
                     break;
                 case "Item_Wood_birch1":
                 case "Item_Wood_birch2":
                     TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"], Vector3.zero, 1, true,true);
+                    break;
+                case "Item_Wood_Willow":
+                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"], Vector3.zero, 2, false, true);
                     break;
                 case "Item_Wood_Fir1":
                 case "Item_Wood_Fir2":
@@ -105,6 +120,9 @@ namespace askaplus.bepinex.mod
                 case "Item_Wood_Fir4":
                 case "Item_Wood_Fir5":
                     TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_RawLog"], Vector3.zero, 1, true, true);
+                    break;
+                case "Harvest_JotunBlood":
+                case "Harvest_JotunBloodSmall":
                     break;
                 case "Item_Misc_CrawlerEgg1":
                 case "Item_Misc_CrawlerEgg2":
@@ -147,6 +165,9 @@ namespace askaplus.bepinex.mod
             }
             if(RunOnFullyHarvested) bonusSpawner.UseFullyHarvested = true;
             Plugin.Log.LogMessage($"Adding harvestInteraction to bonusSpawner.");
+            bonusSpawner.positionNoise = 0.5f;
+            bonusSpawner.rotationNoise = 0.2f;
+            bonusSpawner.spacing = new Vector3(2, 0, 0); 
             bonusSpawner.harvestInteraction = harvestInteraction;
             bonusSpawner.componentInfo = whatToSpawn;
             bonusSpawner.ignoreMasterItem = true;
