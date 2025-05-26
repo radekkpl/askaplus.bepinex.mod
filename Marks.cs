@@ -101,7 +101,7 @@ namespace askaplus.bepinex.mod
             Helpers.CreateSwitch(parent, "* Enable mod", configMarksEnable);
             Helpers.CreateSelectRange(parent, "* Food Harvest Range", configMarks_FoodHarvestRange, [1f,1.5f,3f,5f]);
             Helpers.CreateSelectRange(parent, "* Wood Harvest Range", configMarks_WoodHarvestRange, [1f, 1.5f, 3f]);
-            Helpers.CreateSelectRange(parent, "* Stone Harvest Range", configMarks_StoneHarvestRange, [1f, 1.5f, 3f, 10f]);
+            Helpers.CreateSelectRange(parent, "* Stone Harvest Range", configMarks_StoneHarvestRange, [1f, 1.5f, 3f, 5f]);
             Helpers.CreateSelectRange(parent, "* Building Resources Range", configMarks_BuildingResourcesRange, [1f, 1.5f, 3f, 5f]);
             Helpers.CreateSelectRange(parent, "* Hunting Range", configMarks_HuntingRange, [1f, 1.5f, 3f, 5f]);
             Helpers.CreateSelectRange(parent, "* Forestry Range", configMarks_ForestryRange, [1f, 1.5f, 3f]);

@@ -46,6 +46,7 @@ namespace askaplus.bepinex.mod
             if (!villager._mtActive || villager._mtTarget == lastInteraction) return;
 
             lastInteraction = villager._mtTarget;
+            if (lastInteraction is null ) return;
             if (lastInteraction.parent is null) return;
 
      
