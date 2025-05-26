@@ -1,0 +1,1998 @@
+﻿ItemInfoList (WoodcutterExcludedResources) amount: 6
+ - ItemInfo (Item_Wood_Beam) components: 1
+ - - Components item info (Item_Wood_Firewood) quantity: 4 chance: 1
+ - ItemInfo (Item_Wood_Plank) components: 1
+ - - Components item info (Item_Wood_Firewood) quantity: 4 chance: 1
+ - ItemInfo (Item_Wood_Post) components: 1
+ - - Components item info (Item_Wood_Firewood) quantity: 6 chance: 1
+ - ItemInfo (Item_Wood_PlankLong) components: 1
+ - - Components item info (Item_Wood_Firewood) quantity: 2 chance: 1
+ - ItemInfo (Item_Wood_PlankSmall) components: 0
+ - ItemInfo (Item_Wood_Shaft) components: 0
+ItemInfoList (StartBlueprints) amount: 179
+ - ItemInfo (Item_Binders_BasicRope) components: 0
+ - ItemInfo (Item_Bushcraft_FlimsyWaterPouch) components: 0
+ - ItemInfo (Item_Bushcraft_SimpleFire) components: 0
+ - ItemInfo (Item_Structures_ShelterL1) components: 0
+ - ItemInfo (Item_Structures_Settlement) components: 0
+ - ItemInfo (Item_Structures_WoodCutterL0) components: 0
+ - ItemInfo (Item_Structures_WoodCutterL1) components: 0
+ - ItemInfo (Item_Structures_GathererL0) components: 0
+ - ItemInfo (Item_Structures_GathererL1) components: 0
+ - ItemInfo (Item_Structures_StoneCutterL0) components: 0
+ - ItemInfo (Item_Structures_StoneCutterL1) components: 0
+ - ItemInfo (Item_Structures_WorkshopL1) components: 0
+ - ItemInfo (Item_Structures_HunterL1) components: 0
+ - ItemInfo (Item_Structures_HouseL1) components: 0
+ - ItemInfo (Item_Structures_WaterCollectorL1) components: 0
+ - ItemInfo (Item_Tools_WoodHoe) components: 0
+ - ItemInfo (Item_Tools_StoneAxe) components: 0
+ - ItemInfo (Item_Tools_StonePickaxe) components: 0
+ - ItemInfo (Item_Tools_WoodHammer) components: 0
+ - ItemInfo (Item_Tools_StoneKnife) components: 0
+ - ItemInfo (Item_Tools_SimpleTorch) components: 0
+ - ItemInfo (Item_Tools_FlimsyFishingRodBP) components: 0
+ - ItemInfo (Item_Weaponry_1HFlimsyClub) components: 0
+ - ItemInfo (Item_Weaponry_1HSimpleSpikedClub) components: 0
+ - ItemInfo (Item_Weaponry_Shield1) components: 0
+ - ItemInfo (Item_Weaponry_FlimsyBow) components: 0
+ - ItemInfo (Item_Weaponry_WoodArrow) components: 0
+ - ItemInfo (Item_Weaponry_WoodArrowBone) components: 0
+ - ItemInfo (Item_Walls_GateL1) components: 0
+ - ItemInfo (Item_Walls_HedgeWallL1) components: 0
+ - ItemInfo (Item_Walls_HedgeWallShort L1) components: 0
+ - ItemInfo (Item_Walls_TowerL1) components: 0
+ - ItemInfo (Item_Markers_WoodHarvestMarker) components: 0
+ - ItemInfo (Item_Materials_StoneBlade) components: 0
+ - ItemInfo (Item_Markers_FoodForagingMarker) components: 0
+ - ItemInfo (Item_Binders_5xBasicRope) components: 0
+ - ItemInfo (Item_Materials_5x StoneBlade) components: 0
+ - ItemInfo (Item_Markers_StoneHarvestMarker) components: 0
+ - ItemInfo (Item_Shipmaking_Base Ship) components: 0
+ - ItemInfo (Item_Addons_HouseL2_2x1) components: 0
+ - ItemInfo (Item_Lights_FlimsyTorch) components: 0
+ - ItemInfo (Item_Walls_FlimsyFence) components: 0
+ - ItemInfo (Item_Walls_Watchtower) components: 0
+ - ItemInfo (Item_Addons_WatchtowerRoof) components: 0
+ - ItemInfo (Item_Addons_WatchtowerReinforcement) components: 0
+ - ItemInfo (Item_Markers_HuntingMarker) components: 0
+ - ItemInfo (Item_Shipmaking_Small Ship) components: 0
+ - ItemInfo (Item_Structures_Kennel) components: 0
+ - ItemInfo (Item_Structures_FishermanHut) components: 0
+ - ItemInfo (Item_Bushcraft_DogTrap) components: 0
+ - ItemInfo (Item_Bushcraft_ImprovedFire) components: 0
+ - ItemInfo (Item_Addons_Dyer) components: 0
+ - ItemInfo (Item_Furniture_SmallFireplace) components: 0
+ - ItemInfo (Item_Furniture_Bed) components: 0
+ - ItemInfo (Item_Furniture_Sideshelf1) components: 0
+ - ItemInfo (Item_Furniture_Sideshelf3) components: 0
+ - ItemInfo (Item_Furniture_SeparatorB) components: 0
+ - ItemInfo (Item_Furniture_SeparatorA) components: 0
+ - ItemInfo (Item_Furniture_FoodShelf1) components: 0
+ - ItemInfo (Item_Furniture_SmallStorage) components: 0
+ - ItemInfo (Item_Furniture_FirewoodStorage) components: 0
+ - ItemInfo (Item_Furniture_FoodStorage) components: 0
+ - ItemInfo (Item_Markers_BuildingResourcesMarker) components: 0
+ - ItemInfo (Item_Bait_Berries) components: 0
+ - ItemInfo (Item_Bait_FishMeat) components: 0
+ - ItemInfo (Item_Bait_RedMeat) components: 0
+ - ItemInfo (Item_Totems_RavenL0) components: 0
+ - ItemInfo (Item_Furniture_Table1) components: 0
+ - ItemInfo (Item_Decoration_GardenLupini) components: 0
+ - ItemInfo (Item_Decoration_DecorativeBirch) components: 0
+ - ItemInfo (Item_Decoration_GardenLarge) components: 0
+ - ItemInfo (Item_Structures_TrainingDummy) components: 0
+ - ItemInfo (Item_Structures_CaveEntrance) components: 0
+ - ItemInfo (Item_Structures_WarehouseT1) components: 0
+ - ItemInfo (Item_Structures_BloomeryL1) components: 0
+ - ItemInfo (Item_Bushcraft_Cart) components: 0
+ - ItemInfo (Item_Addons_LeatherworkerL1) components: 0
+ - ItemInfo (Item_Farming_FarmCrop) components: 0
+ - ItemInfo (Item_Addons_LeatherworkerL1) components: 0
+ - ItemInfo (Item_WarehouseStorage_SmallFoodSilo) components: 0
+ - ItemInfo (Item_Structures_CharcoalMakerL1) components: 0
+ - ItemInfo (Item_WarehouseStorage_Logs) components: 0
+ - ItemInfo (Item_WarehouseStorage_Longsticks) components: 0
+ - ItemInfo (Item_WarehouseStorage_SmallCraftingMaterials) components: 0
+ - ItemInfo (Item_WarehouseStorage_Stones) components: 0
+ - ItemInfo (Item_WarehouseStorage_Sticks) components: 0
+ - ItemInfo (Item_WarehouseStorage_Bark) components: 0
+ - ItemInfo (Item_WarehouseStorage_Firewood) components: 0
+ - ItemInfo (Item_WarehouseStorage_LeatherScraps) components: 0
+ - ItemInfo (Item_Structures_Farm) components: 0
+ - ItemInfo (Item_Structures_Dock) components: 0
+ - ItemInfo (Item_Structures_Boatbuilder) components: 0
+ - ItemInfo (Item_Structures_WoodCutterL2) components: 0
+ - ItemInfo (Item_Structures_StoneCutterL2) components: 0
+ - ItemInfo (Item_Structures_GathererL2) components: 0
+ - ItemInfo (Item_Structures_WorkshopL2) components: 0
+ - ItemInfo (Item_Addons_WeaverL2) components: 0
+ - ItemInfo (Item_Addons_DyerL2) components: 0
+ - ItemInfo (Item_Structures_HouseL2) components: 0
+ - ItemInfo (Item_Structures_HunterL2) components: 0
+ - ItemInfo (Item_Addons_HouseL2_1x1) components: 0
+ - ItemInfo (Item_Structures_WaterWellL1) components: 0
+ - ItemInfo (Item_WarehouseStorage_Water) components: 0
+ - ItemInfo (Item_WarehouseStorage_MeatHunks) components: 0
+ - ItemInfo (Item_WarehouseStorage_Fish) components: 0
+ - ItemInfo (Item_WarehouseStorage_Arrows) components: 0
+ - ItemInfo (Item_WarehouseStorage_Armor) components: 0
+ - ItemInfo (Item_WarehouseStorage_BeamPlankLarge) components: 0
+ - ItemInfo (Item_WarehouseStorage_BeamPlankLong) components: 0
+ - ItemInfo (Item_WarehouseStorage_BeamPlankSmall) components: 0
+ - ItemInfo (Item_WarehouseStorage_CookedFood) components: 0
+ - ItemInfo (Item_Structures_CookingHouseL1) components: 0
+ - ItemInfo (Item_Structures_TerrainLevelField) components: 0
+ - ItemInfo (Item_WarehouseStorage_JotunBlood) components: 0
+ - ItemInfo (Item_WarehouseStorage_Dye) components: 0
+ - ItemInfo (Item_Walls_GateL0) components: 0
+ - ItemInfo (Item_Walls_PlankWallL2) components: 0
+ - ItemInfo (Item_WarehouseStorage_WeaponsTools) components: 0
+ - ItemInfo (Item_Walls_PlankWallL2) components: 0
+ - ItemInfo (Item_Walls_GateL2) components: 0
+ - ItemInfo (Item_WarehouseStorage_Thatch) components: 0
+ - ItemInfo (Item_Walls_Guardtower) components: 0
+ - ItemInfo (Item_Totems_RunestoneFireL0) components: 0
+ - ItemInfo (Item_Structures_HealingHouseL1) components: 0
+ - ItemInfo (Item_Development_ResourceFire) components: 0
+ - ItemInfo (Item_Structures_WorkshopL0) components: 0
+ - ItemInfo (Item_Totems_RunestoneWood) components: 0
+ - ItemInfo (Item_WarehouseStorage_Seeds) components: 0
+ - ItemInfo (Item_WarehouseStorage_ClothingMaterials) components: 0
+ - ItemInfo (Item_Structures_FishermanHouseL2) components: 0
+ - ItemInfo (Item_Structures_BarracksL1) components: 0
+ - ItemInfo (Item_Markers_PatrolMarker) components: 0
+ - ItemInfo (Item_WarehouseStorage_IronToolsMaterials) components: 0
+ - ItemInfo (Item_WarehouseStorage_Ore) components: 0
+ - ItemInfo (Item_WarehouseStorage_Coal) components: 0
+ - ItemInfo (Item_Structures_HouseL1Chieftain) components: 0
+ - ItemInfo (Item_Furniture_WeaponRack) components: 0
+ - ItemInfo (Item_Furniture_ArmorRack) components: 0
+ - ItemInfo (Item_Bushcraft_Sled) components: 0
+ - ItemInfo (Item_Structures_MarketT1) components: 0
+ - ItemInfo (Item_Structures_HealingHouseL1) components: 0
+ - ItemInfo (Item_Structures_ArcheryRangeL1) components: 0
+ - ItemInfo (Item_Walls_FlimsyFenceShort) components: 0
+ - ItemInfo (Item_Decoration_ArchFlimsy) components: 0
+ - ItemInfo (Item_Walls_PenGate) components: 0
+ - ItemInfo (Item_Totems_RunestoneEarthL0) components: 0
+ - ItemInfo (Item_StoneLantern) components: 0
+ - ItemInfo (Item_Walls_PlankWallShortL2) components: 0
+ - ItemInfo (Item_Totems_StoneJotun) components: 0
+ - ItemInfo (Item_Totems_RunestoneAirL0) components: 0
+ - ItemInfo (Item_WarehouseStorage_Resin) components: 0
+ - ItemInfo (Item_Totems_RunestoneWaterL0) components: 0
+ - ItemInfo (Item_Structures_OuthouseL1) components: 0
+ - ItemInfo (Item_Structures_ScrapBin) components: 0
+ - ItemInfo (Item_Structures_BarberL2) components: 0
+ - ItemInfo (Item_Structures_TerrainSplineLevel) components: 0
+ - ItemInfo (Item_Structures_TerrainSplineRoad) components: 0
+ - ItemInfo (Item_Decoration_YuleTree) components: 0
+ - ItemInfo (Item_Structures_ForesterL1) components: 0
+ - ItemInfo (Item_Structures_CaveEntranceL2) components: 0
+ - ItemInfo (Item_Markers_ForestryMarker) components: 0
+ - ItemInfo (Item_Structures_ForesterL2) components: 0
+ - ItemInfo (Item_WarehouseStorage_Crawler) components: 0
+ - ItemInfo (Item_WarehouseStorage_Explosive) components: 0
+ - ItemInfo (Item_Bait_MaggotBP) components: 0
+ - ItemInfo (Item_Structures_OutpostL1) components: 0
+ - ItemInfo (Item_Addons_OutpostL1Wall1) components: 0
+ - ItemInfo (Item_Addons_OutpostL1Wall2) components: 0
+ - ItemInfo (Item_Addons_OutpostL1Tower) components: 0
+ - ItemInfo (Item_Structures_BuilderHutL1) components: 0
+ - ItemInfo (Item_Structures_FarmL2) components: 0
+ - ItemInfo (Item_Structures_BloomeryL2) components: 0
+ - ItemInfo (Item_Structures_CookingHouseL2) components: 0
+ - ItemInfo (Item_Structures_BarracksL2) components: 0
+ - ItemInfo (Item_Structures_ArcheryRangeL2) components: 0
+ - ItemInfo (Item_Structures_MetalworkerL2) components: 0
+ - ItemInfo (Item_Structures_CarpenterL2) components: 0
+ - ItemInfo (Item_Structures_WarehouseT2) components: 0
+ - ItemInfo (Item_WarehouseStorage_Clothes) components: 0
+ItemInfoList (Recipes_Kiln) amount: 0
+ItemInfoList (HotItems) amount: 17
+ - ItemInfo (Item_SpecialBags_BloomBlockHot) components: 0
+ - ItemInfo (Item_Iron_IronBloomHot) components: 1
+ - - Components item info (Item_Iron_IronBloom) quantity: 1 chance: 1
+ - ItemInfo (Item_Iron_SteelBloomHot) components: 1
+ - - Components item info (Item_Iron_SteelBloom) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronBarHot) components: 1
+ - - Components item info (Item_Materials_IronBar) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_SteelBarHot) components: 1
+ - - Components item info (Item_Materials_SteelBar) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronKnifeBladeHot) components: 1
+ - - Components item info (Item_Materials_IronKnifeBlade) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronNailsHot) components: 1
+ - - Components item info (Item_Materials_IronNails) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronPickaxeHeadHot) components: 1
+ - - Components item info (Item_Materials_IronPickaxeHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronSmallAxeHeadHot) components: 1
+ - - Components item info (Item_Materials_IronSmallAxeHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronSmallHammerHeadHot) components: 1
+ - - Components item info (Item_Materials_IronSmallHammerHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronSmallBladeHot) components: 1
+ - - Components item info (Item_Materials_IronSmallBlade) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronLargeAxeHeadHot) components: 1
+ - - Components item info (Item_Materials_IronLargeAxeHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronPlateHot) components: 1
+ - - Components item info (Item_Materials_IronPlate) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronLargePickaxeHeadHot) components: 1
+ - - Components item info (Item_Materials_IronLargePickaxeHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronLargeBladeHot) components: 1
+ - - Components item info (Item_Materials_IronLargeBlade) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronLargeHammerHeadHot) components: 1
+ - - Components item info (Item_Materials_IronLargeHammerHead) quantity: 1 chance: 1
+ - ItemInfo (Item_SpecialBags_BloomBlockHotL2) components: 0
+ItemInfoList (StartItems_Aska_Vanilla) amount: 5
+ - ItemInfo (Item_Backpacks_Simple) components: 0
+ - ItemInfo (Item_WaterSkins_Simple) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ItemInfoList (FarmCropWaterFuels) amount: 1
+ - ItemInfo (Item_Elements_Water) components: 0
+ItemInfoList (FarmCropComposts) amount: 4
+ - ItemInfo (Item_Junk_SpoiledFood) components: 0
+ - ItemInfo (Item_Junk_Compost) components: 0
+ - ItemInfo (Item_Junk_Slime) components: 0
+ - ItemInfo (Item_Iron_Slag) components: 0
+ItemInfoList (StartItems_Draugar) amount: 2
+ - ItemInfo (Item_OneHanded_1HSwordT2) components: 0
+ - ItemInfo (Item_Shields_ShieldDraugar) components: 0
+ItemInfoList (MetalworkerBlueprints_T2) amount: 12
+ - ItemInfo (Item_Forging_IronBarForging) components: 0
+ - ItemInfo (Item_Forging_IronPlateForging) components: 0
+ - ItemInfo (Item_Forging_IronKnifeBladeForging) components: 0
+ - ItemInfo (Item_Forging_IronNailsForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallAxeHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronLargeAxeHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallHammerHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronLargeHammerHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallPickaxeHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronLargePickaxeHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallBladeForging) components: 0
+ - ItemInfo (Item_Forging_IronLargeBladeForging) components: 0
+ItemInfoList (ForgeRecipes) amount: 2
+ - ItemInfo (Item_Materials_HotSteelBloom) components: 0
+ - ItemInfo (Item_Materials_HotIronBloom) components: 0
+ItemInfoList (ForgeFuels) amount: 1
+ - ItemInfo (Item_Wood_Coal) components: 0
+ItemInfoList (DyerBlueprints_T1) amount: 12
+ - ItemInfo (Item_Dyes_Amber) components: 0
+ - ItemInfo (Item_Dyes_Blar) components: 0
+ - ItemInfo (Item_Dyes_Brunn) components: 0
+ - ItemInfo (Item_Dyes_Clear) components: 0
+ - ItemInfo (Item_Dyes_Grar) components: 0
+ - ItemInfo (Item_Dyes_Hoss) components: 0
+ - ItemInfo (Item_Dyes_Hvitr) components: 0
+ - ItemInfo (Item_Dyes_Jarpr) components: 0
+ - ItemInfo (Item_Dyes_Myrka Gulur) components: 0
+ - ItemInfo (Item_Dyes_Svartr) components: 0
+ - ItemInfo (Item_Dyeing_Cloth0Dyeing) components: 0
+ - ItemInfo (Item_Dyeing_YuleDecorationDyeing0) components: 0
+ItemInfoList (RunestoneFuel) amount: 1
+ - ItemInfo (Item_Wood_Resin) components: 0
+ItemInfoList (StonecutterExcludedResources) amount: 2
+ - ItemInfo (Item_Magic_JotunBlood) components: 16
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 0,2
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 0,2
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - ItemInfo (Item_Magic_JotunBloodSmall) components: 6
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 0,2
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ItemInfoList (DyerBlueprints_T2) amount: 19
+ - ItemInfo (Item_Dyes_Amber) components: 0
+ - ItemInfo (Item_Dyes_Appels├şnugulur) components: 0
+ - ItemInfo (Item_Dyes_Appels├şnugulurSumarr) components: 0
+ - ItemInfo (Item_Dyes_Blar) components: 0
+ - ItemInfo (Item_Dyes_Brunn) components: 0
+ - ItemInfo (Item_Dyes_Clear) components: 0
+ - ItemInfo (Item_Dyes_Grar) components: 0
+ - ItemInfo (Item_Dyes_Gron) components: 0
+ - ItemInfo (Item_Dyes_Gulgr) components: 0
+ - ItemInfo (Item_Dyes_HaustRaudr) components: 0
+ - ItemInfo (Item_Dyes_Hoss) components: 0
+ - ItemInfo (Item_Dyes_Hvitr) components: 0
+ - ItemInfo (Item_Dyes_Jarpr) components: 0
+ - ItemInfo (Item_Dyes_Myrka Gulur) components: 0
+ - ItemInfo (Item_Dyes_Raudr) components: 0
+ - ItemInfo (Item_Dyes_Rosa) components: 0
+ - ItemInfo (Item_Dyes_Svartr) components: 0
+ - ItemInfo (Item_Dyeing_Cloth1Dyeing) components: 0
+ - ItemInfo (Item_Dyeing_YuleDecorationDyeing1) components: 0
+ItemInfoList (MinerExcludedResources) amount: 2
+ - ItemInfo (Item_Magic_JotunBlood) components: 16
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 0,2
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 0,2
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - ItemInfo (Item_Magic_JotunBloodSmall) components: 6
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 0,2
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ItemInfoList (StartItems_Draugar_Ranger) amount: 30
+ - ItemInfo (Item_Bows_FlimsyBow) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ItemInfoList (WorkshopBlueprints_T2) amount: 99
+ - ItemInfo (Item_Binders_BasicRope) components: 0
+ - ItemInfo (Item_Binders_5xBasicRope) components: 0
+ - ItemInfo (Item_Materials_StoneBlade) components: 0
+ - ItemInfo (Item_Materials_5x StoneBlade) components: 0
+ - ItemInfo (Item_Materials_FibresFromBark) components: 0
+ - ItemInfo (Item_Tools_StoneAxe) components: 0
+ - ItemInfo (Item_Tools_StonePickaxe) components: 0
+ - ItemInfo (Item_Tools_StoneKnife) components: 0
+ - ItemInfo (Item_Tools_WoodHammer) components: 0
+ - ItemInfo (Item_Tools_SimpleTorch) components: 0
+ - ItemInfo (Item_Tools_LargeStoneAxe) components: 0
+ - ItemInfo (Item_Tools_LargeStonePickaxe) components: 0
+ - ItemInfo (Item_Tools_WoodHoe) components: 0
+ - ItemInfo (Item_Tools_WoodRake) components: 0
+ - ItemInfo (Item_Weaponry_FlimsyBow) components: 0
+ - ItemInfo (Item_Weaponry_SimpleBow) components: 0
+ - ItemInfo (Item_Weaponry_Shield1) components: 0
+ - ItemInfo (Item_Weaponry_WoodArrow) components: 0
+ - ItemInfo (Item_Weaponry_WoodArrowBone) components: 0
+ - ItemInfo (Item_Weaponry_1HSimpleSpikedClub) components: 0
+ - ItemInfo (Item_Weaponry_1HFlimsyClub) components: 0
+ - ItemInfo (Item_Armor_LinenChest) components: 0
+ - ItemInfo (Item_Armor_LinenGloves) components: 0
+ - ItemInfo (Item_Armor_LinenHelm) components: 0
+ - ItemInfo (Item_Armor_LinenPants) components: 0
+ - ItemInfo (Item_Tools_DrawKnifeBP) components: 0
+ - ItemInfo (Item_Tools_IronSmallAxe) components: 0
+ - ItemInfo (Item_Tools_IronSmallPickaxe) components: 0
+ - ItemInfo (Item_Armor_Linen1Boots) components: 0
+ - ItemInfo (Item_Armor_Linen1Chest) components: 0
+ - ItemInfo (Item_Armor_Linen1Helm) components: 0
+ - ItemInfo (Item_Armor_Linen1Pants) components: 0
+ - ItemInfo (Item_Armor_Linen1Hood) components: 0
+ - ItemInfo (Item_Armor_CapePelt1) components: 0
+ - ItemInfo (Item_Armor_CapeLinen1) components: 0
+ - ItemInfo (Item_Tools_IronHoeBP) components: 0
+ - ItemInfo (Item_Tools_IronBuildHammerBP) components: 0
+ - ItemInfo (Item_Tools_IronRakeBP) components: 0
+ - ItemInfo (Item_Tools_RoadmakerBP) components: 0
+ - ItemInfo (Item_Tools_IronRoadmakerBP) components: 0
+ - ItemInfo (Item_Tools_IronSkinningKnifeBP) components: 0
+ - ItemInfo (Item_Armor_Iron0Helm) components: 0
+ - ItemInfo (Item_Armor_LinenBoots) components: 0
+ - ItemInfo (Item_Weaponry_CrudeRoundShieldBP) components: 0
+ - ItemInfo (Item_Tools_ThatchBrushBP) components: 0
+ - ItemInfo (Item_Weaponry_1HIronSwordBP) components: 0
+ - ItemInfo (Item_Weaponry_2HIronSwordBP) components: 0
+ - ItemInfo (Item_Weaponry_1HIronBattleAxeBP) components: 0
+ - ItemInfo (Item_Weaponry_2HIronBattleAxeBP) components: 0
+ - ItemInfo (Item_Tools_LargeIronPickaxeBP) components: 0
+ - ItemInfo (Item_Weaponry_1HIronBattleHammerBP) components: 0
+ - ItemInfo (Item_Weaponry_2HIronBattleHammerBP) components: 0
+ - ItemInfo (Item_Tools_LargeIronAxeBP) components: 0
+ - ItemInfo (Item_Weaponry_IronTippedArrowBP) components: 0
+ - ItemInfo (Item_Weaponry_LongbowBP) components: 0
+ - ItemInfo (Item_Tools_FlimsyFishingRodBP) components: 0
+ - ItemInfo (Item_Weaponry_CrudeTowerShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_CrudeNormanShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_CrudeHeaterShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_ReinforcedRoundShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_ReinforcedTowerShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_ReinforcedHeaterShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_ReinforcedNormanShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_2HHeavyClub) components: 0
+ - ItemInfo (Item_Armor_Leather1Shoulders) components: 0
+ - ItemInfo (Item_Armor_Leather2Shoulders) components: 0
+ - ItemInfo (Item_Armor_Plate1Shoulders) components: 0
+ - ItemInfo (Item_Armor_Plate2Shoulders) components: 0
+ - ItemInfo (Item_Armor_Linen2Chest) components: 0
+ - ItemInfo (Item_Armor_Leather1Chest) components: 0
+ - ItemInfo (Item_Tools_SmolkrHornBP) components: 0
+ - ItemInfo (Item_Decoration_WolfBP) components: 0
+ - ItemInfo (Item_Decoration_Tag3BP) components: 0
+ - ItemInfo (Item_Decoration_Tag2BP) components: 0
+ - ItemInfo (Item_Decoration_Tag1BP) components: 0
+ - ItemInfo (Item_Decoration_OdinBP) components: 0
+ - ItemInfo (Item_Decoration_LogBP) components: 0
+ - ItemInfo (Item_Decoration_HaugrHeadBP) components: 0
+ - ItemInfo (Item_Decoration_JarlHeadBP) components: 0
+ - ItemInfo (Item_Decoration_BearBP) components: 0
+ - ItemInfo (Item_Decoration_FreyaBP) components: 0
+ - ItemInfo (Item_Decoration_FenrirBP) components: 0
+ - ItemInfo (Item_Decoration_RibbonBP) components: 0
+ - ItemInfo (Item_Decoration_SmolkrBP) components: 0
+ - ItemInfo (Item_Decoration_Air) components: 0
+ - ItemInfo (Item_Decoration_Earth) components: 0
+ - ItemInfo (Item_Decoration_Fire) components: 0
+ - ItemInfo (Item_Decoration_Water) components: 0
+ - ItemInfo (Item_Decoration_Tinsel1) components: 0
+ - ItemInfo (Item_Decoration_Tinsel2) components: 0
+ - ItemInfo (Item_Decoration_Tinsel3) components: 0
+ - ItemInfo (Item_Decoration_CrawlerHeadBP) components: 0
+ - ItemInfo (Item_Decoration_SkeletrollHeadBP) components: 0
+ - ItemInfo (Item_Decoration_StoneJotunHeadBP) components: 0
+ - ItemInfo (Item_Tools_IronShovel) components: 0
+ - ItemInfo (Item_Tools_WoodShovel) components: 0
+ - ItemInfo (Item_Magic_ExplodingSackBP) components: 0
+ - ItemInfo (Item_Tools_SturdyFishingRodBP) components: 0
+ - ItemInfo (Item_Armor_CapePelt2) components: 0
+ItemInfoList (CuringRecipes_T1) amount: 1
+ - ItemInfo (Item_Materials_CuredLeatherHide) components: 0
+ItemInfoList (MetalworkerBlueprints_T1) amount: 8
+ - ItemInfo (Item_Forging_IronBarForging) components: 0
+ - ItemInfo (Item_Forging_IronPlateForging) components: 0
+ - ItemInfo (Item_Forging_IronKnifeBladeForging) components: 0
+ - ItemInfo (Item_Forging_IronNailsForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallAxeHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallHammerHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallPickaxeHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallBladeForging) components: 0
+ItemInfoList (WorkshopBlueprints_T1) amount: 86
+ - ItemInfo (Item_Binders_BasicRope) components: 0
+ - ItemInfo (Item_Binders_5xBasicRope) components: 0
+ - ItemInfo (Item_Materials_StoneBlade) components: 0
+ - ItemInfo (Item_Materials_5x StoneBlade) components: 0
+ - ItemInfo (Item_Materials_FibresFromBark) components: 0
+ - ItemInfo (Item_Tools_StoneAxe) components: 0
+ - ItemInfo (Item_Tools_StonePickaxe) components: 0
+ - ItemInfo (Item_Tools_StoneKnife) components: 0
+ - ItemInfo (Item_Tools_WoodHammer) components: 0
+ - ItemInfo (Item_Tools_SimpleTorch) components: 0
+ - ItemInfo (Item_Tools_LargeStoneAxe) components: 0
+ - ItemInfo (Item_Tools_LargeStonePickaxe) components: 0
+ - ItemInfo (Item_Tools_WoodHoe) components: 0
+ - ItemInfo (Item_Tools_WoodRake) components: 0
+ - ItemInfo (Item_Weaponry_FlimsyBow) components: 0
+ - ItemInfo (Item_Weaponry_SimpleBow) components: 0
+ - ItemInfo (Item_Weaponry_Shield1) components: 0
+ - ItemInfo (Item_Weaponry_WoodArrow) components: 0
+ - ItemInfo (Item_Weaponry_WoodArrowBone) components: 0
+ - ItemInfo (Item_Weaponry_1HSimpleSpikedClub) components: 0
+ - ItemInfo (Item_Weaponry_1HFlimsyClub) components: 0
+ - ItemInfo (Item_Armor_LinenChest) components: 0
+ - ItemInfo (Item_Armor_LinenGloves) components: 0
+ - ItemInfo (Item_Armor_LinenHelm) components: 0
+ - ItemInfo (Item_Armor_LinenPants) components: 0
+ - ItemInfo (Item_Tools_DrawKnifeBP) components: 0
+ - ItemInfo (Item_Tools_IronSmallAxe) components: 0
+ - ItemInfo (Item_Tools_IronSmallPickaxe) components: 0
+ - ItemInfo (Item_Armor_Linen1Boots) components: 0
+ - ItemInfo (Item_Armor_Linen1Chest) components: 0
+ - ItemInfo (Item_Armor_Linen1Helm) components: 0
+ - ItemInfo (Item_Armor_Linen1Pants) components: 0
+ - ItemInfo (Item_Armor_Linen1Hood) components: 0
+ - ItemInfo (Item_Armor_CapePelt1) components: 0
+ - ItemInfo (Item_Armor_CapeLinen1) components: 0
+ - ItemInfo (Item_Tools_IronHoeBP) components: 0
+ - ItemInfo (Item_Tools_IronBuildHammerBP) components: 0
+ - ItemInfo (Item_Tools_IronRakeBP) components: 0
+ - ItemInfo (Item_Tools_RoadmakerBP) components: 0
+ - ItemInfo (Item_Tools_IronRoadmakerBP) components: 0
+ - ItemInfo (Item_Tools_IronSkinningKnifeBP) components: 0
+ - ItemInfo (Item_Armor_Iron0Helm) components: 0
+ - ItemInfo (Item_Armor_LinenBoots) components: 0
+ - ItemInfo (Item_Weaponry_CrudeRoundShieldBP) components: 0
+ - ItemInfo (Item_Tools_ThatchBrushBP) components: 0
+ - ItemInfo (Item_Weaponry_1HIronSwordBP) components: 0
+ - ItemInfo (Item_Weaponry_2HIronSwordBP) components: 0
+ - ItemInfo (Item_Weaponry_1HIronBattleAxeBP) components: 0
+ - ItemInfo (Item_Weaponry_2HIronBattleAxeBP) components: 0
+ - ItemInfo (Item_Tools_LargeIronPickaxeBP) components: 0
+ - ItemInfo (Item_Weaponry_1HIronBattleHammerBP) components: 0
+ - ItemInfo (Item_Weaponry_2HIronBattleHammerBP) components: 0
+ - ItemInfo (Item_Tools_LargeIronAxeBP) components: 0
+ - ItemInfo (Item_Weaponry_IronTippedArrowBP) components: 0
+ - ItemInfo (Item_Weaponry_LongbowBP) components: 0
+ - ItemInfo (Item_Tools_FlimsyFishingRodBP) components: 0
+ - ItemInfo (Item_Weaponry_CrudeTowerShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_CrudeNormanShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_CrudeHeaterShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_2HHeavyClub) components: 0
+ - ItemInfo (Item_Tools_SmolkrHornBP) components: 0
+ - ItemInfo (Item_Decoration_WolfBP) components: 0
+ - ItemInfo (Item_Decoration_Tag3BP) components: 0
+ - ItemInfo (Item_Decoration_Tag2BP) components: 0
+ - ItemInfo (Item_Decoration_Tag1BP) components: 0
+ - ItemInfo (Item_Decoration_OdinBP) components: 0
+ - ItemInfo (Item_Decoration_LogBP) components: 0
+ - ItemInfo (Item_Decoration_JarlHeadBP) components: 0
+ - ItemInfo (Item_Decoration_HaugrHeadBP) components: 0
+ - ItemInfo (Item_Decoration_BearBP) components: 0
+ - ItemInfo (Item_Decoration_RibbonBP) components: 0
+ - ItemInfo (Item_Decoration_SmolkrBP) components: 0
+ - ItemInfo (Item_Decoration_FreyaBP) components: 0
+ - ItemInfo (Item_Decoration_FenrirBP) components: 0
+ - ItemInfo (Item_Decoration_Air) components: 0
+ - ItemInfo (Item_Decoration_Earth) components: 0
+ - ItemInfo (Item_Decoration_Fire) components: 0
+ - ItemInfo (Item_Decoration_Water) components: 0
+ - ItemInfo (Item_Decoration_Tinsel1) components: 0
+ - ItemInfo (Item_Decoration_Tinsel2) components: 0
+ - ItemInfo (Item_Decoration_Tinsel3) components: 0
+ - ItemInfo (Item_Decoration_CrawlerHeadBP) components: 0
+ - ItemInfo (Item_Decoration_SkeletrollHeadBP) components: 0
+ - ItemInfo (Item_Decoration_StoneJotunHeadBP) components: 0
+ - ItemInfo (Item_Tools_WoodShovel) components: 0
+ - ItemInfo (Item_Tools_IronShovel) components: 0
+ItemInfoList (WorkshopBlueprints_T0) amount: 22
+ - ItemInfo (Item_Binders_BasicRope) components: 0
+ - ItemInfo (Item_Binders_5xBasicRope) components: 0
+ - ItemInfo (Item_Materials_StoneBlade) components: 0
+ - ItemInfo (Item_Materials_5x StoneBlade) components: 0
+ - ItemInfo (Item_Tools_StoneAxe) components: 0
+ - ItemInfo (Item_Tools_LargeStoneAxe) components: 0
+ - ItemInfo (Item_Tools_StonePickaxe) components: 0
+ - ItemInfo (Item_Tools_LargeStonePickaxe) components: 0
+ - ItemInfo (Item_Tools_StoneKnife) components: 0
+ - ItemInfo (Item_Tools_WoodHammer) components: 0
+ - ItemInfo (Item_Tools_SimpleTorch) components: 0
+ - ItemInfo (Item_Tools_WoodHoe) components: 0
+ - ItemInfo (Item_Tools_WoodRake) components: 0
+ - ItemInfo (Item_Tools_RoadmakerBP) components: 0
+ - ItemInfo (Item_Tools_FlimsyFishingRodBP) components: 0
+ - ItemInfo (Item_Weaponry_FlimsyBow) components: 0
+ - ItemInfo (Item_Weaponry_WoodArrow) components: 0
+ - ItemInfo (Item_Weaponry_1HFlimsyClub) components: 0
+ - ItemInfo (Item_Weaponry_1HSimpleSpikedClub) components: 0
+ - ItemInfo (Item_Weaponry_Shield1) components: 0
+ - ItemInfo (Item_Weaponry_2HHeavyClub) components: 0
+ - ItemInfo (Item_Tools_SmolkrHornBP) components: 0
+ItemInfoList (StartItems_Villager) amount: 14
+ - ItemInfo (Item_Backpacks_Simple) components: 0
+ - ItemInfo (Item_WaterSkins_Simple) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ - ItemInfo (Item_Binders_BasicRope) components: 0
+ - ItemInfo (Item_Axes_StoneAxe) components: 0
+ - ItemInfo (Item_Pickaxes_StonePickaxe) components: 0
+ - ItemInfo (Item_Hammers_WoodHammer) components: 0
+ - ItemInfo (Item_Bait_Berries) components: 0
+ - ItemInfo (Item_Bait_FishMeat) components: 0
+ - ItemInfo (Item_Bait_RedMeat) components: 0
+ - ItemInfo (Item_Hoes_WoodHoe) components: 0
+ - ItemInfo (Item_Bait_MaggotBP) components: 0
+ItemInfoList (Recipes_Barbecue_Small) amount: 11
+ - ItemInfo (Item_Cooking_FiredMushroom) components: 0
+ - ItemInfo (Item_Cooking_FiredMushroomGrey) components: 0
+ - ItemInfo (Item_Cooking_FiredMushroomYellow) components: 0
+ - ItemInfo (Item_Cooking_FriedRedMeat) components: 0
+ - ItemInfo (Item_Cooking_FriedFishMeat) components: 0
+ - ItemInfo (Item_Cooking_BurnedFood) components: 0
+ - ItemInfo (Item_Cooking_BurnedFood) components: 0
+ - ItemInfo (Item_Cooking_FiredBeetroot) components: 0
+ - ItemInfo (Item_Cooking_FiredCarrot) components: 0
+ - ItemInfo (Item_Cooking_FiredOnion) components: 0
+ - ItemInfo (Item_Cooking_FiredCabbage) components: 0
+ItemInfoList (GathererExcludedResources) amount: 3
+ - ItemInfo (Item_Wood_Bark) components: 2
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 1
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 0,33
+ - ItemInfo (Item_Wood_Thatch) components: 1
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 1
+ - ItemInfo (Harvest_Wood_DwarfSpruce) components: 2
+ - - Components item info (Item_Wood_Sticks) quantity: 2 chance: 1
+ - - Components item info (Item_Seeds_SpruceSeeds) quantity: 0 chance: 0,5
+ItemInfoList (SimpleBonfireFuels) amount: 7
+ - ItemInfo (Item_Wood_Firewood) components: 0
+ - ItemInfo (Item_Wood_Coal) components: 0
+ - ItemInfo (Item_Wood_Sticks) components: 0
+ - ItemInfo (Item_Wood_Bark) components: 2
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 1
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 0,33
+ - ItemInfo (Item_Wood_Thatch) components: 1
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_PlankSmall) components: 0
+ - ItemInfo (Item_Wood_Shaft) components: 0
+ItemInfoList (StartItems_Draugar_Berserker) amount: 2
+ - ItemInfo (Item_OneHanded_1HBattleaxeT2) components: 0
+ - ItemInfo (Item_Shields_ShieldDraugar) components: 0
+ItemInfoList (StartItems_Crockpot) amount: 4
+ - ItemInfo (Item_SpecialBags_Pot) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ItemInfoList (Recipes_Crockpot) amount: 24
+ - ItemInfo (Item_Cooking_SoupBeetroot) components: 0
+ - ItemInfo (Item_Cooking_SoupBerries) components: 0
+ - ItemInfo (Item_Cooking_SoupCabbage) components: 0
+ - ItemInfo (Item_Cooking_SoupCarrot) components: 0
+ - ItemInfo (Item_Cooking_SoupEggs) components: 0
+ - ItemInfo (Item_Cooking_SoupFish) components: 0
+ - ItemInfo (Item_Cooking_SoupGarlic) components: 0
+ - ItemInfo (Item_Cooking_SoupMeat) components: 0
+ - ItemInfo (Item_Cooking_SoupMushrooms) components: 0
+ - ItemInfo (Item_Cooking_SoupMussel) components: 0
+ - ItemInfo (Item_Cooking_SoupOnion) components: 0
+ - ItemInfo (Item_Cooking_SoupVegetable) components: 0
+ - ItemInfo (Item_Cooking_StewBeetroot) components: 0
+ - ItemInfo (Item_Cooking_StewBerries) components: 0
+ - ItemInfo (Item_Cooking_StewCabbage) components: 0
+ - ItemInfo (Item_Cooking_StewCarrot) components: 0
+ - ItemInfo (Item_Cooking_StewEggs) components: 0
+ - ItemInfo (Item_Cooking_StewFish) components: 0
+ - ItemInfo (Item_Cooking_StewGarlic) components: 0
+ - ItemInfo (Item_Cooking_StewMeat) components: 0
+ - ItemInfo (Item_Cooking_StewMushrooms) components: 0
+ - ItemInfo (Item_Cooking_StewMussels) components: 0
+ - ItemInfo (Item_Cooking_StewOnion) components: 0
+ - ItemInfo (Item_Cooking_StewVegetable) components: 0
+ItemInfoList (CuringRecipes_T2) amount: 3
+ - ItemInfo (Item_Materials_CuredLeatherHide) components: 0
+ - ItemInfo (Item_Materials_CuredLeatherPelt) components: 0
+ - ItemInfo (Item_Materials_CuredLeatherHeavyPelt) components: 0
+ItemInfoList (LeatherworkerBlueprints_T1) amount: 1
+ - ItemInfo (Item_Materials_LeatherHide) components: 0
+ItemInfoList (FishingStationBlueprints) amount: 4
+ - ItemInfo (Item_Bait_FishMeat) components: 0
+ - ItemInfo (Item_Bait_Berries) components: 0
+ - ItemInfo (Item_Bait_RedMeat) components: 0
+ - ItemInfo (Item_Bait_MaggotBP) components: 0
+ItemInfoList (Recipes_Barbecue_Medium) amount: 7
+ - ItemInfo (Item_Cooking_BurnedFood) components: 0
+ - ItemInfo (Item_Cooking_FriedCod) components: 0
+ - ItemInfo (Item_Cooking_FriedSalmon) components: 0
+ - ItemInfo (Item_Cooking_FriedSeabass) components: 0
+ - ItemInfo (Item_Cooking_FriedMackerel) components: 0
+ - ItemInfo (Item_Cooking_FriedWolffish) components: 0
+ - ItemInfo (Item_Cooking_FriedSturgeon) components: 0
+ItemInfoList (CarpenterBlueprints_A_T1) amount: 2
+ - ItemInfo (Item_Carpentry_ShaftCarpentry) components: 0
+ - ItemInfo (Item_Carpentry_PlankCarpentry) components: 0
+ItemInfoList (CompleteItemInfoList) amount: 841
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_FireArrows) components: 0
+ - ItemInfo (Item_Arrows_IronTippedArrow) components: 0
+ - ItemInfo (Item_Arrows_WoodArrows) components: 0
+ - ItemInfo (Item_Arrows_WoodArrowsBone) components: 0
+ - ItemInfo (Item_Boots_BaseBoots) components: 0
+ - ItemInfo (Item_Boots_Berserkr) components: 0
+ - ItemInfo (Item_Boots_Boots5) components: 0
+ - ItemInfo (Item_Boots_Cloth0) components: 0
+ - ItemInfo (Item_Boots_Cloth1) components: 0
+ - ItemInfo (Item_Boots_Leather0) components: 0
+ - ItemInfo (Item_Cape_Cloth1) components: 0
+ - ItemInfo (Item_Cape_Pelt1Cape) components: 0
+ - ItemInfo (Item_Cape_Pelt2Cape) components: 0
+ - ItemInfo (Item_Chest_BaseChest) components: 0
+ - ItemInfo (Item_Chest_Chain1) components: 0
+ - ItemInfo (Item_Chest_Chest5) components: 0
+ - ItemInfo (Item_Chest_Cloth0) components: 0
+ - ItemInfo (Item_Chest_Cloth1) components: 0
+ - ItemInfo (Item_Chest_Cloth2) components: 0
+ - ItemInfo (Item_Chest_Leather1) components: 0
+ - ItemInfo (Item_Gloves_BaseGloves) components: 0
+ - ItemInfo (Item_Gloves_Berserkr) components: 0
+ - ItemInfo (Item_Gloves_Cloth0) components: 0
+ - ItemInfo (Item_Gloves_Gloves5) components: 0
+ - ItemInfo (Item_Gloves_Leather0) components: 0
+ - ItemInfo (Item_Helmets_BaseHelmet) components: 0
+ - ItemInfo (Item_Helmets_Berserkr) components: 0
+ - ItemInfo (Item_Helmets_Cloth0) components: 0
+ - ItemInfo (Item_Helmets_Cloth1) components: 0
+ - ItemInfo (Item_Helmets_Cloth1Hood) components: 0
+ - ItemInfo (Item_Helmets_ClothCap) components: 0
+ - ItemInfo (Item_Helmets_Helm5) components: 0
+ - ItemInfo (Item_Helmets_Iron0) components: 0
+ - ItemInfo (Item_Helmets_Iron2) components: 0
+ - ItemInfo (Item_Helmets_Iron3) components: 0
+ - ItemInfo (Item_Helmets_Iron4) components: 0
+ - ItemInfo (Item_Helmets_Leather1) components: 0
+ - ItemInfo (Item_Helmets_LeatherArmingCap) components: 0
+ - ItemInfo (Item_Pants_BasePants) components: 0
+ - ItemInfo (Item_Pants_Berserkr) components: 0
+ - ItemInfo (Item_Pants_Cloth0) components: 0
+ - ItemInfo (Item_Pants_Cloth1) components: 0
+ - ItemInfo (Item_Pants_Pants5) components: 0
+ - ItemInfo (Item_Shoulders_BaseShoulders) components: 0
+ - ItemInfo (Item_Shoulders_IronShouldersPads1) components: 0
+ - ItemInfo (Item_Shoulders_IronShouldersPads2) components: 0
+ - ItemInfo (Item_Shoulders_LeatherShouldersPads) components: 0
+ - ItemInfo (Item_Shoulders_LeatherShouldersPads2) components: 0
+ - ItemInfo (Item_AmmoBags_Simple) components: 0
+ - ItemInfo (Item_Backpacks_Simple) components: 0
+ - ItemInfo (Item_FoodBags_Simple) components: 0
+ - ItemInfo (Item_SpecialBags_BloomBlock) components: 0
+ - ItemInfo (Item_SpecialBags_BloomBlockHot) components: 0
+ - ItemInfo (Item_SpecialBags_BloomBlockHotL2) components: 0
+ - ItemInfo (Item_SpecialBags_BloomBlockL2) components: 0
+ - ItemInfo (Item_SpecialBags_Oven) components: 0
+ - ItemInfo (Item_SpecialBags_Pot) components: 0
+ - ItemInfo (Item_UtilityBags_Simple) components: 0
+ - ItemInfo (Item_WaterSkins_Simple) components: 0
+ - ItemInfo (Item_Addons_Barbecue) components: 0
+ - ItemInfo (Item_Addons_Dyer) components: 0
+ - ItemInfo (Item_Addons_DyerL2) components: 0
+ - ItemInfo (Item_Addons_FireCover) components: 0
+ - ItemInfo (Item_Addons_GuardtowerHorn) components: 0
+ - ItemInfo (Item_Addons_GuardtowerRoof) components: 0
+ - ItemInfo (Item_Addons_HedgeSpikes) components: 0
+ - ItemInfo (Item_Addons_HedgeSpikesShort) components: 0
+ - ItemInfo (Item_Addons_HouseL2_1x1) components: 0
+ - ItemInfo (Item_Addons_HouseL2_2x1) components: 0
+ - ItemInfo (Item_Addons_LeatherworkerL1) components: 0
+ - ItemInfo (Item_Addons_LeatherworkerL2) components: 0
+ - ItemInfo (Item_Addons_OutpostL1BuilderBoard) components: 0
+ - ItemInfo (Item_Addons_OutpostL1Tower) components: 0
+ - ItemInfo (Item_Addons_OutpostL1Wall1) components: 0
+ - ItemInfo (Item_Addons_OutpostL1Wall2) components: 0
+ - ItemInfo (Item_Addons_WarehouseExtension) components: 0
+ - ItemInfo (Item_Addons_WarehouseRoof) components: 0
+ - ItemInfo (Item_Addons_WarehouseT2Extension) components: 0
+ - ItemInfo (Item_Addons_WarehouseT2Roof) components: 0
+ - ItemInfo (Item_Addons_WatchtowerHorn) components: 0
+ - ItemInfo (Item_Addons_WatchtowerReinforcement) components: 0
+ - ItemInfo (Item_Addons_WatchtowerRoof) components: 0
+ - ItemInfo (Item_Addons_Weaver) components: 0
+ - ItemInfo (Item_Addons_WeaverL2) components: 0
+ - ItemInfo (Item_Armor_BaseBoots) components: 0
+ - ItemInfo (Item_Armor_BaseChest) components: 0
+ - ItemInfo (Item_Armor_BaseGloves) components: 0
+ - ItemInfo (Item_Armor_BasePants) components: 0
+ - ItemInfo (Item_Armor_BaseShoulders) components: 0
+ - ItemInfo (Item_Armor_Boots5) components: 0
+ - ItemInfo (Item_Armor_CapeLinen1) components: 0
+ - ItemInfo (Item_Armor_CapePelt1) components: 0
+ - ItemInfo (Item_Armor_CapePelt2) components: 0
+ - ItemInfo (Item_Armor_Chain1Chest) components: 0
+ - ItemInfo (Item_Armor_Chest5) components: 0
+ - ItemInfo (Item_Armor_Cloth2CapBP) components: 0
+ - ItemInfo (Item_Armor_ClothCapBP) components: 0
+ - ItemInfo (Item_Armor_Gloves5) components: 0
+ - ItemInfo (Item_Armor_Helm5) components: 0
+ - ItemInfo (Item_Armor_Iron0Helm) components: 0
+ - ItemInfo (Item_Armor_Iron2HelmBP) components: 0
+ - ItemInfo (Item_Armor_Iron3HelmBP) components: 0
+ - ItemInfo (Item_Armor_Iron4HelmBP) components: 0
+ - ItemInfo (Item_Armor_Leather1Chest) components: 0
+ - ItemInfo (Item_Armor_Leather1Shoulders) components: 0
+ - ItemInfo (Item_Armor_Leather2Shoulders) components: 0
+ - ItemInfo (Item_Armor_LeatherArmingCapBP) components: 0
+ - ItemInfo (Item_Armor_Linen1Boots) components: 0
+ - ItemInfo (Item_Armor_Linen1Chest) components: 0
+ - ItemInfo (Item_Armor_Linen1Helm) components: 0
+ - ItemInfo (Item_Armor_Linen1Hood) components: 0
+ - ItemInfo (Item_Armor_Linen1Pants) components: 0
+ - ItemInfo (Item_Armor_Linen2Chest) components: 0
+ - ItemInfo (Item_Armor_LinenBoots) components: 0
+ - ItemInfo (Item_Armor_LinenChest) components: 0
+ - ItemInfo (Item_Armor_LinenGloves) components: 0
+ - ItemInfo (Item_Armor_LinenHelm) components: 0
+ - ItemInfo (Item_Armor_LinenPants) components: 0
+ - ItemInfo (Item_Armor_Pants5) components: 0
+ - ItemInfo (Item_Armor_Plate1Shoulders) components: 0
+ - ItemInfo (Item_Armor_Plate2Shoulders) components: 0
+ - ItemInfo (Item_Bait_Berries) components: 0
+ - ItemInfo (Item_Bait_FishMeat) components: 0
+ - ItemInfo (Item_Bait_MaggotBP) components: 0
+ - ItemInfo (Item_Bait_RedMeat) components: 0
+ - ItemInfo (Item_Binders_5xBasicRope) components: 0
+ - ItemInfo (Item_Binders_BasicRope) components: 0
+ - ItemInfo (Item_Bushcraft_Cart) components: 0
+ - ItemInfo (Item_Bushcraft_DogTrap) components: 0
+ - ItemInfo (Item_Bushcraft_FlimsyWaterPouch) components: 0
+ - ItemInfo (Item_Bushcraft_ImprovedFire) components: 0
+ - ItemInfo (Item_Bushcraft_SimpleFire) components: 0
+ - ItemInfo (Item_Bushcraft_Sled) components: 0
+ - ItemInfo (Item_Carpentry_BeamCarpentry) components: 1
+ - - Components item info (Item_Wood_Bark) quantity: 1 chance: 0,25
+ - ItemInfo (Item_Carpentry_LongPlankCarpentry) components: 0
+ - ItemInfo (Item_Carpentry_PlankCarpentry) components: 0
+ - ItemInfo (Item_Carpentry_PostCarpentry) components: 1
+ - - Components item info (Item_Wood_Bark) quantity: 1 chance: 0,25
+ - ItemInfo (Item_Carpentry_ShaftCarpentry) components: 0
+ - ItemInfo (Item_Carpentry_SmallPlankCarpentry) components: 0
+ - ItemInfo (Item_Carpentry_SmallPlankCarpentryAlt) components: 0
+ - ItemInfo (Item_Cooking_BurnedFood) components: 0
+ - ItemInfo (Item_Cooking_FiredBeetroot) components: 0
+ - ItemInfo (Item_Cooking_FiredCabbage) components: 0
+ - ItemInfo (Item_Cooking_FiredCarrot) components: 0
+ - ItemInfo (Item_Cooking_FiredMushroom) components: 0
+ - ItemInfo (Item_Cooking_FiredMushroomGrey) components: 0
+ - ItemInfo (Item_Cooking_FiredMushroomYellow) components: 0
+ - ItemInfo (Item_Cooking_FiredOnion) components: 0
+ - ItemInfo (Item_Cooking_FriedCod) components: 0
+ - ItemInfo (Item_Cooking_FriedFishMeat) components: 0
+ - ItemInfo (Item_Cooking_FriedMackerel) components: 0
+ - ItemInfo (Item_Cooking_FriedRedMeat) components: 0
+ - ItemInfo (Item_Cooking_FriedSalmon) components: 0
+ - ItemInfo (Item_Cooking_FriedSeabass) components: 0
+ - ItemInfo (Item_Cooking_FriedSturgeon) components: 0
+ - ItemInfo (Item_Cooking_FriedWolffish) components: 0
+ - ItemInfo (Item_Cooking_Goop) components: 0
+ - ItemInfo (Item_Cooking_KilnDefaultRecipe) components: 0
+ - ItemInfo (Item_Cooking_KilnDefaultRecipeL2) components: 0
+ - ItemInfo (Item_Cooking_PieFishBP) components: 0
+ - ItemInfo (Item_Cooking_PieForagerBP) components: 0
+ - ItemInfo (Item_Cooking_PieHunterBP) components: 0
+ - ItemInfo (Item_Cooking_PieSweetBP) components: 0
+ - ItemInfo (Item_Cooking_PieWarriorBP) components: 0
+ - ItemInfo (Item_Cooking_SoupBeetroot) components: 0
+ - ItemInfo (Item_Cooking_SoupBerries) components: 0
+ - ItemInfo (Item_Cooking_SoupCabbage) components: 0
+ - ItemInfo (Item_Cooking_SoupCarrot) components: 0
+ - ItemInfo (Item_Cooking_SoupEggs) components: 0
+ - ItemInfo (Item_Cooking_SoupFish) components: 0
+ - ItemInfo (Item_Cooking_SoupGarlic) components: 0
+ - ItemInfo (Item_Cooking_SoupMeat) components: 0
+ - ItemInfo (Item_Cooking_SoupMushrooms) components: 0
+ - ItemInfo (Item_Cooking_SoupMussel) components: 0
+ - ItemInfo (Item_Cooking_SoupOnion) components: 0
+ - ItemInfo (Item_Cooking_SoupVegetable) components: 0
+ - ItemInfo (Item_Cooking_StewBeetroot) components: 0
+ - ItemInfo (Item_Cooking_StewBerries) components: 0
+ - ItemInfo (Item_Cooking_StewCabbage) components: 0
+ - ItemInfo (Item_Cooking_StewCarrot) components: 0
+ - ItemInfo (Item_Cooking_StewCod) components: 0
+ - ItemInfo (Item_Cooking_StewEggs) components: 0
+ - ItemInfo (Item_Cooking_StewFish) components: 0
+ - ItemInfo (Item_Cooking_StewGarlic) components: 0
+ - ItemInfo (Item_Cooking_StewMeat) components: 0
+ - ItemInfo (Item_Cooking_StewMushrooms) components: 0
+ - ItemInfo (Item_Cooking_StewMussels) components: 0
+ - ItemInfo (Item_Cooking_StewOnion) components: 0
+ - ItemInfo (Item_Cooking_StewSeabass) components: 0
+ - ItemInfo (Item_Cooking_StewVegetable) components: 0
+ - ItemInfo (Item_Decoration_Air) components: 0
+ - ItemInfo (Item_Decoration_ArchFlimsy) components: 0
+ - ItemInfo (Item_Decoration_BearBP) components: 0
+ - ItemInfo (Item_Decoration_CrawlerHeadBP) components: 0
+ - ItemInfo (Item_Decoration_DecorativeBirch) components: 0
+ - ItemInfo (Item_Decoration_Earth) components: 0
+ - ItemInfo (Item_Decoration_FenrirBP) components: 0
+ - ItemInfo (Item_Decoration_Fire) components: 0
+ - ItemInfo (Item_Decoration_FreyaBP) components: 0
+ - ItemInfo (Item_Decoration_GardenLarge) components: 0
+ - ItemInfo (Item_Decoration_GardenLupini) components: 0
+ - ItemInfo (Item_Decoration_HaugrHeadBP) components: 0
+ - ItemInfo (Item_Decoration_JarlHeadBP) components: 0
+ - ItemInfo (Item_Decoration_LogBP) components: 0
+ - ItemInfo (Item_Decoration_OdinBP) components: 0
+ - ItemInfo (Item_Decoration_RibbonBP) components: 0
+ - ItemInfo (Item_Decoration_SkeletrollHeadBP) components: 0
+ - ItemInfo (Item_Decoration_SmolkrBP) components: 0
+ - ItemInfo (Item_Decoration_StoneJotunHeadBP) components: 0
+ - ItemInfo (Item_Decoration_Tag1BP) components: 0
+ - ItemInfo (Item_Decoration_Tag2BP) components: 0
+ - ItemInfo (Item_Decoration_Tag3BP) components: 0
+ - ItemInfo (Item_Decoration_Tinsel1) components: 0
+ - ItemInfo (Item_Decoration_Tinsel2) components: 0
+ - ItemInfo (Item_Decoration_Tinsel3) components: 0
+ - ItemInfo (Item_Decoration_Water) components: 0
+ - ItemInfo (Item_Decoration_WolfBP) components: 0
+ - ItemInfo (Item_Decoration_YuleTree) components: 0
+ - ItemInfo (Item_Development_PeopleIdle1(Clone)) components: 0
+ - ItemInfo (Item_Development_PeopleIdle1) components: 0
+ - ItemInfo (Item_Development_ResourceFire) components: 0
+ - ItemInfo (Item_Dyeing_Cloth0Dyeing) components: 0
+ - ItemInfo (Item_Dyeing_Cloth1Dyeing) components: 0
+ - ItemInfo (Item_Dyeing_StrucurePainting) components: 0
+ - ItemInfo (Item_Dyeing_YuleDecorationDyeing0) components: 0
+ - ItemInfo (Item_Dyeing_YuleDecorationDyeing1) components: 0
+ - ItemInfo (Item_Dyes_Amber) components: 0
+ - ItemInfo (Item_Dyes_Appels├şnugulur) components: 0
+ - ItemInfo (Item_Dyes_Appels├şnugulurSumarr) components: 0
+ - ItemInfo (Item_Dyes_Blar) components: 0
+ - ItemInfo (Item_Dyes_Brunn) components: 0
+ - ItemInfo (Item_Dyes_Clear) components: 0
+ - ItemInfo (Item_Dyes_Grar) components: 0
+ - ItemInfo (Item_Dyes_Gron) components: 0
+ - ItemInfo (Item_Dyes_Gulgr) components: 0
+ - ItemInfo (Item_Dyes_HaustRaudr) components: 0
+ - ItemInfo (Item_Dyes_Hoss) components: 0
+ - ItemInfo (Item_Dyes_Hvitr) components: 0
+ - ItemInfo (Item_Dyes_Jarpr) components: 0
+ - ItemInfo (Item_Dyes_Myrka Gulur) components: 0
+ - ItemInfo (Item_Dyes_Raudr) components: 0
+ - ItemInfo (Item_Dyes_Rosa) components: 0
+ - ItemInfo (Item_Dyes_Svartr) components: 0
+ - ItemInfo (Item_Farming_FarmCabbage) components: 0
+ - ItemInfo (Item_Farming_FarmCrop) components: 0
+ - ItemInfo (Item_Forging_IronBarForging) components: 0
+ - ItemInfo (Item_Forging_IronKnifeBladeForging) components: 0
+ - ItemInfo (Item_Forging_IronLargeAxeHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronLargeBladeForging) components: 0
+ - ItemInfo (Item_Forging_IronLargeHammerHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronLargePickaxeHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronNailsForging) components: 0
+ - ItemInfo (Item_Forging_IronPlateForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallAxeHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallBladeForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallHammerHeadForging) components: 0
+ - ItemInfo (Item_Forging_IronSmallPickaxeHeadForging) components: 0
+ - ItemInfo (Item_Forging_SteelBarForging) components: 0
+ - ItemInfo (Item_Furniture_ArmorRack) components: 0
+ - ItemInfo (Item_Furniture_Bed) components: 0
+ - ItemInfo (Item_Furniture_FirewoodStorage) components: 0
+ - ItemInfo (Item_Furniture_FoodShelf1) components: 0
+ - ItemInfo (Item_Furniture_FoodStorage) components: 0
+ - ItemInfo (Item_Furniture_SeparatorA) components: 0
+ - ItemInfo (Item_Furniture_SeparatorB) components: 0
+ - ItemInfo (Item_Furniture_Shelf1) components: 0
+ - ItemInfo (Item_Furniture_Sideshelf1) components: 0
+ - ItemInfo (Item_Furniture_Sideshelf3) components: 0
+ - ItemInfo (Item_Furniture_SmallFireplace) components: 0
+ - ItemInfo (Item_Furniture_SmallStorage) components: 0
+ - ItemInfo (Item_Furniture_Table1) components: 0
+ - ItemInfo (Item_Furniture_WeaponRack) components: 0
+ - ItemInfo (Item_Lights_FlimsyTorch) components: 0
+ - ItemInfo (Item_Magic_ExplodingSackBP) components: 0
+ - ItemInfo (Item_Magic_RavenMagicBP) components: 0
+ - ItemInfo (Item_Markers_BuildingResourcesMarker) components: 0
+ - ItemInfo (Item_Markers_FoodForagingMarker) components: 0
+ - ItemInfo (Item_Markers_ForestryMarker) components: 0
+ - ItemInfo (Item_Markers_HuntingMarker) components: 0
+ - ItemInfo (Item_Markers_MetalPartsMarker) components: 0
+ - ItemInfo (Item_Markers_PatrolMarker) components: 0
+ - ItemInfo (Item_Markers_StoneHarvestMarker) components: 0
+ - ItemInfo (Item_Markers_WoodHarvestMarker) components: 0
+ - ItemInfo (Item_Materials_5x StoneBlade) components: 0
+ - ItemInfo (Item_Materials_CuredLeatherHeavyPelt) components: 0
+ - ItemInfo (Item_Materials_CuredLeatherHide) components: 0
+ - ItemInfo (Item_Materials_CuredLeatherPelt) components: 0
+ - ItemInfo (Item_Materials_FibresFromBark) components: 0
+ - ItemInfo (Item_Materials_HotIronBar) components: 0
+ - ItemInfo (Item_Materials_HotIronBloom) components: 0
+ - ItemInfo (Item_Materials_HotSteelBar) components: 0
+ - ItemInfo (Item_Materials_HotSteelBloom) components: 0
+ - ItemInfo (Item_Materials_LeatherHide) components: 0
+ - ItemInfo (Item_Materials_Linen) components: 0
+ - ItemInfo (Item_Materials_LinenThread) components: 0
+ - ItemInfo (Item_Materials_StoneBlade) components: 0
+ - ItemInfo (Item_Shipmaking_Base Ship) components: 0
+ - ItemInfo (Item_Shipmaking_Small Ship) components: 0
+ - ItemInfo (Item_StoneLantern) components: 0
+ - ItemInfo (Item_Structures_ArcheryRangeL1) components: 0
+ - ItemInfo (Item_Structures_ArcheryRangeL2) components: 0
+ - ItemInfo (Item_Structures_ArcheryTarget) components: 0
+ - ItemInfo (Item_Structures_ArcheryTargetL2) components: 0
+ - ItemInfo (Item_Structures_BarberL2) components: 0
+ - ItemInfo (Item_Structures_BarracksL1) components: 0
+ - ItemInfo (Item_Structures_BarracksL2) components: 0
+ - ItemInfo (Item_Structures_BloomeryL1) components: 0
+ - ItemInfo (Item_Structures_BloomeryL2) components: 0
+ - ItemInfo (Item_Structures_Boatbuilder) components: 0
+ - ItemInfo (Item_Structures_BuilderHutL1) components: 0
+ - ItemInfo (Item_Structures_CarpenterL1) components: 0
+ - ItemInfo (Item_Structures_CarpenterL2) components: 0
+ - ItemInfo (Item_Structures_CaveEntrance) components: 0
+ - ItemInfo (Item_Structures_CaveEntranceL2) components: 0
+ - ItemInfo (Item_Structures_CharcoalMakerL1) components: 0
+ - ItemInfo (Item_Structures_CookingHouseL1) components: 0
+ - ItemInfo (Item_Structures_CookingHouseL2) components: 0
+ - ItemInfo (Item_Structures_Dock) components: 0
+ - ItemInfo (Item_Structures_Farm) components: 0
+ - ItemInfo (Item_Structures_FarmCarrot) components: 0
+ - ItemInfo (Item_Structures_FarmL2) components: 0
+ - ItemInfo (Item_Structures_FishermanHouseL2) components: 0
+ - ItemInfo (Item_Structures_FishermanHut) components: 0
+ - ItemInfo (Item_Structures_ForesterL1) components: 0
+ - ItemInfo (Item_Structures_ForesterL2) components: 0
+ - ItemInfo (Item_Structures_GathererL0) components: 0
+ - ItemInfo (Item_Structures_GathererL1) components: 0
+ - ItemInfo (Item_Structures_GathererL2) components: 0
+ - ItemInfo (Item_Structures_HealingHouseL1) components: 0
+ - ItemInfo (Item_Structures_HouseL1) components: 0
+ - ItemInfo (Item_Structures_HouseL1Chieftain) components: 0
+ - ItemInfo (Item_Structures_HouseL2) components: 0
+ - ItemInfo (Item_Structures_HunterL1) components: 0
+ - ItemInfo (Item_Structures_HunterL2) components: 0
+ - ItemInfo (Item_Structures_Kennel) components: 0
+ - ItemInfo (Item_Structures_MarketT1) components: 0
+ - ItemInfo (Item_Structures_MetalworkerL1) components: 0
+ - ItemInfo (Item_Structures_MetalworkerL2) components: 0
+ - ItemInfo (Item_Structures_OuthouseL1) components: 0
+ - ItemInfo (Item_Structures_OutpostL1) components: 0
+ - ItemInfo (Item_Structures_ScrapBin) components: 0
+ - ItemInfo (Item_Structures_Settlement) components: 0
+ - ItemInfo (Item_Structures_SettlementL1) components: 0
+ - ItemInfo (Item_Structures_SettlementL2) components: 0
+ - ItemInfo (Item_Structures_SettlementL3) components: 0
+ - ItemInfo (Item_Structures_ShelterL1) components: 0
+ - ItemInfo (Item_Structures_StoneCutterL0) components: 0
+ - ItemInfo (Item_Structures_StoneCutterL1) components: 0
+ - ItemInfo (Item_Structures_StoneCutterL2) components: 0
+ - ItemInfo (Item_Structures_TerrainLevelField) components: 0
+ - ItemInfo (Item_Structures_TerrainSplineLevel) components: 0
+ - ItemInfo (Item_Structures_TerrainSplineRoad) components: 0
+ - ItemInfo (Item_Structures_TrainingDummy) components: 0
+ - ItemInfo (Item_Structures_WarehouseT1) components: 0
+ - ItemInfo (Item_Structures_WarehouseT2) components: 0
+ - ItemInfo (Item_Structures_WaterCollectorL1) components: 0
+ - ItemInfo (Item_Structures_WaterWellL1) components: 0
+ - ItemInfo (Item_Structures_WoodCutterL0) components: 0
+ - ItemInfo (Item_Structures_WoodCutterL1) components: 0
+ - ItemInfo (Item_Structures_WoodCutterL2) components: 0
+ - ItemInfo (Item_Structures_WorkshopL0) components: 0
+ - ItemInfo (Item_Structures_WorkshopL1) components: 0
+ - ItemInfo (Item_Structures_WorkshopL2) components: 0
+ - ItemInfo (Item_Tools_DrawKnifeBP) components: 0
+ - ItemInfo (Item_Tools_FishingRod) components: 0
+ - ItemInfo (Item_Tools_FlimsyFishingRodBP) components: 0
+ - ItemInfo (Item_Tools_IronBuildHammerBP) components: 0
+ - ItemInfo (Item_Tools_IronHoeBP) components: 0
+ - ItemInfo (Item_Tools_IronRakeBP) components: 0
+ - ItemInfo (Item_Tools_IronRoadmakerBP) components: 0
+ - ItemInfo (Item_Tools_IronShovel) components: 0
+ - ItemInfo (Item_Tools_IronSkinningKnifeBP) components: 0
+ - ItemInfo (Item_Tools_IronSmallAxe) components: 0
+ - ItemInfo (Item_Tools_IronSmallPickaxe) components: 0
+ - ItemInfo (Item_Tools_LargeIronAxeBP) components: 0
+ - ItemInfo (Item_Tools_LargeIronPickaxeBP) components: 0
+ - ItemInfo (Item_Tools_LargeStoneAxe) components: 0
+ - ItemInfo (Item_Tools_LargeStonePickaxe) components: 0
+ - ItemInfo (Item_Tools_RoadmakerBP) components: 0
+ - ItemInfo (Item_Tools_SimpleTorch) components: 0
+ - ItemInfo (Item_Tools_SmolkrHornBP) components: 0
+ - ItemInfo (Item_Tools_StoneAxe) components: 0
+ - ItemInfo (Item_Tools_StoneKnife) components: 0
+ - ItemInfo (Item_Tools_StonePickaxe) components: 0
+ - ItemInfo (Item_Tools_SturdyFishingRodBP) components: 0
+ - ItemInfo (Item_Tools_ThatchBrushBP) components: 0
+ - ItemInfo (Item_Tools_WoodHammer) components: 0
+ - ItemInfo (Item_Tools_WoodHoe) components: 0
+ - ItemInfo (Item_Tools_WoodRake) components: 0
+ - ItemInfo (Item_Tools_WoodShovel) components: 0
+ - ItemInfo (Item_Totems_RavenL0) components: 0
+ - ItemInfo (Item_Totems_RunestoneAirL0) components: 0
+ - ItemInfo (Item_Totems_RunestoneEarthL0) components: 0
+ - ItemInfo (Item_Totems_RunestoneFireL0) components: 0
+ - ItemInfo (Item_Totems_RunestoneWaterL0) components: 0
+ - ItemInfo (Item_Totems_RunestoneWood) components: 0
+ - ItemInfo (Item_Totems_StoneJotun) components: 0
+ - ItemInfo (Item_Totems_TempleOfSol) components: 0
+ - ItemInfo (Item_Totems_WonderFenrir) components: 0
+ - ItemInfo (Item_Walls_FlimsyFence) components: 0
+ - ItemInfo (Item_Walls_FlimsyFenceShort) components: 0
+ - ItemInfo (Item_Walls_GateL0) components: 0
+ - ItemInfo (Item_Walls_GateL1) components: 0
+ - ItemInfo (Item_Walls_GateL2) components: 0
+ - ItemInfo (Item_Walls_Guardtower) components: 0
+ - ItemInfo (Item_Walls_HedgeWallL1) components: 0
+ - ItemInfo (Item_Walls_HedgeWallShort L1) components: 0
+ - ItemInfo (Item_Walls_PenGate) components: 0
+ - ItemInfo (Item_Walls_PlankWallL2) components: 0
+ - ItemInfo (Item_Walls_PlankWallShortL2) components: 0
+ - ItemInfo (Item_Walls_TowerL1) components: 0
+ - ItemInfo (Item_Walls_Watchtower) components: 0
+ - ItemInfo (Item_WarehouseStorage_Armor) components: 0
+ - ItemInfo (Item_WarehouseStorage_Arrows) components: 0
+ - ItemInfo (Item_WarehouseStorage_Bark) components: 0
+ - ItemInfo (Item_WarehouseStorage_BeamPlankLarge) components: 0
+ - ItemInfo (Item_WarehouseStorage_BeamPlankLong) components: 0
+ - ItemInfo (Item_WarehouseStorage_BeamPlankSmall) components: 0
+ - ItemInfo (Item_WarehouseStorage_Clothes) components: 0
+ - ItemInfo (Item_WarehouseStorage_ClothingMaterials) components: 0
+ - ItemInfo (Item_WarehouseStorage_Coal) components: 0
+ - ItemInfo (Item_WarehouseStorage_CookedFood) components: 0
+ - ItemInfo (Item_WarehouseStorage_Crawler) components: 0
+ - ItemInfo (Item_WarehouseStorage_Dye) components: 0
+ - ItemInfo (Item_WarehouseStorage_Explosive) components: 0
+ - ItemInfo (Item_WarehouseStorage_Firewood) components: 0
+ - ItemInfo (Item_WarehouseStorage_Fish) components: 0
+ - ItemInfo (Item_WarehouseStorage_IronToolsMaterials) components: 0
+ - ItemInfo (Item_WarehouseStorage_JotunBlood) components: 0
+ - ItemInfo (Item_WarehouseStorage_LeatherScraps) components: 0
+ - ItemInfo (Item_WarehouseStorage_Logs) components: 0
+ - ItemInfo (Item_WarehouseStorage_Longsticks) components: 0
+ - ItemInfo (Item_WarehouseStorage_MeatHunks) components: 0
+ - ItemInfo (Item_WarehouseStorage_Ore) components: 0
+ - ItemInfo (Item_WarehouseStorage_Resin) components: 0
+ - ItemInfo (Item_WarehouseStorage_Seeds) components: 0
+ - ItemInfo (Item_WarehouseStorage_SmallCraftingMaterials) components: 0
+ - ItemInfo (Item_WarehouseStorage_SmallFoodSilo) components: 0
+ - ItemInfo (Item_WarehouseStorage_Sticks) components: 0
+ - ItemInfo (Item_WarehouseStorage_Stones) components: 0
+ - ItemInfo (Item_WarehouseStorage_Thatch) components: 0
+ - ItemInfo (Item_WarehouseStorage_Water) components: 0
+ - ItemInfo (Item_WarehouseStorage_WeaponsTools) components: 0
+ - ItemInfo (Item_Weaponry_1HAxe2) components: 0
+ - ItemInfo (Item_Weaponry_1HFlimsyClub) components: 0
+ - ItemInfo (Item_Weaponry_1HIronBattleAxeBP) components: 0
+ - ItemInfo (Item_Weaponry_1HIronBattleHammerBP) components: 0
+ - ItemInfo (Item_Weaponry_1HIronSwordBP) components: 0
+ - ItemInfo (Item_Weaponry_1HSimpleSpikedClub) components: 0
+ - ItemInfo (Item_Weaponry_1HSword2) components: 0
+ - ItemInfo (Item_Weaponry_2HHeavyClub) components: 0
+ - ItemInfo (Item_Weaponry_2HIronBattleAxeBP) components: 0
+ - ItemInfo (Item_Weaponry_2HIronBattleHammerBP) components: 0
+ - ItemInfo (Item_Weaponry_2HIronSwordBP) components: 0
+ - ItemInfo (Item_Weaponry_2HSword) components: 0
+ - ItemInfo (Item_Weaponry_CrudeHeaterShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_CrudeNormanShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_CrudeRoundShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_CrudeTowerShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_FireArrow) components: 0
+ - ItemInfo (Item_Weaponry_FlimsyBow) components: 0
+ - ItemInfo (Item_Weaponry_IronTippedArrowBP) components: 0
+ - ItemInfo (Item_Weaponry_LongbowBP) components: 0
+ - ItemInfo (Item_Weaponry_ReinforcedHeaterShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_ReinforcedNormanShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_ReinforcedRoundShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_ReinforcedTowerShieldBP) components: 0
+ - ItemInfo (Item_Weaponry_Shield1) components: 0
+ - ItemInfo (Item_Weaponry_Shield2) components: 0
+ - ItemInfo (Item_Weaponry_SimpleBow) components: 0
+ - ItemInfo (Item_Weaponry_WoodArrow) components: 0
+ - ItemInfo (Item_Weaponry_WoodArrowBone) components: 0
+ - ItemInfo (Item_YuleTree_Air) components: 0
+ - ItemInfo (Item_YuleTree_Bear) components: 0
+ - ItemInfo (Item_YuleTree_Crawler) components: 0
+ - ItemInfo (Item_YuleTree_Earth) components: 0
+ - ItemInfo (Item_YuleTree_Fenrir) components: 0
+ - ItemInfo (Item_YuleTree_Fire) components: 0
+ - ItemInfo (Item_YuleTree_Freya) components: 0
+ - ItemInfo (Item_YuleTree_Haugr) components: 0
+ - ItemInfo (Item_YuleTree_Jarl) components: 0
+ - ItemInfo (Item_YuleTree_Jotun) components: 0
+ - ItemInfo (Item_YuleTree_Log) components: 0
+ - ItemInfo (Item_YuleTree_Odin) components: 0
+ - ItemInfo (Item_YuleTree_Ribbon) components: 0
+ - ItemInfo (Item_YuleTree_Skeletroll) components: 0
+ - ItemInfo (Item_YuleTree_Smolkr) components: 0
+ - ItemInfo (Item_YuleTree_Tag1) components: 0
+ - ItemInfo (Item_YuleTree_Tag2) components: 0
+ - ItemInfo (Item_YuleTree_Tag3) components: 0
+ - ItemInfo (Item_YuleTree_Tinsel1) components: 0
+ - ItemInfo (Item_YuleTree_Tinsel2) components: 0
+ - ItemInfo (Item_YuleTree_Tinsel3) components: 0
+ - ItemInfo (Item_YuleTree_Water) components: 0
+ - ItemInfo (Item_YuleTree_Wolf) components: 0
+ - ItemInfo (Harvest_Wood_DwarfSpruce) components: 2
+ - - Components item info (Item_Wood_Sticks) quantity: 2 chance: 1
+ - - Components item info (Item_Seeds_SpruceSeeds) quantity: 0 chance: 0,5
+ - ItemInfo (Item_Bait_Berries) components: 0
+ - ItemInfo (Item_Bait_FishMeat) components: 0
+ - ItemInfo (Item_Bait_Maggot) components: 0
+ - ItemInfo (Item_Bait_RedMeat) components: 0
+ - ItemInfo (Item_Dyes_Appels├şnugulur) components: 0
+ - ItemInfo (Item_Dyes_Blar) components: 0
+ - ItemInfo (Item_Dyes_Brunn) components: 0
+ - ItemInfo (Item_Dyes_Clear) components: 0
+ - ItemInfo (Item_Dyes_Grar) components: 0
+ - ItemInfo (Item_Dyes_Gron) components: 0
+ - ItemInfo (Item_Dyes_Gulbrunur) components: 0
+ - ItemInfo (Item_Dyes_Gulr) components: 0
+ - ItemInfo (Item_Dyes_HaustRaudr) components: 0
+ - ItemInfo (Item_Dyes_Hoss) components: 0
+ - ItemInfo (Item_Dyes_Hvitr) components: 0
+ - ItemInfo (Item_Dyes_Jarpr) components: 0
+ - ItemInfo (Item_Dyes_Myrkagulur) components: 0
+ - ItemInfo (Item_Dyes_Raudr) components: 0
+ - ItemInfo (Item_Dyes_Rosa) components: 0
+ - ItemInfo (Item_Dyes_Sumarr Appels├şnugulur) components: 0
+ - ItemInfo (Item_Dyes_Svartr) components: 0
+ - ItemInfo (Item_Elements_NaturalWaterCollector1) components: 1
+ - - Components item info (Item_Elements_Water) quantity: 1 chance: 1
+ - ItemInfo (Item_Elements_Water) components: 0
+ - ItemInfo (Item_Food_Beetroot) components: 0
+ - ItemInfo (Item_Food_BeetrootCooked) components: 0
+ - ItemInfo (Item_Food_Berries) components: 0
+ - ItemInfo (Item_Food_BiomeBeetroot) components: 3
+ - - Components item info (Item_Food_Beetroot) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_BeetrootSeeds) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_BeetrootSeeds) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_BiomeBerries) components: 3
+ - - Components item info (Item_Food_Berries) quantity: 5 chance: 1
+ - - Components item info (Item_Seeds_BerriesSeeds) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_BerriesSeeds) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_BiomeCabbage) components: 3
+ - - Components item info (Item_Food_Cabbage) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_CabbageSeeds) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_CabbageSeeds) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_BiomeCarrot) components: 3
+ - - Components item info (Item_Food_Carrot) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_CarrotSeeds) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_CarrotSeeds) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_BiomeGarlic) components: 3
+ - - Components item info (Item_Food_Garlic) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_GarlicSeeds) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_GarlicSeeds) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_BiomeMushroom1) components: 1
+ - - Components item info (Item_Food_Mushroom1) quantity: 3 chance: 1
+ - ItemInfo (Item_Food_BiomeMushroomGrey) components: 1
+ - - Components item info (Item_Food_MushroomGrey) quantity: 1 chance: 1
+ - ItemInfo (Item_Food_BiomeMushroomYellow) components: 1
+ - - Components item info (Item_Food_MushroomYellow) quantity: 3 chance: 1
+ - ItemInfo (Item_Food_BiomeMussels) components: 1
+ - - Components item info (Item_Food_Mussels) quantity: 3 chance: 1
+ - ItemInfo (Item_Food_BiomeOnion) components: 3
+ - - Components item info (Item_Food_Onion) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_OnionSeeds) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_OnionSeeds) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_Cabbage) components: 0
+ - ItemInfo (Item_Food_CabbageCooked) components: 0
+ - ItemInfo (Item_Food_Carrot) components: 0
+ - ItemInfo (Item_Food_CarrotCooked) components: 0
+ - ItemInfo (Item_Food_CaveFingers) components: 0
+ - ItemInfo (Item_Food_CaveFingersGrowth) components: 1
+ - - Components item info (Item_Food_CaveFingers) quantity: 5 chance: 1
+ - ItemInfo (Item_Food_CrawlerMaggot) components: 0
+ - ItemInfo (Item_Food_Egg) components: 0
+ - ItemInfo (Item_Food_FishCatfish) components: 2
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 5 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_FishCod) components: 5
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 1
+ - ItemInfo (Item_Food_FishCodCooked) components: 0
+ - ItemInfo (Item_Food_FishMackerelCooked) components: 0
+ - ItemInfo (Item_Food_FishMakerel) components: 3
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 1
+ - ItemInfo (Item_Food_FishMeatCooked) components: 0
+ - ItemInfo (Item_Food_FishMeatRaw) components: 0
+ - ItemInfo (Item_Food_FishPerch) components: 2
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_FishPike) components: 2
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 5 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_FishSalmon) components: 4
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_FishSalmonCooked) components: 0
+ - ItemInfo (Item_Food_FishSeabass) components: 2
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Food_FishSeabassCooked) components: 0
+ - ItemInfo (Item_Food_FishSturgeon) components: 7
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 3 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 1
+ - ItemInfo (Item_Food_FishSturgeonCooked) components: 0
+ - ItemInfo (Item_Food_FishWolffish) components: 7
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Food_FishMeatRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 3 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0,5
+ - ItemInfo (Item_Food_FishWolffishCooked) components: 0
+ - ItemInfo (Item_Food_Garlic) components: 0
+ - ItemInfo (Item_Food_MeatHunk) components: 2
+ - - Components item info (Item_Food_RedMeatRaw) quantity: 5 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 2 chance: 1
+ - ItemInfo (Item_Food_Mushroom1) components: 0
+ - ItemInfo (Item_Food_Mushroom1Cooked) components: 0
+ - ItemInfo (Item_Food_MushroomGrey) components: 0
+ - ItemInfo (Item_Food_MushroomGreyCooked) components: 0
+ - ItemInfo (Item_Food_MushroomYellow) components: 0
+ - ItemInfo (Item_Food_MushroomYellowCooked) components: 0
+ - ItemInfo (Item_Food_Mussels) components: 0
+ - ItemInfo (Item_Food_Onion) components: 0
+ - ItemInfo (Item_Food_OnionCooked) components: 0
+ - ItemInfo (Item_Food_PieFish) components: 0
+ - ItemInfo (Item_Food_PieForager) components: 0
+ - ItemInfo (Item_Food_PieHunter) components: 0
+ - ItemInfo (Item_Food_PieSweet) components: 0
+ - ItemInfo (Item_Food_PieWarrior) components: 0
+ - ItemInfo (Item_Food_RedMeatCooked) components: 0
+ - ItemInfo (Item_Food_RedMeatRaw) components: 0
+ - ItemInfo (Item_Food_SoupBeetroot) components: 0
+ - ItemInfo (Item_Food_SoupBerries) components: 0
+ - ItemInfo (Item_Food_SoupCabbage) components: 0
+ - ItemInfo (Item_Food_SoupCarrot) components: 0
+ - ItemInfo (Item_Food_SoupEggs) components: 0
+ - ItemInfo (Item_Food_SoupFish) components: 0
+ - ItemInfo (Item_Food_SoupGarlic) components: 0
+ - ItemInfo (Item_Food_SoupMeat) components: 0
+ - ItemInfo (Item_Food_SoupMushrooms) components: 0
+ - ItemInfo (Item_Food_SoupMussel) components: 0
+ - ItemInfo (Item_Food_SoupOnion) components: 0
+ - ItemInfo (Item_Food_SoupVegetable) components: 0
+ - ItemInfo (Item_Food_StewBeetroot) components: 0
+ - ItemInfo (Item_Food_StewBerries) components: 0
+ - ItemInfo (Item_Food_StewCabbage) components: 0
+ - ItemInfo (Item_Food_StewCarrot) components: 0
+ - ItemInfo (Item_Food_StewCod) components: 0
+ - ItemInfo (Item_Food_StewEggs) components: 0
+ - ItemInfo (Item_Food_StewFish) components: 0
+ - ItemInfo (Item_Food_StewGarlic) components: 0
+ - ItemInfo (Item_Food_StewMeat) components: 0
+ - ItemInfo (Item_Food_StewMushrooms) components: 0
+ - ItemInfo (Item_Food_StewMussels) components: 0
+ - ItemInfo (Item_Food_StewOnion) components: 0
+ - ItemInfo (Item_Food_StewSeaBass) components: 0
+ - ItemInfo (Item_Food_StewVegetable) components: 0
+ - ItemInfo (Item_Iron_IronBloom) components: 1
+ - - Components item info (Item_Iron_IronBloomHot) quantity: 1 chance: 1
+ - ItemInfo (Item_Iron_IronBloomHot) components: 1
+ - - Components item info (Item_Iron_IronBloom) quantity: 1 chance: 1
+ - ItemInfo (Item_Iron_MetalScraps) components: 0
+ - ItemInfo (Item_Iron_Ore) components: 0
+ - ItemInfo (Item_Iron_Slag) components: 0
+ - ItemInfo (Item_Iron_SteelBloom) components: 1
+ - - Components item info (Item_Iron_SteelBloomHot) quantity: 1 chance: 1
+ - ItemInfo (Item_Iron_SteelBloomHot) components: 1
+ - - Components item info (Item_Iron_SteelBloom) quantity: 1 chance: 1
+ - ItemInfo (Item_Junk_Compost) components: 0
+ - ItemInfo (Item_Junk_Slime) components: 0
+ - ItemInfo (Item_Junk_SpoiledFood) components: 0
+ - ItemInfo (Item_Magic_ArtifactAir) components: 0
+ - ItemInfo (Item_Magic_ArtifactEarth) components: 0
+ - ItemInfo (Item_Magic_ArtifactFire) components: 0
+ - ItemInfo (Item_Magic_ArtifactWater) components: 0
+ - ItemInfo (Item_Magic_BrokenCore) components: 3
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 4 chance: 1
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - ItemInfo (Item_Magic_ExplodingSack) components: 0
+ - ItemInfo (Item_Magic_EyeOfOdin) components: 0
+ - ItemInfo (Item_Magic_FieryShard) components: 0
+ - ItemInfo (Item_Magic_JotunBlood) components: 16
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 0,2
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 0,2
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - ItemInfo (Item_Magic_JotunBloodSmall) components: 6
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 0,2
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - ItemInfo (Item_Magic_RavenPotion) components: 0
+ - ItemInfo (Item_Magic_UnstableCrystal) components: 0
+ - ItemInfo (Item_Materials_BasicRope) components: 0
+ - ItemInfo (Item_Materials_IronBar) components: 1
+ - - Components item info (Item_Materials_IronBarHot) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronBarHot) components: 1
+ - - Components item info (Item_Materials_IronBar) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronHammerHead) components: 0
+ - ItemInfo (Item_Materials_IronHammerHeadHot) components: 1
+ - - Components item info (Item_Materials_IronLargeAxeHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronKnifeBlade) components: 1
+ - - Components item info (Item_Materials_IronKnifeBladeHot) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronKnifeBladeHot) components: 1
+ - - Components item info (Item_Materials_IronKnifeBlade) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronLargeAxeHead) components: 0
+ - ItemInfo (Item_Materials_IronLargeAxeHeadHot) components: 1
+ - - Components item info (Item_Materials_IronLargeAxeHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronLargeBlade) components: 0
+ - ItemInfo (Item_Materials_IronLargeBladeHot) components: 1
+ - - Components item info (Item_Materials_IronLargeBlade) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronLargeHammerHead) components: 0
+ - ItemInfo (Item_Materials_IronLargeHammerHeadHot) components: 1
+ - - Components item info (Item_Materials_IronLargeHammerHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronLargePickaxeHead) components: 0
+ - ItemInfo (Item_Materials_IronLargePickaxeHeadHot) components: 1
+ - - Components item info (Item_Materials_IronLargePickaxeHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronNails) components: 0
+ - ItemInfo (Item_Materials_IronNailsHot) components: 1
+ - - Components item info (Item_Materials_IronNails) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronPickaxeHead) components: 0
+ - ItemInfo (Item_Materials_IronPickaxeHeadHot) components: 1
+ - - Components item info (Item_Materials_IronPickaxeHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronPlate) components: 1
+ - - Components item info (Item_Materials_IronPlateHot) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronPlateHot) components: 1
+ - - Components item info (Item_Materials_IronPlate) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronSmallAxeHead) components: 0
+ - ItemInfo (Item_Materials_IronSmallAxeHeadHot) components: 1
+ - - Components item info (Item_Materials_IronSmallAxeHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronSmallBlade) components: 0
+ - ItemInfo (Item_Materials_IronSmallBladeHot) components: 1
+ - - Components item info (Item_Materials_IronSmallBlade) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_IronSmallHammerHead) components: 0
+ - ItemInfo (Item_Materials_IronSmallHammerHeadHot) components: 1
+ - - Components item info (Item_Materials_IronSmallHammerHead) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_LeatherCuredHeavyPelt) components: 0
+ - ItemInfo (Item_Materials_LeatherCuredHide) components: 0
+ - ItemInfo (Item_Materials_LeatherCuredPelt) components: 0
+ - ItemInfo (Item_Materials_LeatherHeavyPelt) components: 1
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 6 chance: 1
+ - ItemInfo (Item_Materials_LeatherHide) components: 1
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 2 chance: 1
+ - ItemInfo (Item_Materials_LeatherPelt) components: 1
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 3 chance: 1
+ - ItemInfo (Item_Materials_LeatherScraps) components: 0
+ - ItemInfo (Item_Materials_Linen) components: 0
+ - ItemInfo (Item_Materials_LinenThread) components: 0
+ - ItemInfo (Item_Materials_SteelBar) components: 1
+ - - Components item info (Item_Materials_SteelBarHot) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_SteelBarHot) components: 1
+ - - Components item info (Item_Materials_SteelBar) quantity: 1 chance: 1
+ - ItemInfo (Item_Materials_Stone Blade) components: 0
+ - ItemInfo (Item_Misc_BiomeMarkerCave) components: 0
+ - ItemInfo (Item_Misc_BiomeMarkerCemeteryLarge) components: 0
+ - ItemInfo (Item_Misc_BiomeMarkerCemeterySmall) components: 0
+ - ItemInfo (Item_Misc_BiomeMarkerDraugarField) components: 0
+ - ItemInfo (Item_Misc_BiomeMarkerLakeBig) components: 0
+ - ItemInfo (Item_Misc_BiomeMarkerMiniSpire) components: 0
+ - ItemInfo (Item_Misc_BiomeMarkerSpire) components: 0
+ - ItemInfo (Item_Misc_BiomeMarkerStoneJotunArena) components: 0
+ - ItemInfo (Item_Misc_BiomeMarkerWightShipwreck) components: 0
+ - ItemInfo (Item_Misc_BiomeMarkerWolfDen) components: 0
+ - ItemInfo (Item_Misc_BirdNest) components: 3
+ - - Components item info (Item_Misc_Feathers) quantity: 2 chance: 1
+ - - Components item info (Item_Misc_Feathers) quantity: 1 chance: 1
+ - - Components item info (Item_Food_Egg) quantity: 1 chance: 0,3
+ - ItemInfo (Item_Misc_BoneFragments) components: 0
+ - ItemInfo (Item_Misc_CharacterRemains) components: 0
+ - ItemInfo (Item_Misc_CrawlerEgg1) components: 4
+ - - Components item info (Item_Misc_CrawlerSack) quantity: 1 chance: 0,2
+ - - Components item info (Item_Wood_Resin) quantity: 1 chance: 0,5
+ - - Components item info (Item_Junk_Slime) quantity: 1 chance: 1
+ - - Components item info (Item_Food_CrawlerMaggot) quantity: 1 chance: 0,65
+ - ItemInfo (Item_Misc_CrawlerEgg2) components: 4
+ - - Components item info (Item_Misc_CrawlerSack) quantity: 1 chance: 0,2
+ - - Components item info (Item_Wood_Resin) quantity: 1 chance: 0,5
+ - - Components item info (Item_Junk_Slime) quantity: 1 chance: 1
+ - - Components item info (Item_Food_CrawlerMaggot) quantity: 1 chance: 0,65
+ - ItemInfo (Item_Misc_CrawlerEgg3) components: 4
+ - - Components item info (Item_Misc_CrawlerSack) quantity: 1 chance: 0,2
+ - - Components item info (Item_Wood_Resin) quantity: 1 chance: 0,5
+ - - Components item info (Item_Junk_Slime) quantity: 1 chance: 1
+ - - Components item info (Item_Food_CrawlerMaggot) quantity: 1 chance: 0,65
+ - ItemInfo (Item_Misc_CrawlerEgg4) components: 4
+ - - Components item info (Item_Misc_CrawlerSack) quantity: 1 chance: 0,2
+ - - Components item info (Item_Wood_Resin) quantity: 1 chance: 0,5
+ - - Components item info (Item_Junk_Slime) quantity: 1 chance: 1
+ - - Components item info (Item_Food_CrawlerMaggot) quantity: 1 chance: 0,65
+ - ItemInfo (Item_Misc_CrawlerSack) components: 0
+ - ItemInfo (Item_Misc_Feathers) components: 0
+ - ItemInfo (Item_Misc_FieryShardBlock) components: 6
+ - - Components item info (Item_Magic_FieryShard) quantity: 1 chance: 1
+ - - Components item info (Item_Magic_FieryShard) quantity: 1 chance: 0,2
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - ItemInfo (Item_Misc_SmolkrHornRaw) components: 0
+ - ItemInfo (Item_Misc_VillagerRemains) components: 0
+ - ItemInfo (Item_Population_BabyCrawler) components: 1
+ - - Components item info (Item_Food_RedMeatRaw) quantity: 3 chance: 1
+ - ItemInfo (Item_Population_Bear) components: 5
+ - - Components item info (Item_Food_MeatHunk) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherHide) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherHeavyPelt) quantity: 1 chance: 0
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0
+ - ItemInfo (Item_Population_Crawler) components: 1
+ - - Components item info (Item_Food_MeatHunk) quantity: 3 chance: 1
+ - ItemInfo (Item_Population_Draugar) components: 2
+ - - Components item info (Item_Shields_ShieldDraugar) quantity: 1 chance: 0,06
+ - - Components item info (Item_OneHanded_1HDraugarSword) quantity: 1 chance: 0,05
+ - ItemInfo (Item_Population_DraugarAlpha) components: 1
+ - - Components item info (Item_OneHanded_1HSwordT2) quantity: 1 chance: 1
+ - ItemInfo (Item_Population_DraugarBerserker) components: 2
+ - - Components item info (Item_Shields_ShieldDraugar) quantity: 1 chance: 0,06
+ - - Components item info (Item_OneHanded_1HBattleaxeT2) quantity: 1 chance: 0,05
+ - ItemInfo (Item_Population_DraugarBruiser) components: 1
+ - - Components item info (Item_TwoHanded_DraugarGreatsword) quantity: 1 chance: 0,05
+ - ItemInfo (Item_Population_DraugarRanger) components: 2
+ - - Components item info (Item_Bows_FlimsyBow) quantity: 1 chance: 0,05
+ - - Components item info (Item_Arrows_WoodArrows) quantity: 1 chance: 0,07
+ - ItemInfo (Item_Population_Fenn) components: 4
+ - - Components item info (Item_Food_MeatHunk) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 1 chance: 0
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherHide) quantity: 1 chance: 0
+ - ItemInfo (Item_Population_Fennmar) components: 4
+ - - Components item info (Item_Food_MeatHunk) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 1 chance: 0
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherHide) quantity: 1 chance: 0
+ - ItemInfo (Item_Population_Follower) components: 0
+ - ItemInfo (Item_Population_Pup) components: 0
+ - ItemInfo (Item_Population_SkeletonBerserk) components: 2
+ - - Components item info (Item_Shields_ShieldDraugar) quantity: 1 chance: 0,06
+ - - Components item info (Item_OneHanded_1HBattleaxeT2) quantity: 1 chance: 0,05
+ - ItemInfo (Item_Population_SkeletonBruiser) components: 1
+ - - Components item info (Item_TwoHanded_DraugarGreatsword) quantity: 1 chance: 0,05
+ - ItemInfo (Item_Population_SkeletonNecromancer) components: 0
+ - ItemInfo (Item_Population_SkeletonNecromancerAlpha) components: 0
+ - ItemInfo (Item_Population_SkeletonRanger) components: 2
+ - - Components item info (Item_Bows_FlimsyBow) quantity: 1 chance: 0,06
+ - - Components item info (Item_Arrows_WoodArrows) quantity: 1 chance: 0,08
+ - ItemInfo (Item_Population_SkeletonRiderAlpha) components: 9
+ - - Components item info (Item_Bows_DraugarBow) quantity: 1 chance: 1
+ - - Components item info (Item_Arrows_DraugarArrow) quantity: 1 chance: 0,5
+ - - Components item info (Item_Shields_ShieldDraugar) quantity: 1 chance: 0,5
+ - - Components item info (Item_OneHanded_1HBattleaxeT2) quantity: 1 chance: 0,5
+ - - Components item info (Item_Junk_Compost) quantity: 2 chance: 1
+ - - Components item info (Item_Misc_BoneFragments) quantity: 2 chance: 1
+ - - Components item info (Item_Iron_MetalScraps) quantity: 2 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 2 chance: 1
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 2 chance: 1
+ - ItemInfo (Item_Population_SkeletonWarrior) components: 2
+ - - Components item info (Item_Shields_ShieldDraugar) quantity: 1 chance: 0,06
+ - - Components item info (Item_OneHanded_1HDraugarSword) quantity: 1 chance: 0,05
+ - ItemInfo (Item_Population_Smolkr) components: 3
+ - - Components item info (Item_Food_RedMeatRaw) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 1 chance: 0
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0
+ - ItemInfo (Item_Population_SmolkrM) components: 4
+ - - Components item info (Item_Food_RedMeatRaw) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 1 chance: 0
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0
+ - - Components item info (Item_Misc_SmolkrHornRaw) quantity: 1 chance: 0
+ - ItemInfo (Item_Population_StoneJotun) components: 3
+ - - Components item info (Item_Stone_Raw) quantity: 8 chance: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 16 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 10 chance: 1
+ - ItemInfo (Item_Population_StoneJotunBaby) components: 0
+ - ItemInfo (Item_Population_StoneJotunDestroyer) components: 0
+ - ItemInfo (Item_Population_ThunderWolf) components: 5
+ - - Components item info (Item_Food_MeatHunk) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherHide) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherPelt) quantity: 1 chance: 0
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0
+ - ItemInfo (Item_Population_Villager) components: 1
+ - - Components item info (Item_Magic_EyeOfOdin) quantity: 1 chance: 1
+ - ItemInfo (Item_Population_Wight) components: 0
+ - ItemInfo (Item_Population_WightBoss) components: 0
+ - ItemInfo (Item_Population_Wisp) components: 0
+ - ItemInfo (Item_Population_Wolf) components: 5
+ - - Components item info (Item_Food_MeatHunk) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherHide) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherPelt) quantity: 1 chance: 0
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0
+ - ItemInfo (Item_Population_WolfAlpha) components: 5
+ - - Components item info (Item_Food_MeatHunk) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherScraps) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherHide) quantity: 1 chance: 0
+ - - Components item info (Item_Materials_LeatherPelt) quantity: 1 chance: 0
+ - - Components item info (Item_Misc_BoneFragments) quantity: 1 chance: 0
+ - ItemInfo (Item_Seeds_BeetrootSeeds) components: 0
+ - ItemInfo (Item_Seeds_BerriesSeeds) components: 0
+ - ItemInfo (Item_Seeds_CabbageSeeds) components: 0
+ - ItemInfo (Item_Seeds_CarrotSeeds) components: 0
+ - ItemInfo (Item_Seeds_FlaxSeeds) components: 0
+ - ItemInfo (Item_Seeds_GarlicSeeds) components: 0
+ - ItemInfo (Item_Seeds_OnionSeeds) components: 0
+ - ItemInfo (Item_Seeds_ReedsSeeds) components: 0
+ - ItemInfo (Item_Seeds_SpruceSeeds) components: 0
+ - ItemInfo (Item_Stone_IronDeposit) components: 2
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Iron_Ore) quantity: 1 chance: 1
+ - ItemInfo (Item_Stone_Polished) components: 0
+ - ItemInfo (Item_Stone_Raw) components: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - ItemInfo (Item_Stone_SmallRaw) components: 0
+ - ItemInfo (Item_Stone_StoneClump) components: 2
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - ItemInfo (Item_Stone_StoneClumpSmall) components: 2
+ - - Components item info (Item_Stone_Raw) quantity: 1 chance: 1
+ - - Components item info (Item_Stone_SmallRaw) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_Bark) components: 2
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 1
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 0,33
+ - ItemInfo (Item_Wood_BarkFibres) components: 0
+ - ItemInfo (Item_Wood_Beam) components: 1
+ - - Components item info (Item_Wood_Firewood) quantity: 4 chance: 1
+ - ItemInfo (Item_Wood_birch1) components: 4
+ - - Components item info (Item_Wood_HardWoodLog) quantity: 1 chance: 1
+ - - Components item info (Item_Wood_HardWoodLongStick) quantity: 3 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 6 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 5 chance: 1
+ - ItemInfo (Item_Wood_birch2) components: 4
+ - - Components item info (Item_Wood_HardWoodLog) quantity: 2 chance: 1
+ - - Components item info (Item_Wood_HardWoodLongStick) quantity: 3 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 6 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 6 chance: 1
+ - ItemInfo (Item_Wood_BirchSapling) components: 1
+ - - Components item info (Item_Wood_TreeBirch1Sapling) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_Coal) components: 0
+ - ItemInfo (Item_Wood_Fir1) components: 5
+ - - Components item info (Item_Wood_RawLog) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_RawLongStick) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 10 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 10 chance: 1
+ - - Components item info (Item_Wood_Resin) quantity: 10 chance: 1
+ - ItemInfo (Item_Wood_Fir2) components: 5
+ - - Components item info (Item_Wood_RawLog) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_RawLongStick) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 10 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 10 chance: 1
+ - - Components item info (Item_Wood_Resin) quantity: 10 chance: 1
+ - ItemInfo (Item_Wood_Fir3) components: 4
+ - - Components item info (Item_Wood_RawLongStick) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 10 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 10 chance: 1
+ - - Components item info (Item_Wood_Resin) quantity: 10 chance: 1
+ - ItemInfo (Item_Wood_Fir4) components: 5
+ - - Components item info (Item_Wood_RawLog) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_RawLongStick) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 10 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 10 chance: 1
+ - - Components item info (Item_Wood_Resin) quantity: 10 chance: 1
+ - ItemInfo (Item_Wood_Fir5) components: 4
+ - - Components item info (Item_Wood_RawLongStick) quantity: 3 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 6 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Resin) quantity: 4 chance: 1
+ - ItemInfo (Item_Wood_Firewood) components: 0
+ - ItemInfo (Item_Wood_FirSapling) components: 1
+ - - Components item info (Item_Wood_TreeFir2Sapling) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_HardWoodLog) components: 3
+ - - Components item info (Item_Wood_Firewood) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 5 chance: 1
+ - ItemInfo (Item_Wood_HardWoodLongStick) components: 3
+ - - Components item info (Item_Wood_Firewood) quantity: 3 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 3 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 3 chance: 1
+ - ItemInfo (Item_Wood_Oak) components: 4
+ - - Components item info (Item_Wood_RawLog) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_RawLongStick) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 10 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 10 chance: 1
+ - ItemInfo (Item_Wood_Plank) components: 1
+ - - Components item info (Item_Wood_Firewood) quantity: 4 chance: 1
+ - ItemInfo (Item_Wood_PlankLong) components: 1
+ - - Components item info (Item_Wood_Firewood) quantity: 2 chance: 1
+ - ItemInfo (Item_Wood_PlankSmall) components: 0
+ - ItemInfo (Item_Wood_PlantFlax) components: 3
+ - - Components item info (Item_Wood_BarkFibres) quantity: 5 chance: 1
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 0,33
+ - - Components item info (Item_Seeds_FlaxSeeds) quantity: 5 chance: 1
+ - ItemInfo (Item_Wood_PlantReeds) components: 2
+ - - Components item info (Item_Wood_Thatch) quantity: 1 chance: 1
+ - - Components item info (Item_Seeds_ReedsSeeds) quantity: 0 chance: 0,5
+ - ItemInfo (Item_Wood_Post) components: 1
+ - - Components item info (Item_Wood_Firewood) quantity: 6 chance: 1
+ - ItemInfo (Item_Wood_RawLog) components: 4
+ - - Components item info (Item_Wood_Firewood) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 2 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Resin) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_RawLongStick) components: 3
+ - - Components item info (Item_Wood_Firewood) quantity: 2 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 2 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 2 chance: 1
+ - ItemInfo (Item_Wood_Resin) components: 0
+ - ItemInfo (Item_Wood_Shaft) components: 0
+ - ItemInfo (Item_Wood_SmallFirSapling) components: 1
+ - - Components item info (Item_Wood_TreeFir3Sapling) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_Sticks) components: 0
+ - ItemInfo (Item_Wood_Thatch) components: 1
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeBirch1) components: 1
+ - - Components item info (Item_Wood_birch1) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeBirch1Sapling) components: 1
+ - - Components item info (Item_Wood_birch1) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeBirch2) components: 1
+ - - Components item info (Item_Wood_birch2) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeFir1) components: 1
+ - - Components item info (Item_Wood_Fir1) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeFir2) components: 1
+ - - Components item info (Item_Wood_Fir2) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeFir2Sapling) components: 1
+ - - Components item info (Item_Wood_Fir2) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeFir3) components: 1
+ - - Components item info (Item_Wood_Fir3) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeFir3Sapling) components: 1
+ - - Components item info (Item_Wood_Fir3) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeFir4) components: 1
+ - - Components item info (Item_Wood_Fir4) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeFir5) components: 1
+ - - Components item info (Item_Wood_Fir5) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeOak) components: 1
+ - - Components item info (Item_Wood_Oak) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_TreeWillow) components: 1
+ - - Components item info (Item_Wood_Willow) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_Willow) components: 4
+ - - Components item info (Item_Wood_HardWoodLog) quantity: 5 chance: 1
+ - - Components item info (Item_Wood_HardWoodLongStick) quantity: 7 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 12 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 8 chance: 1
+ - ItemInfo (Item_Axes_ChoppingAxe) components: 0
+ - ItemInfo (Item_Axes_IronSmallAxe) components: 0
+ - ItemInfo (Item_Axes_LargeIronAxe) components: 0
+ - ItemInfo (Item_Axes_LargeStoneAxe) components: 0
+ - ItemInfo (Item_Axes_StoneAxe) components: 0
+ - ItemInfo (Item_DrawKnives_IronDrawKnife) components: 0
+ - ItemInfo (Item_FishingRods_2HWoodFishingRod) components: 0
+ - ItemInfo (Item_FishingRods_FlimsyFishingRod) components: 0
+ - ItemInfo (Item_FishingRods_SturdyFishingRod) components: 0
+ - ItemInfo (Item_Gadgets_DogBox) components: 0
+ - ItemInfo (Item_Gadgets_EmptyDogBox) components: 0
+ - ItemInfo (Item_Gadgets_SpoiledDogBox) components: 2
+ - - Components item info (Item_Materials_BasicRope) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 4 chance: 1
+ - ItemInfo (Item_Gadgets_TreePlantingHole) components: 0
+ - ItemInfo (Item_Hammers_Hammer) components: 0
+ - ItemInfo (Item_Hammers_IronBuildHammer) components: 0
+ - ItemInfo (Item_Hammers_WoodHammer) components: 0
+ - ItemInfo (Item_Hoes_IronHoe) components: 0
+ - ItemInfo (Item_Hoes_WoodHoe) components: 0
+ - ItemInfo (Item_Knives_IronSkinningKnife) components: 0
+ - ItemInfo (Item_Knives_StoneKnife) components: 0
+ - ItemInfo (Item_PaintBrushes_ThatchBrush) components: 0
+ - ItemInfo (Item_Pickaxes_IronSmallPickaxe) components: 0
+ - ItemInfo (Item_Pickaxes_LargeIronPickaxe) components: 0
+ - ItemInfo (Item_Pickaxes_LargeStonePickaxe) components: 0
+ - ItemInfo (Item_Pickaxes_Pickaxe) components: 0
+ - ItemInfo (Item_Pickaxes_StonePickaxe) components: 0
+ - ItemInfo (Item_Rakes_IronRake) components: 0
+ - ItemInfo (Item_Rakes_WoodRake) components: 0
+ - ItemInfo (Item_Shovels_IronShovel) components: 0
+ - ItemInfo (Item_Shovels_WoodShovel) components: 0
+ - ItemInfo (Item_Special Tools_SmolkrHorn) components: 0
+ - ItemInfo (Item_SpecialTools_IronRoadmaker) components: 0
+ - ItemInfo (Item_SpecialTools_Roadmaker) components: 0
+ - ItemInfo (Item_Torches_SimpleTorch) components: 0
+ - ItemInfo (Item_Bows_DraugarBow) components: 0
+ - ItemInfo (Item_Bows_FlimsyBow) components: 0
+ - ItemInfo (Item_Bows_Longbow) components: 0
+ - ItemInfo (Item_Bows_SimpleBow) components: 0
+ - ItemInfo (Item_OneHanded_1HBattleaxeT2) components: 0
+ - ItemInfo (Item_OneHanded_1HDraugarBattleAxe) components: 0
+ - ItemInfo (Item_OneHanded_1HDraugarBattleHammer) components: 0
+ - ItemInfo (Item_OneHanded_1HDraugarSword) components: 0
+ - ItemInfo (Item_OneHanded_1HFlimsyClub) components: 0
+ - ItemInfo (Item_OneHanded_1HIronBattleAxe) components: 0
+ - ItemInfo (Item_OneHanded_1HIronBattleHammer) components: 0
+ - ItemInfo (Item_OneHanded_1HIronSword) components: 0
+ - ItemInfo (Item_OneHanded_1HSimpleSpikedClub) components: 0
+ - ItemInfo (Item_OneHanded_1HSwordT2) components: 0
+ - ItemInfo (Item_OneHanded_Smallsword) components: 0
+ - ItemInfo (Item_Shields_CrudeHeaterShield) components: 0
+ - ItemInfo (Item_Shields_CrudeNormanShield) components: 0
+ - ItemInfo (Item_Shields_CrudeRoundShield) components: 0
+ - ItemInfo (Item_Shields_CrudeTowerShield) components: 0
+ - ItemInfo (Item_Shields_DraugarMashroomShield) components: 0
+ - ItemInfo (Item_Shields_ReinforcedHeaterShield) components: 0
+ - ItemInfo (Item_Shields_ReinforcedNormanShield) components: 0
+ - ItemInfo (Item_Shields_ReinforcedRoundShield) components: 0
+ - ItemInfo (Item_Shields_ReinforcedTowerShield) components: 0
+ - ItemInfo (Item_Shields_ShieldDraugar) components: 0
+ - ItemInfo (Item_Shields_ShieldT1) components: 0
+ - ItemInfo (Item_Shields_ShieldT2) components: 0
+ - ItemInfo (Item_TwoHanded_2HHeavyClub) components: 0
+ - ItemInfo (Item_TwoHanded_2HIronBattleAxe) components: 0
+ - ItemInfo (Item_TwoHanded_2HIronBattleHammer) components: 0
+ - ItemInfo (Item_TwoHanded_2HIronSword) components: 0
+ - ItemInfo (Item_TwoHanded_DraugarGreatsword) components: 0
+ - ItemInfo (Item_TwoHanded_Greatsword) components: 0
+ItemInfoList (StartItems_Draugar_Bruiser) amount: 1
+ - ItemInfo (Item_TwoHanded_DraugarGreatsword) components: 0
+ItemInfoList (DogFood) amount: 4
+ - ItemInfo (Item_Food_RedMeatRaw) components: 0
+ - ItemInfo (Item_Food_FishMeatRaw) components: 0
+ - ItemInfo (Item_Food_RedMeatCooked) components: 0
+ - ItemInfo (Item_Food_FishMeatCooked) components: 0
+ItemInfoList (CarpenterBlueprints_B_T1) amount: 2
+ - ItemInfo (Item_Carpentry_PostCarpentry) components: 1
+ - - Components item info (Item_Wood_Bark) quantity: 1 chance: 0,25
+ - ItemInfo (Item_Carpentry_BeamCarpentry) components: 1
+ - - Components item info (Item_Wood_Bark) quantity: 1 chance: 0,25
+ItemInfoList (PlankWood) amount: 4
+ - ItemInfo (Item_Wood_Post) components: 1
+ - - Components item info (Item_Wood_Firewood) quantity: 6 chance: 1
+ - ItemInfo (Item_Wood_Beam) components: 1
+ - - Components item info (Item_Wood_Firewood) quantity: 4 chance: 1
+ - ItemInfo (Item_Wood_HardWoodLongStick) components: 3
+ - - Components item info (Item_Wood_Firewood) quantity: 3 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 3 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 3 chance: 1
+ - ItemInfo (Item_Wood_HardWoodLog) components: 3
+ - - Components item info (Item_Wood_Firewood) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 5 chance: 1
+ItemInfoList (RawWood) amount: 2
+ - ItemInfo (Item_Wood_HardWoodLog) components: 3
+ - - Components item info (Item_Wood_Firewood) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 4 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 5 chance: 1
+ - ItemInfo (Item_Wood_HardWoodLongStick) components: 3
+ - - Components item info (Item_Wood_Firewood) quantity: 3 chance: 1
+ - - Components item info (Item_Wood_Bark) quantity: 3 chance: 1
+ - - Components item info (Item_Wood_Sticks) quantity: 3 chance: 1
+ItemInfoList (AllFirekeepingFuels) amount: 6
+ - ItemInfo (Item_Wood_Firewood) components: 0
+ - ItemInfo (Item_Wood_Coal) components: 0
+ - ItemInfo (Item_Wood_Sticks) components: 0
+ - ItemInfo (Item_Wood_Bark) components: 2
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 1
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 0,33
+ - ItemInfo (Item_Wood_Thatch) components: 1
+ - - Components item info (Item_Wood_BarkFibres) quantity: 1 chance: 1
+ - ItemInfo (Item_Wood_Shaft) components: 0
+ItemInfoList (StartItems_Oven) amount: 4
+ - ItemInfo (Item_SpecialBags_Oven) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ - ItemInfo (Item_Elements_Water) components: 0
+ItemInfoList (Recipes_Oven) amount: 5
+ - ItemInfo (Item_Cooking_PieSweetBP) components: 0
+ - ItemInfo (Item_Cooking_PieFishBP) components: 0
+ - ItemInfo (Item_Cooking_PieForagerBP) components: 0
+ - ItemInfo (Item_Cooking_PieHunterBP) components: 0
+ - ItemInfo (Item_Cooking_PieWarriorBP) components: 0
+ItemInfoList (StartItems_Draugar_Rider) amount: 99
+ - ItemInfo (Item_OneHanded_1HBattleaxeT2) components: 0
+ - ItemInfo (Item_Shields_ShieldDraugar) components: 0
+ - ItemInfo (Item_Bows_DraugarBow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ - ItemInfo (Item_Arrows_DraugarArrow) components: 0
+ItemInfoList (WeaverBlueprints_T1) amount: 2
+ - ItemInfo (Item_Materials_Linen) components: 0
+ - ItemInfo (Item_Materials_LinenThread) components: 0
+ItemInfoList (AllLightkeepingFuels) amount: 1
+ - ItemInfo (Item_Wood_Resin) components: 0
+ItemInfoList (RavenTotemBlueprints_T0) amount: 1
+ - ItemInfo (Item_Magic_RavenMagicBP) components: 0
+ItemInfoList (SimpleTorchFuels) amount: 1
+ - ItemInfo (Item_Wood_Resin) components: 0
+ItemInfoList (StartItems_Draugar_Alpha) amount: 1
+ - ItemInfo (Item_OneHanded_1HSwordT2) components: 0
