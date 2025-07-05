@@ -4,13 +4,10 @@ using SandSailorStudio.Inventory;
 using SandSailorStudio.Pooling;
 using SSSGame;
 using SSSGame.Combat;
-using SSSGame.Network;
 using SSSGame.Render;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using static askaplus.bepinex.mod.Plugin;
-using static askaplus.bepinex.mod.TorchesToBuildings;
 
 namespace askaplus.bepinex.mod
 {
@@ -43,7 +40,7 @@ namespace askaplus.bepinex.mod
             Component.DestroyImmediate(torch.GetComponent<BoxCollider>());
             Component.DestroyImmediate(torch.GetComponent<PickableVolume>());
             Component.DestroyImmediate(torch.GetComponent<DynamicItemObject>());
-            Component.DestroyImmediate(torch.GetComponent<NetworkInteractable>());
+            Component.DestroyImmediate(torch.GetComponent<SSSGame.Network.NetworkItemInteractable>());
             Component.DestroyImmediate(torch.GetComponent<Pickable>());
             Component.DestroyImmediate(torch.GetComponent<PickupInteraction>());
             Component.DestroyImmediate(torch.GetComponent<MultiInteractionProxy>());
@@ -90,7 +87,7 @@ namespace askaplus.bepinex.mod
             Component.DestroyImmediate(sourcePillar.GetComponentInChildren<Pickable>());
             Component.DestroyImmediate(sourcePillar.GetComponentInChildren<Rigidbody>());
             Component.DestroyImmediate(sourcePillar.GetComponentInChildren<CavePillarInteraction>());
-            Component.DestroyImmediate(sourcePillar.GetComponentInChildren<NetworkInteractable>());
+            Component.DestroyImmediate(sourcePillar.GetComponentInChildren<SSSGame.Network.NetworkItemInteractable>());
             Component.DestroyImmediate(sourcePillar.GetComponentInChildren<EquipmentManager>());
             Component.DestroyImmediate(sourcePillar.GetComponentInChildren<StandaloneInteractionArea>());
             foreach (var com in sourcePillar.GetComponentsInChildren<StorageInteraction>())
