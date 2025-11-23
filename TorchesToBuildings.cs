@@ -358,10 +358,8 @@ namespace askaplus.bepinex.mod
                         AddTorches(sb, sourcePillar, torch, "metalworker_complete_1_0_frame", posRots);
                         break;
                     case "Workshop_L1":
-                        posRots.Add(new PosRot(new Vector3(-1.87f, 0f, -3.21f), Quaternion.Euler(0f, 270f, 10f)));
-                        posRots.Add(new PosRot(new Vector3(2.15f, 0f, 3.26f), Quaternion.Euler(0f, 90f, 10f)));
-                        posRots.Add(new PosRot(new Vector3(-2.1f, -0f, 3.2f), Quaternion.Euler(0f, 90f, 10f)));
-                        posRots.Add(new PosRot(new Vector3(2.38f, 0f, -3.17f), Quaternion.Euler(0f, 270f, 10f)));
+                        posRots.Add(new PosRot(new Vector3(2.2f, 0f, 1.4f), Quaternion.Euler(0f, 90f, 10f)));
+                        posRots.Add(new PosRot(new Vector3(-1.7f, 0f, -1.2f), Quaternion.Euler(0f, 270f, 10f)));
                         AddTorches(sb, sourcePillar, torch, "workshop_t1_complete_0_0", posRots);
                         break;
                     case "Workshop_L1_addon_Carpenter_L1":
@@ -405,6 +403,23 @@ namespace askaplus.bepinex.mod
                         posRots.Add(new PosRot(new Vector3(-2.1f, -0f, 3.2f), Quaternion.Euler(0f, 90f, 10f)));
                         posRots.Add(new PosRot(new Vector3(2.38f, 0f, -3.17f), Quaternion.Euler(0f, 270f, 10f)));
                         AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
+                        break;
+                    case "KarviDesertCampAddon":
+                        posRots.Add(new PosRot(new Vector3(12f, -1f, -2.9f), Quaternion.Euler(0f, 195f, 10f)));
+                        posRots.Add(new PosRot(new Vector3(9.61f, -1f, -6.75f), Quaternion.Euler(0f, 215f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "PropCampFlag", posRots);
+                        break;
+                    case "SmolkrPen_L2":
+                        posRots.Add(new PosRot(new Vector3(-1.17f, 0f, -3.6f), Quaternion.Euler(0f, 270f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "structure_complete_2_0_walls", posRots);
+                        break;
+                    case "Harbor":
+                        posRots.Add(new PosRot(new Vector3(-6.93f, 1.6f, 15.3f), Quaternion.Euler(0f, 180f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "storage_large_complete_8_0_storageLargeWall", posRots);
+                        break;
+                    case "Cheesemaker_L2":
+                        posRots.Add(new PosRot(new Vector3(-3.4f, 1.6f, -1.64f), Quaternion.Euler(0f, 270f, 10f)));
+                        AddTorches(sb, sourcePillar, torch, "wall_complete_1_0_wall", posRots);
                         break;
                     default:
                         //                        Plugin.Log.LogInfo($"Torshes not added to {sb.gameObject.name}");
