@@ -56,7 +56,7 @@ namespace askaplus.bepinex.mod
                                 {
                                     if (attributes.Contains(ae.targetAttribute.attributeId))
                                     {
-                                        //Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
+                                        //Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {ce.duration} to {5 * 60}");
                                         ce.duration = 5 * 60;
                                     }
                                 }
@@ -79,7 +79,7 @@ namespace askaplus.bepinex.mod
                                         {
                                             if (attributes.Contains(ae.targetAttribute.attributeId))
                                             {
-                                                //  Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
+                                                //Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
                                                 se.duration = 5 * 60;
                                             }
                                         }
