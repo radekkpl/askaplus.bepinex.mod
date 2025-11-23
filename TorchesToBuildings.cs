@@ -62,7 +62,7 @@ namespace askaplus.bepinex.mod
             }
             else
             {
-                hdData.fadeDistance = 60f;
+                hdData.fadeDistance = 100f;
             }
             torch.transform.GetChild(1).gameObject.SetActive(true);
             torch.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);

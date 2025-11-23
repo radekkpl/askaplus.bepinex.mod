@@ -12,7 +12,7 @@
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
     <RootNamespace>askaplus.bepinex.mod</RootNamespace>
-    <AssemblyVersion>0.4.0</AssemblyVersion>
+    <AssemblyVersion>0.5.0</AssemblyVersion>
     <FileVersion>$(AssemblyVersion)</FileVersion>
     <Version>$(AssemblyVersion)</Version>
   </PropertyGroup>
