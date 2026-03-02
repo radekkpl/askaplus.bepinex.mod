@@ -22,12 +22,13 @@ namespace askaplus.bepinex.mod
             if (patched) return;
             patched = true;
             GameObject sourcePillar = null;
-
             if (Plugin.configTorchesBuildingEnable.Value == false) return;
 
 
             //Tests for adding Torches to b buildings
             var torches = Resources.FindObjectsOfTypeAll<Torch>();
+
+            var Triggers = Resources.FindObjectsOfTypeAll<RangedStatusEffectTrigger>();
 
             var torch = GameObject.Instantiate(torches[0].gameObject);
             Plugin.Log.LogDebug($"Torch instantiated");
@@ -52,17 +53,9 @@ namespace askaplus.bepinex.mod
             {
                 light.shadows = LightShadows.Soft;
             }
-            else
-            {
-                light.shadows = LightShadows.None;
-            }
             if (Plugin.configTorchesLightExtended.Value)
             {
                 hdData.fadeDistance = 200f;
-            }
-            else
-            {
-                hdData.fadeDistance = 100f;
             }
             torch.transform.GetChild(1).gameObject.SetActive(true);
             torch.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
@@ -445,7 +438,7 @@ namespace askaplus.bepinex.mod
         }
 
 
-        private static void AddTorches(Structure targetStructure, GameObject targetPosSource, GameObject torchSource, string GOname, System.Collections.Generic.List<PosRot> posRots)
+        private static void AddTorches(Structure targetStructure, GameObject targetPosSource, GameObject torchSource,string GOname, System.Collections.Generic.List<PosRot> posRots)
         {
             //Plugin.Log.LogInfo($"Trying to add Torches to {targetStructure.gameObject.name}");
 
@@ -489,6 +482,7 @@ namespace askaplus.bepinex.mod
             Helpers.CreateSwitch(parent, "* Enable Mod", configTorchesBuildingEnable);
             Helpers.CreateSwitch(parent, "* Enable shadows", configTorchesBuildingShadowsEnable);
             Helpers.CreateSwitch(parent, "* Light extended visibility", configTorchesLightExtended);
+            //Helpers.CreateSwitch(parent, "* Torches generate heat", configTorchesHeatEnable);
             UnityAction applyCallback = (UnityAction)(() =>
             {
                 Plugin.configGrassPaintKey.Value = KeyCode.Z;
@@ -501,7 +495,7 @@ namespace askaplus.bepinex.mod
         }
     }
     [HarmonyPatch(typeof(Structure))]
-    internal class StrucutrePatch
+    internal class StructurePatch
     {
         [HarmonyPostfix]
         [HarmonyPatch(nameof(Structure.Spawned))]
@@ -520,7 +514,7 @@ namespace askaplus.bepinex.mod
 
                     Transform askaplustorches = __instance.gameObject.transform.FindChildByNameRecursive("AskaPlusTorches");
                     askaplustorches?.gameObject.SetActive(noiseValue<0.1 || (noiseValue > 0.4 && noiseValue < 0.5) || (noiseValue > 0.9));
-                    Plugin.Log.LogMessage($"Structure {__instance.name} spawned. Perlin value is {noiseValue}");
+                    //Plugin.Log.LogMessage($"Structure {__instance.name} spawned. Perlin value is {noiseValue}");
                     break;
                 default:
                     break;

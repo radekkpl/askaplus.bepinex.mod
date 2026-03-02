@@ -23,6 +23,7 @@ namespace askaplus.bepinex.mod
 
         [HarmonyPostfix]
         [HarmonyPatch(nameof(SettingsMenu.Start))]
+        [HarmonyAfter("com.grymm.askamods.grymsmodssettingsui")]
         public static void StartPostfix(SettingsMenu __instance)
         {
             var panelRef = __instance.transform.FindChild("Panel");
@@ -47,10 +48,14 @@ namespace askaplus.bepinex.mod
             var iconShadowGO = newSettingButtonGO.transform.FindChild("Icon_Shadow")?.gameObject;
             var icon = iconGO.GetComponent<Image>();
             var icon_shadow = iconShadowGO.GetComponent<Image>();
-            var iconTexture =Helpers.LoadAssetBundle("askaplus", "AskaPLUS").TryCast<Texture2D>();
+           
+            iconGO.SetActive(false);
+            iconShadowGO.SetActive(false);
+            //FIND WAY TO LOAD ICON
+            // var iconTexture = Helpers.LoadAssetBundle("askaplus", "AskaPLUS").TryCast<Texture2D>();
 
-            icon.sprite = Helpers.GetSpriteFromTexture2D(iconTexture);
-            icon_shadow.sprite = Helpers.GetSpriteFromTexture2D(iconTexture);
+            // icon.sprite = Helpers.GetSpriteFromTexture2D(iconTexture);
+            // icon_shadow.sprite = Helpers.GetSpriteFromTexture2D(iconTexture);
             //Plugin.Log.LogInfo("Icons");
 
             var AskaPlusSettingPage = new GameObject("AskaPlusSettingsPage");

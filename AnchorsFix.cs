@@ -15,7 +15,11 @@ namespace askaplus.bepinex.mod
             if (patched) return;
             patched = true;
 
+
             var x = Resources.FindObjectsOfTypeAll<SSSGame.Anchor>();
+
+            Plugin.Helpers.TestAnchors(ref x);
+
             string name = string.Empty;
             Vector3 posA = Vector3.zero;
 
@@ -48,18 +52,18 @@ namespace askaplus.bepinex.mod
                     }
                 }
 
-                Plugin.Log.LogMessage($"Found Anchor in GO {name} with value {mb.offset}");
+                Plugin.Log.LogDebug($"Found Anchor in GO {name} with value {mb.offset}");
 
                
                 if (name.Contains("WallHedgePillar") || name.Contains("Cave") || name.Contains("WaterWell"))
                 {
                     mb.offset = 0;
-                    Plugin.Log.LogMessage($"New offset is {mb.offset}");
+                    Plugin.Log.LogDebug($"New offset is {mb.offset}");
                 }
                 else if(name.StartsWith("WallHedge") || name.StartsWith("WallPlank"))
                 {
                     mb.offset = 0.1f;
-                    Plugin.Log.LogMessage($"New offset is {mb.offset}");
+                    Plugin.Log.LogDebug($"New offset is {mb.offset}");
                     if (coll != null)
                     {
                         //Plugin.Log.LogInfo($"Collider update in GO {name} with x:{coll.size.x}, y:{coll.size.y}, z: {coll.size.z}");

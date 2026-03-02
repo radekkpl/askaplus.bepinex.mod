@@ -30,7 +30,7 @@ namespace askaplus.bepinex.mod
                     Plugin.Log.LogError($"Decay attribute (id 1011) not found at object {__instance.name}");
                     return;
                 }
-                Plugin.Log.LogInfo($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.07f}");
+                Plugin.Log.LogDebug($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.07f}");
 
                 //QUICKEST DECAY OF SEEDS = NO MORE WASTE EVERYWHERE
                 decayAttributes[0].value = 0.07f;
@@ -88,15 +88,6 @@ namespace askaplus.bepinex.mod
                             }
                         }
                     }
-                }
-            }
-            
-            //temporarily increase spawn chance of CrawlerEgg for resin recipe until next patch
-            if (__instance.name.Contains("Item_Misc_CrawlerEgg"))
-            {
-                foreach (var iich in __instance.components)
-                {
-                    if (iich.chance == 0.2f) iich.chance = 0.4f;
                 }
             }
         }

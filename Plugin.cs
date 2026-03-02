@@ -4,6 +4,7 @@ using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using SandSailorStudio.Inventory;
 using SandSailorStudio.UI;
 using SSSGame;
@@ -33,14 +34,8 @@ namespace askaplus.bepinex.mod
         internal static ConfigEntry<bool> configFoodEnable;
         internal static ConfigEntry<bool> configRecipesEnable;
         internal static ConfigEntry<bool> configTorchesLightExtended;
-        internal static ConfigEntry<bool> configMarksEnable;
-        internal static ConfigEntry<float> configMarks_FoodHarvestRange;
-        internal static ConfigEntry<float> configMarks_WoodHarvestRange;
-        internal static ConfigEntry<float> configMarks_ForestryRange;
-        internal static ConfigEntry<float> configMarks_StoneHarvestRange;
-        internal static ConfigEntry<float> configMarks_HuntingRange;
-        internal static ConfigEntry<float> configMarks_BuildingResourcesRange;
-        
+        //internal static ConfigEntry<bool> configTorchesHeatEnable;
+
         public override void Load()
         {
 
@@ -58,13 +53,7 @@ namespace askaplus.bepinex.mod
             configFoodEnable = Config.Bind("Food mod", "Increase duration of food buff", true, "If foods duration effect should be increased to 5 minutes");
             configRecipesEnable = Config.Bind("Recipes mod", "Add custom recipes", true, "Add custom recipes to some stations");
             configTorchesLightExtended = Config.Bind("Torches to buildings", "Extended visibility range", false, "Light visibility distance. Default 60m, extended 200m");
-            configMarksEnable = Config.Bind("Marks","Enable mod",true, "Enable or disable mod");
-            configMarks_WoodHarvestRange = Config.Bind("Marks", "Wood Harvest Distance", 2.5f, "Distance multiplikator");
-            configMarks_StoneHarvestRange = Config.Bind("Marks", "Stone Harvest Distance", 2.5f, "Distance multiplikator");
-            configMarks_FoodHarvestRange = Config.Bind("Marks", "Food Harvest Distance", 2.5f, "Distance multiplikator");
-            configMarks_HuntingRange = Config.Bind("Marks", "Hunting Distance", 2.5f, "Distance multiplikator");
-            configMarks_BuildingResourcesRange = Config.Bind("Marks", "Building Resources Distance", 2.5f, "Distance multiplikator");
-            configMarks_ForestryRange = Config.Bind("Marks", "Forestry Distance", 2.5f, "Distance multiplikator");
+         //   configTorchesHeatEnable = Config.Bind("Torches to buildings", "Generate heat buff", false, "Torches at building generate heat buff"); 
 
             ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
             
@@ -82,22 +71,16 @@ namespace askaplus.bepinex.mod
             Harmony.CreateAndPatchAll(typeof(CharacterPatch));
             SettingsMenuPatch.OnSettingsMenu += CharacterPatch.OnSettingsMenu;
 
-
             Harmony.CreateAndPatchAll(typeof(TorchesToBuildings));
-            Harmony.CreateAndPatchAll(typeof(StrucutrePatch));
+            Harmony.CreateAndPatchAll(typeof(StructurePatch));
             SettingsMenuPatch.OnSettingsMenu += TorchesToBuildings.OnSettingsMenu;
             Harmony.CreateAndPatchAll(typeof(AnchorsFix));
             Harmony.CreateAndPatchAll(typeof(ItemInfoPatch));
             SettingsMenuPatch.OnSettingsMenu += ItemInfoPatch.OnSettingsMenu;
 
-            Harmony.CreateAndPatchAll(typeof(Marks));
-            SettingsMenuPatch.OnSettingsMenu += Marks.OnSettingsMenu;
-
             Harmony.CreateAndPatchAll(typeof(SettingsMenuPatch));
-            Harmony.CreateAndPatchAll(typeof(Test));
+            //Harmony.CreateAndPatchAll(typeof(Test));
             Helpers.ResourceInfos();
-            AskaRecipes.CreateRecipes();
-            SettingsMenuPatch.OnSettingsMenu += AskaRecipes.OnSettingsMenu;
         }
 
         internal static class Helpers
@@ -138,6 +121,9 @@ namespace askaplus.bepinex.mod
                 }
                 return null;
             }
+
+
+
             internal static Object LoadAssetBundle(string assetBundleFileName, string prefabName, bool dontDestroyOnLoad = true)
             {
                 System.Resources.ResourceManager rm = Properties.Resources.ResourceManager;
@@ -162,8 +148,8 @@ namespace askaplus.bepinex.mod
                         loadedAssetBundles[assetBundleFileName] = myAssetBundle;
                     }
                 }
-
-                var loadedObject = myAssetBundle.LoadAsset(prefabName);
+                
+                var loadedObject = myAssetBundle.LoadAsset(prefabName,Il2CppSystem.Type.GetType("Texture2D"));
                 //GameObject prefab = loadedObject.TryCast<GameObject>();
 
                 // if (prefab != null && dontDestroyOnLoad)
@@ -237,7 +223,7 @@ namespace askaplus.bepinex.mod
                 var button = GameObject.Instantiate(SettingsMenuPatch.SelectRange, parent);
                 button.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = text;
                 button.transform.GetChild(8).gameObject.SetActive(true);
-                Plugin.Log.LogInfo($"Item has this amount of childrens {button.transform.GetChild(8).childCount}");
+                Plugin.Log.LogDebug($"Item has this amount of childrens {button.transform.GetChild(8).childCount}");
 
                 var valu = button.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
                 switch (configEntry.Value)
@@ -259,7 +245,7 @@ namespace askaplus.bepinex.mod
                         configEntry.Value = 1f;
                         break;
                 }
-                Plugin.Log.LogInfo("Creating images");
+                Plugin.Log.LogDebug("Creating images");
 
              
                 for (int i = 1; i < ranges.Length; i++) 
@@ -353,10 +339,45 @@ namespace askaplus.bepinex.mod
                 Component.DestroyImmediate(labelInfo.transform.GetChild(0).GetComponent<LocalizedText>());
             }
 
+            internal static void TestAnchors(ref Il2CppArrayBase<Anchor> anchors)
+            {
+                Plugin.Log.LogDebug("Anchors");
+                string name = string.Empty;
+                Vector3 pos = Vector3.zero;
+
+                foreach (var mb in anchors)
+                {
+                    var goparent = mb.gameObject;
+
+                    if (goparent is null) continue;
+                    pos = goparent.transform.position;
+
+                    name = goparent.name;
+
+                    var gologic = goparent?.transform.parent;
+
+                    if (gologic is null) continue;
+
+                    name = gologic.name;
+                    var gopreview = gologic?.transform.parent;
+                    if (gopreview is not null)
+                    {
+                        name = gopreview.name;
+                        var goMaster = gopreview?.transform.parent;
+                        if (goMaster is not null)
+                        {
+                            name = goMaster.name;
+                        }
+                    }
+
+                    //Plugin.Log.LogMessage($"Found Anchor in GO {name} with position {pos.ToString()} and offset set to {mb.offset}");
+                }
+            }
+
             internal static void CreateItemsGoogleSheet()
             {
                 //Plugin.Log.LogInfo($"Found {resourceInfoSO.Count} ResoureInfos");
-                Plugin.Log.LogMessage("CONSUMABLES");
+                Plugin.Log.LogDebug("CONSUMABLES");
                 foreach (var ri in resourceInfoSO.Values)
                 {
                     // Plugin.Log.LogMessage($"{ri.name}");
@@ -365,39 +386,39 @@ namespace askaplus.bepinex.mod
                         if (ri.TryCast<ConsumableInfo>() == true)
                         {
                             var ci = ri.Cast<ConsumableInfo>();
-                            Plugin.Log.LogMessage($"{ci.name} is type of {ci.GetType().Name}");
-                            Plugin.Log.LogInfo($"{ri.name} has {ci.modulatedConsumeEffects.Length} effects");
+                            Plugin.Log.LogDebug($"{ci.name} is type of {ci.GetType().Name}");
+                            Plugin.Log.LogDebug($"{ri.name} has {ci.modulatedConsumeEffects.Length} effects");
                             foreach (var ce in ci.modulatedConsumeEffects)
                             {
-                                Plugin.Log.LogInfo($"from {ce.normalizedRange.min} to {ce.normalizedRange.max} has {ce.randomStatusEffects.Length} effects");
+                                Plugin.Log.LogDebug($"from {ce.normalizedRange.min} to {ce.normalizedRange.max} has {ce.randomStatusEffects.Length} effects");
                                 foreach (var se in ce.randomStatusEffects)
                                 {
-                                    Plugin.Log.LogInfo($"duration {se.duration} with effect {se.table.effectType.name}({se.table.dialogueAdded}) which modify {se.table.vattrElements.Count} vital attributes and modify {se.table.attrElements.Count} character attributes");
+                                    Plugin.Log.LogDebug($"duration {se.duration} with effect {se.table.effectType.name}({se.table.dialogueAdded}) which modify {se.table.vattrElements.Count} vital attributes and modify {se.table.attrElements.Count} character attributes");
                                     foreach (var vattel in se.table.vattrElements)
                                     {
-                                        Plugin.Log.LogInfo($"VITAL ATTRIBUTE: {vattel.modifier.mode} effect give {vattel.modifier.value} of attribute {vattel.targetAttribute.name}/{vattel.targetAttribute.localizedName} (attribid: {vattel.targetAttribute.attributeId}, type {vattel.targetAttribute.attributeType?.name})");
+                                        Plugin.Log.LogDebug($"VITAL ATTRIBUTE: {vattel.modifier.mode} effect give {vattel.modifier.value} of attribute {vattel.targetAttribute.name}/{vattel.targetAttribute.localizedName} (attribid: {vattel.targetAttribute.attributeId}, type {vattel.targetAttribute.attributeType?.name})");
                                     }
                                     foreach (var attel in se.table.attrElements)
                                     {
-                                        Plugin.Log.LogInfo($"CHARACTER ATTRIBUTE: {attel.modifier.Operation} effect give {attel.modifier.Value} of attribute {attel.targetAttribute.name}/{attel.targetAttribute.localizedName} (attribid: {attel.targetAttribute.attributeId}, type {attel.targetAttribute.attributeType?.name})");
+                                        Plugin.Log.LogDebug($"CHARACTER ATTRIBUTE: {attel.modifier.Operation} effect give {attel.modifier.Value} of attribute {attel.targetAttribute.name}/{attel.targetAttribute.localizedName} (attribid: {attel.targetAttribute.attributeId}, type {attel.targetAttribute.attributeType?.name})");
                                     }
                                 }
                             }
 
 
 
-                            Plugin.Log.LogMessage("EXPORT strings:");
+                            Plugin.Log.LogDebug("EXPORT strings:");
                             foreach (var ce in ci.modulatedConsumeEffects)
                             {
                                 foreach (var se in ce.randomStatusEffects)
                                 {
                                     foreach (var vattel in se.table.vattrElements)
                                     {
-                                        Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{vattel.modifier.mode};{vattel.targetAttribute.name};{vattel.modifier.value}");
+                                        Plugin.Log.LogDebug($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{vattel.modifier.mode};{vattel.targetAttribute.name};{vattel.modifier.value}");
                                     }
                                     foreach (var attel in se.table.attrElements)
                                     {
-                                        Plugin.Log.LogInfo($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{attel.modifier.Operation};{attel.targetAttribute.name};{attel.modifier.Value}");
+                                        Plugin.Log.LogDebug($"{ri.name};{ce.normalizedRange.min};{ce.normalizedRange.max};{se.table.effectType.name}({se.table.dialogueAdded});{se.duration};{attel.modifier.Operation};{attel.targetAttribute.name};{attel.modifier.Value}");
                                     }
                                 }
                             }
@@ -418,33 +439,55 @@ namespace askaplus.bepinex.mod
                     if (itemInfoSO.ContainsKey(item.name)) continue;
                     itemInfoSO.Add(item.name, item);
                 }
-                resourceInfoSO = Resources.FindObjectsOfTypeAll<ResourceInfo>().ToDictionary(name => name.name, ri => ri);
 
+                var rri = Resources.FindObjectsOfTypeAll<ResourceInfo>();
+                foreach (var ri in rri)
+                {
+                    if (resourceInfoSO.ContainsKey(ri.name)) continue;
+                    resourceInfoSO.TryAdd(ri.name, ri);
+                }
                 //RECIPES
-                Dict_BlueprintsList = Resources.FindObjectsOfTypeAll<ItemInfoList>().ToDictionary(name => name.name,i=>i);
+                var riil = Resources.FindObjectsOfTypeAll<ItemInfoList>();
+                foreach (var ri in riil)
+                {
+                    if (Dict_BlueprintsList.ContainsKey(ri.name)) continue;
+                    Dict_BlueprintsList.Add(ri.name, ri);
+                }
 
                 //Get Blueprint condition rules
-                Plugin.Log.LogMessage("-----BlueprintsConditionRule-----");
-                Dict_BCR = Resources.FindObjectsOfTypeAll<BlueprintConditionsRule>().ToDictionary(name => name.name, bcr => bcr);
-                
-                Plugin.Log.LogMessage("-----ItemStorageClass-----");
-                Dict_ISC = Resources.FindObjectsOfTypeAll<ItemStorageClass>().ToDictionary(name => name.name, bcr => bcr);
+                //Plugin.Log.LogMessage("-----BlueprintsConditionRule-----");
+                var rbcr = Resources.FindObjectsOfTypeAll<BlueprintConditionsRule>();
+                foreach (var bcr in rbcr)
+                {
+                    if (Dict_BCR.ContainsKey(bcr.name)) continue;
+                        Dict_BCR.Add(bcr.name, bcr);
+                }
+
+                var risc = Resources.FindObjectsOfTypeAll<ItemStorageClass>();
+                foreach (var isc in risc)
+                {
+                    if (Dict_ISC.ContainsKey(isc.name)) continue;
+                    Dict_ISC.Add(isc.name, isc);
+                }
                 
                 //Get ItemInfoCategory
-                Plugin.Log.LogMessage("-----ItemInfoCategory-----");
-                Dict_ICI = Resources.FindObjectsOfTypeAll<ItemCategoryInfo>().ToDictionary(name => name.name, bcr => bcr);
+                //Plugin.Log.LogMessage("-----ItemInfoCategory-----");
+                var rici = Resources.FindObjectsOfTypeAll<ItemCategoryInfo>();
+                foreach (var category in rici)
+                {
+                    if (Dict_ICI.ContainsKey(category.name)) continue;
+                    Dict_ICI.Add(category.name, category);
+                }
                
                 //Get CraftInteractions
-                Plugin.Log.LogMessage("-----CraftInteractions-----");
+                //Plugin.Log.LogMessage("-----CraftInteractions-----");
                 var _CI = Resources.FindObjectsOfTypeAll<CraftInteraction>();
                 Dict_CI = [];
                 foreach (var _item in _CI)
                 {
-                    if (!Dict_CI.ContainsKey(_item.name))
-                    {
-                        //Plugin.Log.LogMessage($"{_item.name}");
+                    if (Dict_CI.ContainsKey(_item.name)) continue;
                         Dict_CI.Add(_item.name, _item);
-                    }
+                    
                 }
 
             }
