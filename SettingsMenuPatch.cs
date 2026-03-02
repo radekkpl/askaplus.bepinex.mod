@@ -23,7 +23,7 @@ namespace askaplus.bepinex.mod
 
         [HarmonyPostfix]
         [HarmonyPatch(nameof(SettingsMenu.Start))]
-        [HarmonyAfter("com.grymm.askamods.grymsmodssettingsui")]
+        [HarmonyBefore("com.grymm.askamods.grymsmodssettingsui")]
         public static void StartPostfix(SettingsMenu __instance)
         {
             var panelRef = __instance.transform.FindChild("Panel");

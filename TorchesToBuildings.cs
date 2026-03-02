@@ -48,7 +48,7 @@ namespace askaplus.bepinex.mod
             Component.DestroyImmediate(torch.transform.GetChild(1).GetChild(2).gameObject);
             var light = torch.transform.FindChildByNameRecursive("Point Light").GetComponent<Light>();
             var hdData = light.gameObject.GetComponent<UnityEngine.Rendering.HighDefinition.HDAdditionalLightData>();
-
+            Plugin.Log.LogInfo($"fade distance is {hdData.fadeDistance}");
             if (Plugin.configTorchesBuildingShadowsEnable.Value)
             {
                 light.shadows = LightShadows.Soft;
