@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Il2CppSystem.Linq;
+using LibCpp2IL.Elf;
 using SandSailorStudio.Inventory;
 using SSSGame;
 using System.Linq;
@@ -22,18 +23,31 @@ namespace askaplus.bepinex.mod
             {
                 var pi = __instance.Cast<PlantableItemInfo>();
 
-                //TO BE ABLE GROW PLANTS FULLY AT THE END OF THE SEASON
-                pi.MaxOffseasonDays = pi.TimeToGrow;
-                var decayAttributes = pi.attributes.Where(at => at.attribute.attributeId == 1011).Select(at => at).ToArray();
-                if (decayAttributes.Length != 1)
+                if (pi.MaxOffseasonDays < pi.TimeToGrow)
                 {
-                    Plugin.Log.LogError($"Decay attribute (id 1011) not found at object {__instance.name}");
-                    return;
+                    //TO BE ABLE GROW PLANTS FULLY AT THE END OF THE SEASON
+                    Plugin.Log.LogDebug($"Fixing MaxOffSeasonDays to allow fully grow plant at the end of the season: {__instance.name}");
+                    Plugin.Log.LogDebug($"MaxOffSeasonDays: {pi.MaxOffseasonDays}, TimeToGrow: {pi.timeToGrow}");
+                    pi.MaxOffseasonDays = pi.TimeToGrow + 1;
+                    Plugin.Log.LogDebug($"New value of MaxOffSeasonDays: {pi.MaxOffseasonDays}");
                 }
-                Plugin.Log.LogDebug($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.07f}");
+                else 
+                {
+                    Plugin.Log.LogDebug($"{__instance.name}: MaxOffSeasonDays: {pi.MaxOffseasonDays} Time to grow: {pi.timeToGrow}");
+                }
+
+                //var decayAttributes = pi.attributes.Where(at => at.attribute.attributeId == 1011).Select(at => at).ToArray();
+                //if (decayAttributes.Length != 1)
+                //{
+                //    Plugin.Log.LogError($"Decay attribute (id 1011) not found at object {__instance.name}");
+                //    return;
+                //}
+                //Plugin.Log.LogDebug($"Trying to change decay rate of {__instance.name} from value {decayAttributes[0].value} to {.07f}");
 
                 //QUICKEST DECAY OF SEEDS = NO MORE WASTE EVERYWHERE
-                decayAttributes[0].value = 0.07f;
+                //var attribute = decayAttributes[0].attribute;
+
+                //                __instance.attributes[0].value
             }
 
             if (configFoodEnable.Value && __instance.name.Contains("_Food_"))
@@ -56,7 +70,7 @@ namespace askaplus.bepinex.mod
                                 {
                                     if (attributes.Contains(ae.targetAttribute.attributeId))
                                     {
-                                        //Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {ce.duration} to {5 * 60}");
+                                        Plugin.Log.LogDebug($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {ce.duration} to {5 * 60}");
                                         ce.duration = 5 * 60;
                                     }
                                 }
@@ -79,7 +93,7 @@ namespace askaplus.bepinex.mod
                                         {
                                             if (attributes.Contains(ae.targetAttribute.attributeId))
                                             {
-                                                //Plugin.Log.LogInfo($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
+                                                Plugin.Log.LogDebug($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
                                                 se.duration = 5 * 60;
                                             }
                                         }
