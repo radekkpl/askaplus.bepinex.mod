@@ -448,7 +448,7 @@ namespace askaplus.bepinex.mod
                         AddTorches(sb, sourcePillar, torch, "wall_complete_1_0_wall", posRots);
                         break;
                     case "Tavern_L1":
-                        posRots.Add(new PosRot(new Vector3(-1.8982f, 2.2005f, -2.5493f), Quaternion.Euler(0f, 45f, 10f)));
+                        posRots.Add(new PosRot(new Vector3(-1.8982f, 2.2005f, -2.6839f), Quaternion.Euler(0f, 45f, 10f)));
                         posRots.Add(new PosRot(new Vector3(4.4527f, 2.2016f, -2.7547f), Quaternion.Euler(0f, 135f, 10f)));
                         posRots.Add(new PosRot(new Vector3(4.4527f, 2.2019f, 1.5835f), Quaternion.Euler(0f, 225f, 10f)));
                         posRots.Add(new PosRot(new Vector3(-1.7437f, 2.2023f, 2.0021f), Quaternion.Euler(0f, 315f, 10f)));
@@ -458,8 +458,8 @@ namespace askaplus.bepinex.mod
                         posRots.Add(new PosRot(new Vector3(-1.6f, 2.2909f, 3.8073f), Quaternion.Euler(0f, 90f, 20f)));
                         posRots.Add(new PosRot(new Vector3(1.7309f, 2.2909f, 3.7964f), Quaternion.Euler(0f, 90f, 20f)));
                         posRots.Add(new PosRot(new Vector3(4.4545f, 3.0473f, 3.3437f), Quaternion.Euler(0f, 270f, 20f)));
-                        posRots.Add(new PosRot(new Vector3(-4.4545f, 3.0473f, 3.3255f), Quaternion.Euler(0f, 200f, 20f)));
-                        posRots.Add(new PosRot(new Vector3(-4.4545f, 3.0473f, -2.6909f), Quaternion.Euler(0f, 200f, 20f)));
+                        posRots.Add(new PosRot(new Vector3(-4.1818f, 3.0473f, 3.3255f), Quaternion.Euler(0f, 200f, 20f)));
+                        posRots.Add(new PosRot(new Vector3(-4.24f, 3.0473f, -2.6909f), Quaternion.Euler(0f, 200f, 20f)));
                         posRots.Add(new PosRot(new Vector3(-4.4545f, 3.0473f, -2.2909f), Quaternion.Euler(0f, 20f, 20f)));
 
 
@@ -521,7 +521,7 @@ namespace askaplus.bepinex.mod
             if (transf is null) return; GameObject AskaPlusGO = new GameObject("AskaPlusTorches");
             AskaPlusGO.transform.SetParent(transf, true);
 
-            AddTorch(targetPosSource, torchSource, AskaPlusGO, new Vector3(0.44721f, 3.0836f, 0.3128f), Quaternion.Euler(-0f, 125f, 321.8f));
+            AddTorch(targetPosSource, torchSource, AskaPlusGO, new Vector3(0.4472f, 1.4618f, -0.3236f), Quaternion.Euler(-0f, 125f, 321.8f));
             AskaPlusGO.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
             AskaPlusGO.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
             AskaPlusGO.transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
