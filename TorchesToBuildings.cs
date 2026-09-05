@@ -207,11 +207,11 @@ namespace askaplus.bepinex.mod
                         AddTorches(sb, sourcePillar, torch, "flimsy_arch_complete_0_0_foundation", posRots);
                         break;
                     case "Forester_L1":
-                        posRots.Add(new PosRot(new Vector3(1.2237f, 1.6891f, -2.8581f), Quaternion.Euler(0f, 90f, 20f)));
+                        posRots.Add(new PosRot(new Vector3(0.5328f, 1.6891f, -2.8872f), Quaternion.Euler(0f, 90f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "roof_complete_2_0_roof", posRots);
                         break;
                     case "Forester_L2":
-                        posRots.Add(new PosRot(new Vector3(1.1182f, 1.6982f, -2.6072f), Quaternion.Euler(0f, 90f, 20f)));
+                        posRots.Add(new PosRot(new Vector3(0.4636f, 1.6982f, -2.6072f), Quaternion.Euler(0f, 90f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "house_complete_1_0_house", posRots);
                         break;
                     case "Gatherer_L1":
