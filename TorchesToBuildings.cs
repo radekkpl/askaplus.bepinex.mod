@@ -295,6 +295,10 @@ namespace askaplus.bepinex.mod
                         posRots.Add(new PosRot(new Vector3(-0.8527f, 6.9454f, 0.3873f), Quaternion.Euler(0f, 0f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "addon_tower_complete_0_0", posRots);
                         break;
+                    case "StoneCutter_L1":
+                        posRots.Add(new PosRot(new Vector3(1.4182f, 1.9823f, -0.097f), Quaternion.Euler(0f, 135f, 20f)));
+                        AddTorches(sb, sourcePillar, torch, "stonecutter1_complete_1_0_frame", posRots);
+                        break;
                     case "StoneCutter_L2":
                         posRots.Add(new PosRot(new Vector3(1.6982f, 2.2f, -1.0206f), Quaternion.Euler(0f, 90f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "structure_complete_0_0", posRots);
@@ -370,6 +374,10 @@ namespace askaplus.bepinex.mod
                         posRots.Add(new PosRot(new Vector3(-2.6718f, 2.2f, -1.6463f), Quaternion.Euler(0f, 180f, 20f)));
                         posRots.Add(new PosRot(new Vector3(3.3355f, 2.2f, -1.5637f), Quaternion.Euler(0f, 0f, 20f)));
                         AddTorches(sb, sourcePillar, torch, "addon_complete_0_0_frame", posRots);
+                        break;
+                    case "WoodCutter_L1":
+                        posRots.Add(new PosRot(new Vector3(1.2709f, 1.9694f, 1.2533f), Quaternion.Euler(0f, 135f, 20f)));
+                        AddTorches(sb, sourcePillar, torch, "woodcutter1_complete_1_0_frame", posRots);
                         break;
                     case "WoodCutter_L2":
                         posRots.Add(new PosRot(new Vector3(1.2818f, 2.238f, 1.573f), Quaternion.Euler(0f, 90f, 20f)));
