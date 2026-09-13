@@ -5,6 +5,7 @@ using SandSailorStudio.Utils;
 using SSSGame.Localization;
 using SSSGame.UI;
 using System;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,15 +49,12 @@ namespace askaplus.bepinex.mod
             var iconShadowGO = newSettingButtonGO.transform.FindChild("Icon_Shadow")?.gameObject;
             var icon = iconGO.GetComponent<Image>();
             var icon_shadow = iconShadowGO.GetComponent<Image>();
-           
+
+
+            Plugin.Log.LogDebug("Icons");
             iconGO.SetActive(false);
             iconShadowGO.SetActive(false);
-            //FIND WAY TO LOAD ICON
-            // var iconTexture = Helpers.LoadAssetBundle("askaplus", "AskaPLUS").TryCast<Texture2D>();
-
-            // icon.sprite = Helpers.GetSpriteFromTexture2D(iconTexture);
-            // icon_shadow.sprite = Helpers.GetSpriteFromTexture2D(iconTexture);
-            //Plugin.Log.LogInfo("Icons");
+            Helpers.LoadSpriteAsync("askaplus.bundle", "AskaPLUS", icon, icon_shadow, iconGO, iconShadowGO);
 
             var AskaPlusSettingPage = new GameObject("AskaPlusSettingsPage");
             AskaPlusSettingPage.AddComponent<TabPage>();
@@ -88,7 +86,7 @@ namespace askaplus.bepinex.mod
             AskaPlusSettingPage.SetActive(false);
             
 
-            Plugin.Log.LogInfo("NewPage");
+            Plugin.Log.LogDebug("NewPage");
 
             var customSettings = GameObject.Instantiate(Rect.gameObject, AskaPlusSettingPage.transform).transform.GetChild(0).GetChild(0).gameObject;
 
@@ -97,13 +95,14 @@ namespace askaplus.bepinex.mod
             Toggle = sourceForItems2.FindChild("InvertLookX").gameObject;
             SelectRange = sourceForItems3.gameObject;
 
-            Plugin.Log.LogInfo("SettingsSources");
-            Plugin.Log.LogInfo($"Custom settings: {customSettings.name} .childs: {customSettings.transform.GetChildCount()}");
+            Plugin.Log.LogDebug("SettingsSources");
+            Plugin.Log.LogDebug($"Custom settings: {customSettings.name} .childs: {customSettings.transform.GetChildCount()}");
 
             while (customSettings.transform.GetChildCount() > 0)
             {
                 GameObject.DestroyImmediate(customSettings.transform.GetChild(0).gameObject);
             }
+           
 
             OnSettingsMenu?.Invoke(customSettings.transform);
         }

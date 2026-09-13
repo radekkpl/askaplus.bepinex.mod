@@ -27,13 +27,13 @@ namespace askaplus.bepinex.mod
                 {
                     //TO BE ABLE GROW PLANTS FULLY AT THE END OF THE SEASON
                     Plugin.Log.LogDebug($"Fixing MaxOffSeasonDays to allow fully grow plant at the end of the season: {__instance.name}");
-                    Plugin.Log.LogDebug($"MaxOffSeasonDays: {pi.MaxOffseasonDays}, TimeToGrow: {pi.timeToGrow}");
+                    Plugin.Log.LogDebug($"MaxOffSeasonDays: {pi.MaxOffseasonDays}, TimeToGrow: {pi.TimeToGrow}");
                     pi.MaxOffseasonDays = pi.TimeToGrow + 1;
                     Plugin.Log.LogDebug($"New value of MaxOffSeasonDays: {pi.MaxOffseasonDays}");
                 }
                 else 
                 {
-                    Plugin.Log.LogDebug($"{__instance.name}: MaxOffSeasonDays: {pi.MaxOffseasonDays} Time to grow: {pi.timeToGrow}");
+                    Plugin.Log.LogDebug($"{__instance.name}: MaxOffSeasonDays: {pi.MaxOffseasonDays} Time to grow: {pi.TimeToGrow}");
                 }
 
                 //var decayAttributes = pi.attributes.Where(at => at.attribute.attributeId == 1011).Select(at => at).ToArray();

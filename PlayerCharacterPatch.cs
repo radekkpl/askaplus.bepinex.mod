@@ -1,9 +1,11 @@
 ﻿using HarmonyLib;
+using SandSailorStudio.Assets;
 using SandSailorStudio.Attributes;
 using SandSailorStudio.Inventory;
 using SSSGame;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static askaplus.bepinex.mod.Plugin;
 using static askaplus.bepinex.mod.Plugin.Helpers;
 
@@ -19,15 +21,15 @@ namespace askaplus.bepinex.mod
              if (__instance.IsPlayer() && __instance.GetLocalAuthorityMask() == 1)
             {
                 Console.WriteLine("Player spawned");
-                if (__instance.GetComponentInChildren<GrassTool>() != null) return;
+                if (__instance.GetComponentInChildren<CaveResetTool>() != null) return;
 
-                var GrassToolObj = __instance.gameObject.transform.CreateChild("AskaPlusMODS");
-                GrassToolObj.transform.localPosition = new Vector3(0f,0f,2f);
-                GrassToolObj.gameObject.AddComponent<HeightmapTool>();
+                var AskaPlusGO = __instance.gameObject.transform.CreateChild("AskaPlusMODS");
+                AskaPlusGO.transform.localPosition = new Vector3(0f,0f,2f);
+                AskaPlusGO.gameObject.AddComponent<HeightmapTool>();
                 
-                var GrassTool = GrassToolObj.gameObject.AddComponent<GrassTool>();
-                GrassToolObj.gameObject.AddComponent<PlayerBonusSpawn>();
-                GrassToolObj.gameObject.SetActive(true);
+                AskaPlusGO.gameObject.AddComponent<CaveResetTool>();
+                AskaPlusGO.gameObject.AddComponent<PlayerBonusSpawn>();
+                AskaPlusGO.gameObject.SetActive(true);
             }
         }
 
@@ -42,34 +44,41 @@ namespace askaplus.bepinex.mod
         }
     }
 
-    internal class GrassTool:MonoBehaviour
+    internal class CaveResetTool:MonoBehaviour
     {
-        Vector3 position;
-        HeightmapTool HeightmapTool;
-        PlayerInteractionAgent PlayerInteractionAgent;
-        private TerraformingToolOperation operation = TerraformingToolOperation.PAINT;
-
-        private void Start()
+        private void ResetCave(int CaveID) 
         {
-            PlayerInteractionAgent = gameObject.GetComponentInParent<PlayerInteractionAgent>();
-            HeightmapTool = gameObject.GetComponent<HeightmapTool>();
-            //if (HeightmapTool == null) Plugin.Log.LogInfo("Heightmaptool not found");
-        }
+            var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+            Log.LogInfo($"found scene {scene.name}");
+            var rootGO = scene.GetRootGameObjects();
 
-        private void Update() {
-            if (Plugin.configGrassPaintEnable.Value && Input.GetKeyDown(Plugin.configGrassPaintKey.Value) )
+            GameObject WorldGenerator = null;
+            foreach (var item in rootGO)
             {
-                position = gameObject.transform.position;
-                Plugin.Log.LogDebug($"Trying _UpdateTerraforming with radius {HeightmapTool.radius}");
-                HeightmapTool.radius = 1f;
-                HeightmapTool.clearVegetation = false;
-                HeightmapTool.setTerrainType = true;
-                HeightmapTool.terrainType = TerraformingMap.TerrainType.NATURAL;
-                HeightmapTool.Run(operation,position);
-                HeightmapTool.PaintHere();
+                if (item.name == "WorldGenerator")
+                {
+                    WorldGenerator = item;
+                }
             }
+
+            if (WorldGenerator != null) Log.LogInfo($"World Generator found in scene: {scene.name}");
+
+            var caveManager = WorldGenerator.GetComponent<CavesManager>();
+
+            if (caveManager != null) Log.LogInfo("Caves Manager found");
+
+
+
+            var caveData = caveManager.GetCaveData(ref CaveID,DataAccessMode.CREATE);
+
+            Log.LogInfo("Setting explored state to false");
+            caveData.SetExploredState(false);
+
+
+
         }
     }
+
     internal class PlayerBonusSpawn : MonoBehaviour
     {
         private PlayerInteractionAgent playerInteractionAgent;

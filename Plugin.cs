@@ -5,13 +5,15 @@ using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using Il2CppMono.Net.Security;
 using SandSailorStudio.Inventory;
 using SandSailorStudio.UI;
 using SSSGame;
 using SSSGame.Localization;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -55,9 +57,8 @@ namespace askaplus.bepinex.mod
             configTorchesLightExtended = Config.Bind("Torches to buildings", "Extended visibility range", false, "Light visibility distance. Default 60m, extended 200m");
          //   configTorchesHeatEnable = Config.Bind("Torches to buildings", "Generate heat buff", false, "Torches at building generate heat buff"); 
 
-            ClassInjector.RegisterTypeInIl2Cpp<GrassTool>();
+            ClassInjector.RegisterTypeInIl2Cpp<CaveResetTool>();
             
-            //ClassInjector.RegisterTypeInIl2Cpp<RoadMakerMOD>();
             Harmony.CreateAndPatchAll(typeof(SpikesSelfDamageMod));
             SettingsMenuPatch.OnSettingsMenu += SpikesSelfDamageMod.OnSettingsMenu;
 
@@ -123,58 +124,86 @@ namespace askaplus.bepinex.mod
             }
 
 
-
-            internal static Object LoadAssetBundle(string assetBundleFileName, string prefabName, bool dontDestroyOnLoad = true)
+            internal static void LoadSpriteAsync(string bundleFileName, string assetName, Image targetIcon, Image targetShadow, GameObject iconGO, GameObject iconShadowGO)
             {
-                System.Resources.ResourceManager rm = Properties.Resources.ResourceManager;
-                AssetBundle myAssetBundle;
+                // 1. Získáme cestu k souboru na disku
+                string modFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string bundlePath = Path.Combine(modFolder, bundleFileName);
 
-                if (loadedAssetBundles.ContainsKey(assetBundleFileName))
+                if (!File.Exists(bundlePath))
                 {
-                    myAssetBundle = loadedAssetBundles[assetBundleFileName];
-                    Debug.Log("AssetBundle is already loaded.");
+                    Plugin.Log.LogError($"[Aska+] AssetBundle nebyl nalezen na cestě: {bundlePath}");
+                    return;
                 }
-                else
+
+                // 2. Použijeme LoadFromFileAsync - toto API v Unity 6 funguje bez ReadOnlySpan chyb!
+                var bundleCreateRequest = AssetBundle.LoadFromFileAsync(bundlePath);
+                if (bundleCreateRequest == null)
                 {
-                    myAssetBundle = AssetBundle.LoadFromMemory((byte[])rm.GetObject(assetBundleFileName));
+                    Plugin.Log.LogError("[Aska+] Selhalo vytvoření požadavku na načtení AssetBundlu.");
+                    return;
+                }
+
+                // 3. Počkáme na dokončení načítání (v IL2CPP přes delegát)
+                bundleCreateRequest.add_completed(new System.Action<AsyncOperation>(handle =>
+                {
+                    // Vytáhneme načtený bundle z požadavku
+                    AssetBundle myAssetBundle = bundleCreateRequest.assetBundle;
 
                     if (myAssetBundle == null)
                     {
-                        Plugin.Log.LogError("Failed to load AssetBundle!");
-                        return null;
+                        Plugin.Log.LogError("[Aska+] Požadavek dokončen, ale AssetBundle je null.");
+                        return;
+                    }
+
+                    // ZMĚNA: Hledáme typ Texture2D, který Unity 6 v bundlu stoprocentně najde
+                    Il2CppSystem.Type textureType = Il2CppSystem.Type.GetType("UnityEngine.Texture2D, UnityEngine.CoreModule");
+                    var assetRequest = myAssetBundle.LoadAsset(assetName, textureType);
+
+                    if (assetRequest == null)
+                    {
+                        Plugin.Log.LogError($"[Aska+] V AssetBundlu nebyl nalezen asset '{assetName}' typu Texture2D.");
+                        myAssetBundle.Unload(false);
+                        return;
+                    }
+
+                    Texture2D texture = assetRequest.TryCast<Texture2D>();
+                    if (texture != null)
+                    {
+                        // === RYCHLÝ PŘEVOD TEXTURY NA SPRITE BEZ POMOCNÉ METODY ===
+                        // Vytvoříme Rect (obdélník) přes celou velikost textury
+                        Rect rect = new Rect(0, 0, texture.width, texture.height);
+                        // Nastavíme středový Pivot (střed ikony je na hodnotách 0.5f, 0.5f)
+                        Vector2 pivot = new Vector2(0.5f, 0.5f);
+
+                        // Zavoláme nativní Unity funkci pro vytvoření Spritu
+                        Sprite sprite = Sprite.Create(texture, rect, pivot);
+
+                        if (sprite != null)
+                        {
+                            // Dosadíme do UI prvků hry
+                            if (targetIcon != null) targetIcon.sprite = sprite;
+                            if (targetShadow != null) targetShadow.sprite = sprite;
+
+                            if (iconGO != null) iconGO.SetActive(true);
+                            if (iconShadowGO != null) iconShadowGO.SetActive(true);
+
+                            Plugin.Log.LogInfo("[Aska+] Ikona úspěšně vygenerována z Texture2D a aplikována!");
+                        }
+                        else
+                        {
+                            Plugin.Log.LogError("[Aska+] Selhalo nativní vytvoření Spritu přes Sprite.Create.");
+                        }
                     }
                     else
                     {
-                        loadedAssetBundles[assetBundleFileName] = myAssetBundle;
+                        Plugin.Log.LogError("[Aska+] Načtený asset se nepodařilo přetypovat na Texture2D.");
                     }
-                }
-                
-                var loadedObject = myAssetBundle.LoadAsset(prefabName,Il2CppSystem.Type.GetType("Texture2D"));
-                //GameObject prefab = loadedObject.TryCast<GameObject>();
 
-                // if (prefab != null && dontDestroyOnLoad)
-                // {
-                //     // Instantiate the prefab in the game
-                //     //GameObject.Instantiate(prefab);
-                //     GameObject.DontDestroyOnLoad(prefab);
-                // }
-                // else
-                // {
-                //     Plugin.Log.LogError("Failed to load prefab from AssetBundle!");
-                // }
-
-                return loadedObject;
+                    myAssetBundle.Unload(false);
+                }));
             }
 
-            internal static Sprite GetSpriteFromTexture2D(Texture2D texture2D)
-            {
-                if (!texture2D)
-                    return null;
-                Rect rect = new Rect(0, 0, texture2D.width, texture2D.height);
-                Vector2 pivot = new Vector2(0.5f, 0.5f);
-                Sprite sprite = Sprite.Create(texture2D, rect, pivot);
-                return sprite;
-            }
             internal static void CreateSwitch(Transform parent, string text, ConfigEntry<bool> configEntry)
             {
                 var button = GameObject.Instantiate(SettingsMenuPatch.Toggle, parent);
@@ -446,6 +475,7 @@ namespace askaplus.bepinex.mod
                     if (resourceInfoSO.ContainsKey(ri.name)) continue;
                     resourceInfoSO.TryAdd(ri.name, ri);
                 }
+
                 //RECIPES
                 var riil = Resources.FindObjectsOfTypeAll<ItemInfoList>();
                 foreach (var ri in riil)

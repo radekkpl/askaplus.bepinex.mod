@@ -28,8 +28,8 @@ namespace askaplus.bepinex.mod
         [HarmonyPatch(nameof(VillagerSurvival.Spawned))]
         public static void Spawned(ref VillagerSurvival __instance)
         {
-            //Plugin.Log.LogInfo($"{__instance.gameObject.name} hp threshold for fighting is {__instance._dataSheet?.hpThresholdForFighting}");
-            __instance._dataSheet.hpThresholdForFighting = 0.2f;
+            Plugin.Log.LogInfo($"{__instance.gameObject.name} hp threshold for fighting is {__instance._dataSheet?.hpThresholdForFighting}");
+            __instance._dataSheet.hpThresholdForFighting = 0.25f;
         }
     }
 
@@ -52,7 +52,9 @@ namespace askaplus.bepinex.mod
      
             if (villager.HasWorkstation())
             {
-                Plugin.Log.LogDebug($"{villager.gameObject.name} : {villager.GetWorkstation().GetName()} -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
+                var station = villager.GetWorkstation().GetName();
+                if (station.ToLower() == "cheesemaker")
+                    Plugin.Log.LogInfo($"{villager.gameObject.name} : {villager.GetWorkstation().GetName()} -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
             }
             else 
             {
@@ -69,17 +71,17 @@ namespace askaplus.bepinex.mod
                     break;
                 case "Item_Wood_birch1":
                 case "Item_Wood_birch2":
-                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"],Vector3.zero, 1, true,true);
+                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLongStick"],Vector3.zero, 1, true,true);
                     break;
                 case "Item_Wood_Willow":
-                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"], Vector3.zero, 2, false, true);
+                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLongStick"], Vector3.zero, 2, false, true);
                     break;
                 case "Item_Wood_Fir1":
                 case "Item_Wood_Fir2":
                 case "Item_Wood_Fir3":
                 case "Item_Wood_Fir4":
                 case "Item_Wood_Fir5":
-                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_RawLog"], Vector3.zero, 1, true, true);                    
+                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_RawLongStick"], Vector3.zero, 1, true, true);                    
                     break;
                 case "Item_Misc_CrawlerEgg1":
                 case "Item_Misc_CrawlerEgg2":
