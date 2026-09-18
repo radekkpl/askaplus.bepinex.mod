@@ -53,7 +53,7 @@ namespace askaplus.bepinex.mod
             if (villager.HasWorkstation())
             {
                 var station = villager.GetWorkstation().GetName();
-                if (station.ToLower() == "cheesemaker")
+                //if (station.ToLower() == "cheesemaker")
                     Plugin.Log.LogInfo($"{villager.gameObject.name} : {villager.GetWorkstation().GetName()} -> changed _mtTarget to {lastInteraction.name} in {lastInteraction.parent.name}");
             }
             else 
@@ -83,6 +83,16 @@ namespace askaplus.bepinex.mod
                 case "Item_Wood_Fir5":
                     TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_RawLongStick"], Vector3.zero, 1, true, true);                    
                     break;
+                case "Harvest_JotunBlood":
+                case "Harvest_JotunBloodSmall":
+                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.StoneHarvest, Helpers.resourceInfoSO["Item_Magic_EyeOfOdin"], Vector3.zero, 1, true, true);
+                    break;
+                case "Item_IronDeposit":
+                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.StoneHarvest, Helpers.resourceInfoSO["Item_Iron_Ore"], Vector3.zero, 5, false, true);
+                    break;
+                case "Item_Food_MeatHunk":
+                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.Skinning, Helpers.resourceInfoSO["Item_Misc_BoneFragments"], Vector3.zero, 2, false, true);
+                    break;
                 case "Item_Misc_CrawlerEgg1":
                 case "Item_Misc_CrawlerEgg2":
                 case "Item_Misc_CrawlerEgg3":
@@ -108,28 +118,57 @@ namespace askaplus.bepinex.mod
 
             if (randomChance <= skillValue)
             {
-                bonusSpawner.amount = HowMuchToAdd;
-                Plugin.Log.LogMessage($"RND {randomChance} <= ({skill}) {skillValue} = Spawning additional {HowMuchToAdd} of {whatToSpawn.name}");
+                if (AmountIsFix)
+                {
+                    bonusSpawner.amount = HowMuchToAdd;
 
-            }
-            else if (!AmountIsFix)
-            {
-                bonusSpawner.amount = Mathf.CeilToInt((100 - (randomChance - skillValue)) / 100 * HowMuchToAdd);
-                Plugin.Log.LogMessage($"RND {randomChance} > ({skill}) {skillValue} = Diff is {randomChance - skillValue} = Spawning additional {bonusSpawner.amount} of {whatToSpawn.name}");
+                    Plugin.Log.LogMessage(
+                        $"RND {randomChance:F1} <= ({skill}) {skillValue} = Spawning additional {HowMuchToAdd} of {whatToSpawn.name}"
+                    );
+                }
+                else
+                {
+                    // Base amount:
+                    // Skill 0  -> 1
+                    // Skill 75 -> HowMuchToAdd
+                    float baseAmount = 1f +
+                                       (HowMuchToAdd - 1f) *
+                                       (skillValue / 75f);
+
+                    // Mastery bonus starts at skill 75.
+                    // Skill 75  -> +0
+                    // Skill 100 -> +HowMuchToAdd
+                    float masteryBonus = HowMuchToAdd *
+                                         Mathf.Pow(
+                                             Mathf.Max(0f, skillValue - 75f) / 25f,
+                                             2f
+                                         );
+
+                    bonusSpawner.amount = Mathf.FloorToInt(
+                        baseAmount + masteryBonus
+                    );
+
+                    Plugin.Log.LogMessage(
+                        $"RND {randomChance:F1} <= ({skill}) {skillValue} | Base: {baseAmount:F1} | Mastery: {masteryBonus:F1} | Total: {bonusSpawner.amount} | Spawning additional {bonusSpawner.amount} of {whatToSpawn.name}"
+                    );
+                }
             }
             else
             {
-                Plugin.Log.LogMessage($"No luck this time with {skill}.");
-                bonusSpawner.amount = 0; //Just for clarification       
+                Plugin.Log.LogMessage(
+                    $"No luck this time with {skill}. RND {randomChance:F1} > {skillValue}"
+                );
+
+                bonusSpawner.amount = 0;
             }
-            if(RunOnFullyHarvested) bonusSpawner.UseFullyHarvested = true;
+            if (RunOnFullyHarvested) bonusSpawner.UseFullyHarvested = true;
             bonusSpawner.positionNoise = 0.5f;
             bonusSpawner.rotationNoise = 0.2f;
-            bonusSpawner.spacing = new Vector3(2, 0, 0);
+            bonusSpawner.spacing = new Vector3(0f, 0.25f, 0f); 
             bonusSpawner.harvestInteraction = harvestInteraction;
             bonusSpawner.componentInfo = whatToSpawn;
             bonusSpawner.ignoreMasterItem = true;
-            bonusSpawner.originOffset = offsetOfSpawn;
+            bonusSpawner.originOffset = offsetOfSpawn + new Vector3(0,0.5f,0);
         }
         private void Awake()
         {

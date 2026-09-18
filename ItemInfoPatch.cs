@@ -1,11 +1,9 @@
 ﻿using HarmonyLib;
 using Il2CppSystem.Linq;
-using LibCpp2IL.Elf;
 using SandSailorStudio.Inventory;
 using SSSGame;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 using static askaplus.bepinex.mod.Plugin;
 
 
@@ -64,17 +62,19 @@ namespace askaplus.bepinex.mod
                     {
                         if (ce.duration > 0 && ce.table?.attrElements?.Count > 0)
                         {
+                            bool patchThisFood = false;
                             foreach (var ae in ce.table.attrElements)
                             {
                                 if (ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.PERCENTADD || ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.ADD)
                                 {
                                     if (attributes.Contains(ae.targetAttribute.attributeId))
                                     {
-                                        Plugin.Log.LogDebug($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {ce.duration} to {5 * 60}");
-                                        ce.duration = 5 * 60;
+                                        patchThisFood = true;
+                                        Plugin.Log.LogDebug($"{food.name}: Attribute: {ae.targetAttribute.name} - Operation: {ae.modifier.Operation} - Value: {ae.modifier.Value} : Duration {ce.duration}");
                                     }
                                 }
                             }
+                            if (patchThisFood) ce.duration = 5 * 60;
                         }
                     }
 
@@ -87,17 +87,19 @@ namespace askaplus.bepinex.mod
                             {
                                 if (se.duration > 0 && se.table?.attrElements.Count > 0)
                                 {
+                                    bool patchThisFood = false;
                                     foreach (var ae in se.table.attrElements)
                                     {
                                         if (ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.PERCENTADD || ae.modifier?.Operation == SandSailorStudio.Attributes.ModifierOperation.ADD)
                                         {
                                             if (attributes.Contains(ae.targetAttribute.attributeId))
                                             {
-                                                Plugin.Log.LogDebug($"Patching {food.name}: {ae.targetAttribute.name} - {ae.modifier.Operation} - {ae.modifier.Value} : Duration from {se.duration} to {5 * 60}");
-                                                se.duration = 5 * 60;
+                                                patchThisFood = true;
+                                                Plugin.Log.LogDebug($"{food.name}: Attribute_ {ae.targetAttribute.name} - Operation: {ae.modifier.Operation} - Value: {ae.modifier.Value} : Duration {se.duration}");
                                             }
                                         }
                                     }
+                                    if (patchThisFood) se.duration = 5 * 60;
                                 }
                             }
                         }
@@ -107,15 +109,13 @@ namespace askaplus.bepinex.mod
         }
         public static void OnSettingsMenu(Transform parent)
         {
-            Helpers.CreateCategory(parent, "Seeds mod");
-            Helpers.CreateSwitch(parent, "* Increase decay rate of seeds.", configSeedsDecayEnable);
             Helpers.CreateCategory(parent, "Food mod");
             Helpers.CreateSwitch(parent, "* Increase duration of food effects", configFoodEnable);
 
-            UnityAction applyCallback = (UnityAction)(() =>
-            {
-                Plugin.configGrassPaintKey.Value = KeyCode.Z;
-            });
+//            UnityAction applyCallback = (UnityAction)(() =>
+//            {
+//                Plugin.configGrassPaintKey.Value = KeyCode.Z;
+//            });
         }
     }
 

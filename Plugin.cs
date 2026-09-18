@@ -5,7 +5,6 @@ using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using Il2CppMono.Net.Security;
 using SandSailorStudio.Inventory;
 using SandSailorStudio.UI;
 using SSSGame;
@@ -18,7 +17,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using Object = UnityEngine.Object;
 
 namespace askaplus.bepinex.mod
 {
@@ -399,7 +397,7 @@ namespace askaplus.bepinex.mod
                         }
                     }
 
-                    //Plugin.Log.LogMessage($"Found Anchor in GO {name} with position {pos.ToString()} and offset set to {mb.offset}");
+                    Plugin.Log.LogMessage($"Found Anchor in GO {name} with position {pos.ToString()} and offset set to {mb.offset}");
                 }
             }
 
