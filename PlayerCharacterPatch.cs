@@ -1,11 +1,11 @@
 ﻿using HarmonyLib;
-using SandSailorStudio.Assets;
 using SandSailorStudio.Attributes;
 using SandSailorStudio.Inventory;
+using SandSailorStudio.WorldGen;
 using SSSGame;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using static askaplus.bepinex.mod.Plugin;
 using static askaplus.bepinex.mod.Plugin.Helpers;
 
@@ -46,12 +46,13 @@ namespace askaplus.bepinex.mod
 
     internal class CaveResetTool:MonoBehaviour
     {
-        private void ResetCave(int CaveID) 
+        private void ResetCave(int CaveID)
         {
             var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             Log.LogInfo($"found scene {scene.name}");
             var rootGO = scene.GetRootGameObjects();
 
+            List<CaveResourceStorage> caveResourceStorages = new List<CaveResourceStorage>();
             GameObject WorldGenerator = null;
             foreach (var item in rootGO)
             {
@@ -59,22 +60,146 @@ namespace askaplus.bepinex.mod
                 {
                     WorldGenerator = item;
                 }
+                if (item.GetComponent<CaveResourceStorage>() != null) 
+                {
+                    caveResourceStorages.Add(item.GetComponent<CaveResourceStorage>());
+                }
             }
 
-            if (WorldGenerator != null) Log.LogInfo($"World Generator found in scene: {scene.name}");
+            Log.LogInfo($"Found {caveResourceStorages.Count} CaveBuildings");
 
+            if (WorldGenerator != null) Log.LogInfo($"World Generator found in scene: {scene.name}");
+            
             var caveManager = WorldGenerator.GetComponent<CavesManager>();
 
             if (caveManager != null) Log.LogInfo("Caves Manager found");
+            var caveData = caveManager.GetCaveData(ref CaveID, DataAccessMode.FETCH);
 
-
-
-            var caveData = caveManager.GetCaveData(ref CaveID,DataAccessMode.CREATE);
-
+            if (caveData.caveId != CaveID)
+            {
+                Log.LogInfo($"caveData.caveId: {caveData.caveId} and is not requested {CaveID}");
+            }
             Log.LogInfo("Setting explored state to false");
             caveData.SetExploredState(false);
+            if (caveData.digStates != null)
+            {
+                Log.LogInfo($"Dig states count: {caveData.digStates.Count}");
+                foreach (var state in caveData.digStates)
+                {
+                    var digData = state.Item2;
+                    digData.OnDigDataChanged = null;
+                }
+                caveData.digStates.Clear();
+                caveData.digStates = null;
+            }
 
+            if (caveData.openNodes != null) 
+            {
+                Log.LogInfo($"Open nodes count: {caveData.openNodes.Count}");
+                caveData.openNodes.Clear();
+            }
 
+            if (caveData.OnExploredStatusChanged != null)
+            {
+                Log.LogInfo("Clearing OnExploredStatusChanged");
+                caveData.OnExploredStatusChanged = null;
+            }
+            if (caveData.OnNodeOpenStatusChanged != null)
+            {
+                Log.LogInfo("Clearing OnNodeOpenStatusChanged");
+                caveData.OnNodeOpenStatusChanged = null;
+            }
+            caveData.explored = false;
+
+            Log.LogInfo("finding caveEntrance");
+            var caveEntrance = caveManager._residentCaves[CaveID];
+            if (caveEntrance.caveId != CaveID)
+            {
+                Log.LogInfo($"caveEntrance.caveId: {caveEntrance.caveId} and is not requested {CaveID}");
+            }
+            var caveBiomeConfiguration = caveEntrance.gameObject.GetComponent<CaveBiome>().Configuration;
+            if (caveBiomeConfiguration != null)
+            {
+                Log.LogInfo("CaveBiomeConfiguration found");
+
+            }
+
+            Log.LogInfo("finding parent");
+            var parent = caveEntrance.gameObject.transform.parent;
+
+            var trs = parent.transform;
+            var name = parent.name;
+            Log.LogInfo($"Parent name: {parent.name} with position: {trs.position} and rotation {trs.eulerAngles.y}");
+            var caves = parent.transform.parent;
+            var caveArea = caveEntrance.CaveArea;
+            caveArea.Setup();
+            CaveAreaData caveAreaData = caveArea.area.Cast<CaveAreaData>();
+
+            var generator = caveAreaData.Generator;
+            Log.LogInfo("Cave Generator found");
+
+            var randomGenerator = generator.RandomGenerator;
+            Log.LogInfo("Random Generator found");
+            int num = System.Environment.TickCount ^ System.Guid.NewGuid().GetHashCode();
+            if (num < 0) num = -num;
+            randomGenerator.SetSeed(num);
+            Log.LogInfo("Random Generator set new seed");
+
+            caveArea.Release();
+            Log.LogInfo("Cave area released");
+            generator.ClearGeometry();
+            Log.LogInfo("generator geometry cleared");
+            var newCave = generator.Generate(trs.transform.position, trs.eulerAngles.y, name, randomGenerator);
+            Log.LogInfo($"New cave {newCave.name} created at {newCave.transform.position}");
+            
+            newCave.transform.SetParent(caves, true);
+            Log.LogInfo($"Parent was set");
+
+            caveArea._root = newCave;
+            Log.LogInfo($"caveArea root was set");
+            var newCaveEntrance = newCave.GetComponentInChildren<CaveEntrance>();
+            var caveBiome = newCave.GetComponentInChildren<CaveBiome>();
+            caveBiome.Configuration = caveBiomeConfiguration;
+
+            newCaveEntrance.caveId = CaveID;
+            newCaveEntrance.CaveArea = caveArea;
+            newCaveEntrance._persistentData = caveData;
+            newCaveEntrance._initialized = false;
+            newCaveEntrance.Initialize();
+            newCaveEntrance.Open();
+            caveManager._residentCaves[CaveID] = newCaveEntrance;
+            caveData.SetExploredState(true);
+            caveArea.isExplored = true;
+            
+            Log.LogInfo($"New Cave Entrance Initialized");
+            newCaveEntrance.CutTerrainHole();
+            Log.LogInfo($"New Cave Entrance TerrainHoleCutted");
+            newCaveEntrance._UpdateRenderers();
+            Log.LogInfo($"New Cave Entrance Renderers updated");
+            newCaveEntrance._UpdateObjects();
+            Log.LogInfo($"New Cave Entrance Objects updated");
+            newCaveEntrance._UpdateVolumes();
+            Log.LogInfo($"New Cave Entrance Volumes updated");
+            newCaveEntrance._UpdateOpenState();
+            Log.LogInfo($"New Cave Entrance Open state updated");
+
+            foreach (var item in caveResourceStorages)
+            {
+                Log.LogInfo($"{item._NetConnectedCaveEntrance} is connectedCaveEntrance" );
+                if (item._NetConnectedCaveEntrance == CaveID) 
+                {
+                    try
+                    {
+                        item.CaveEntrance = newCaveEntrance;
+                        item._InitCaveEntrance(newCaveEntrance);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.LogInfo("Cave resource storage failed update cave entrance");
+                        Log.LogError(ex);
+                   }
+                }
+            }
 
         }
     }
@@ -118,20 +243,21 @@ namespace askaplus.bepinex.mod
                     break;
                 case "Item_Wood_birch1":
                 case "Item_Wood_birch2":
-                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"], Vector3.zero, 1, true,true);
+                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLongStick"], Vector3.zero, 1, true,true);
                     break;
                 case "Item_Wood_Willow":
-                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLog"], Vector3.zero, 2, false, true);
+                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_HardWoodLongStick"], Vector3.zero, 2, false, true);
                     break;
                 case "Item_Wood_Fir1":
                 case "Item_Wood_Fir2":
                 case "Item_Wood_Fir3": 
                 case "Item_Wood_Fir4":
                 case "Item_Wood_Fir5":
-                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_RawLog"], Vector3.zero, 1, true, true);
+                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_RawLongStick"], Vector3.zero, 1, true, true);
                     break;
                 case "Harvest_JotunBlood":
                 case "Harvest_JotunBloodSmall":
+                    TryAddBonusSpawner(lastPickable, AskaAttributesEnum.StoneHarvest, Helpers.resourceInfoSO["Item_Magic_EyeOfOdin"], Vector3.zero, 1, true, true);
                     break;
                 case "Item_Misc_CrawlerEgg1":
                 case "Item_Misc_CrawlerEgg2":
@@ -156,7 +282,7 @@ namespace askaplus.bepinex.mod
             var skillValue = attributeManager.GetAttribute((int)skill).GetValue();
             var randomChance = UnityEngine.Random.value * 75;
 
-            if (randomChance <= skillValue)
+            if (randomChance <= skillValue && AmountIsFix)
             {
                 bonusSpawner.amount = HowMuchToAdd;
                 Plugin.Log.LogMessage($"RND {randomChance} <= ({skill}) {skillValue} = Spawning additional {HowMuchToAdd} of {whatToSpawn.name}");
@@ -180,7 +306,7 @@ namespace askaplus.bepinex.mod
             bonusSpawner.harvestInteraction = harvestInteraction;
             bonusSpawner.componentInfo = whatToSpawn;
             bonusSpawner.ignoreMasterItem = true;
-            bonusSpawner.originOffset = offsetOfSpawn;
+            bonusSpawner.originOffset = offsetOfSpawn + new Vector3(0,1,0);
         }
         private void Awake()
         {

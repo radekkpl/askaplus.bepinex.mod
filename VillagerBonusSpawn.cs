@@ -83,6 +83,11 @@ namespace askaplus.bepinex.mod
                 case "Item_Wood_Fir5":
                     TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.WoodHarvest, Helpers.resourceInfoSO["Item_Wood_RawLongStick"], Vector3.zero, 1, true, true);                    
                     break;
+                case "Harvest_JotunBlood":
+                case "Harvest_JotunBloodSmall":
+                    TryAddBonusSpawner(lastInteraction.gameObject, AskaAttributesEnum.StoneHarvest, Helpers.resourceInfoSO["Item_Magic_EyeOfOdin"], Vector3.zero, 1, true, true);
+                    break;
+
                 case "Item_Misc_CrawlerEgg1":
                 case "Item_Misc_CrawlerEgg2":
                 case "Item_Misc_CrawlerEgg3":
@@ -106,7 +111,7 @@ namespace askaplus.bepinex.mod
             var skillValue = villager.Attributes.GetAttribute((int)skill).GetValue();
             var randomChance = Random.value * 75;
 
-            if (randomChance <= skillValue)
+            if ((randomChance <= skillValue) && AmountIsFix)
             {
                 bonusSpawner.amount = HowMuchToAdd;
                 Plugin.Log.LogMessage($"RND {randomChance} <= ({skill}) {skillValue} = Spawning additional {HowMuchToAdd} of {whatToSpawn.name}");
@@ -129,7 +134,7 @@ namespace askaplus.bepinex.mod
             bonusSpawner.harvestInteraction = harvestInteraction;
             bonusSpawner.componentInfo = whatToSpawn;
             bonusSpawner.ignoreMasterItem = true;
-            bonusSpawner.originOffset = offsetOfSpawn;
+            bonusSpawner.originOffset = offsetOfSpawn + new Vector3(0, 1, 0);
         }
         private void Awake()
         {
