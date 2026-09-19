@@ -19,7 +19,7 @@ namespace askaplus.bepinex.mod
             var x = Resources.FindObjectsOfTypeAll<SSSGame.Anchor>();
 
             Plugin.Helpers.TestAnchors(ref x);
-
+            return;
             string name = string.Empty;
             Vector3 posA = Vector3.zero;
 
