@@ -26,10 +26,6 @@ namespace askaplus.bepinex.mod
 
                 var AskaPlusGO = __instance.gameObject.transform.CreateChild("AskaPlusMODS");
                 AskaPlusGO.transform.localPosition = new Vector3(0f,0f,2f);
-                //AskaPlusGO.gameObject.AddComponent<HeightmapTool>();
-                
-                
-
                 AskaPlusGO.gameObject.AddComponent<CaveResetTool>();
                 AskaPlusGO.gameObject.AddComponent<PlayerBonusSpawn>();
                 AskaPlusGO.gameObject.SetActive(true);
